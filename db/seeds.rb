@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+supplier = Supplier.create!(
+  name: "Cornerstone",
+  email: "cornerstone@cornerstone.com",
+  address: "123 Sunset Boulevard"
+)
+
+Product.create!(
+  name: "Gordon's Dry Gin",
+  price: 34,
+  supplier: supplier
+)
