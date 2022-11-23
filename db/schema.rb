@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_005803) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_052729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.string "address", null: false
+    t.string "contact_number", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_delivery_addresses_on_user_id"
+  end
 
   create_table "order_details", force: :cascade do |t|
     t.integer "quantity", null: false
@@ -30,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_005803) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "delivery_date"
+    t.text "comments"
     t.index ["supplier_id"], name: "index_orders_on_supplier_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -63,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_005803) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "delivery_addresses", "users"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "suppliers"
