@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+user = User.create!(
+  email: "kenneth@gmail.com",
+  password: "password"
+)
+
+order = Order.new(
+  status: 'pending'
+)
+
+order_details = OrderDetail.new(
+  order: order,
+  product: order.supplier.products.last,
+)
