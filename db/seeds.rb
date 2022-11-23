@@ -15,7 +15,7 @@ Supplier.destroy_all
 puts "Database cleaned"
 
 puts "Populating supplier seeds"
-50.times do
+10.times do
   Supplier.create!(
     name:  Faker::Company.name,
     # email:  "kenneth@gmail.com",
