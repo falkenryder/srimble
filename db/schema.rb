@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_091107) do
     t.datetime "updated_at", null: false
     t.index ["supplier_id"], name: "index_orders_on_supplier_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.bigint "supplier_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -44,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_091107) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
   add_foreign_key "orders", "suppliers"
   add_foreign_key "orders", "users"
+  add_foreign_key "products", "suppliers"
 end
