@@ -6,4 +6,7 @@ class Order < ApplicationRecord
 
   validates :status, presence: true
   validates :status, inclusion: { in: %w[pending sent] }
+
+  accepts_nested_attributes_for :supplier
+  accepts_nested_attributes_for :order_details
 end

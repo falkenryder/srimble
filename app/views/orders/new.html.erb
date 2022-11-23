@@ -1,7 +1,6 @@
 <h1>New Order</h1>
-<%= simple_form_for @order do |f| %>
-  <%= f.input :name %>
-  <%= f.association :company %>
-  <%= f.association :roles %>
+<%= simple_form_for [@supplier, @order] do |f| %>
+  <%= f.association :supplier, selected: @supplier %>
+  <%= f.input :delivery_date %>
   <%= f.button :submit %>
 <% end %>
