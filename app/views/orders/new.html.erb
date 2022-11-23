@@ -2,5 +2,13 @@
 <%= simple_form_for [@supplier, @order] do |f| %>
   <%= f.association :supplier, selected: @supplier %>
   <%= f.input :delivery_date %>
+  <%= f.input :delivery_address, collection: current_user.delivery_addresses %>
+  <%= f.input :comments %>
+  <%= f.simple_fields_for :order_details do |f| %>
+    <%= f.input :product, collection: @supplier.products %>
+    <%= f.input :quantity %>
+  <% end %>
+
+
   <%= f.button :submit %>
 <% end %>

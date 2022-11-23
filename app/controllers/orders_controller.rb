@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    2.times { @order.order_details.build }
   end
 
   def create
