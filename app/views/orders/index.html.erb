@@ -1,52 +1,47 @@
-
 <div class="container my-4">
   <div class="row justify-content-center">
-    <div class="col-6">
-      <h1>My Orders</h1>
+    <div class="col-lg-8">
+      <h1><strong> Your Past Orders </strong></h1> <br>
     </div>
   </div>
 
   <div class="row justify-content-center my-4">
-    <div class="col-6">
+    <div class="col-lg-8">
+      <% @orders.each_with_index do |order, index| %>
+        <% supplier_id = order.supplier_id %>
+        <% order_id = order.id %>
+
       <%#  Accordion  %>
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <%# Accorin 1  %>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-          <%# button class="accordion-button collapsed"  %>
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              <div class="accordion-order">
-                <p><%= @orders.last.supplier_id %></p>
+        <div class="accordion accordion-flush" id="accordionOrder">
+          <%# Accorin 1  %>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-heading">
+              <button class="accordion-button collapsed" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
+                <div class="accordion-order">
+                  <div class="accordion-order-info">
+                    <strong><%= Supplier.find(supplier_id).name %></strong><br>
+                    <%= order.delivery_date %>
+                  </div>
+                  <a class="accordion-order-btn"><%= order.status %></a>
+                </div>
+              </button>
+            </h2>
+            <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
+              <div class="accordion-body">
+                <div style="text-align: left">
+                  <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
+                    <% product_id = order_detail.product_id %>
+                    <%= Product.find(product_id).name %><br>
+                  <% end %>
+                </div>
+                  <%= link_to "View Order", order_path(order), class: "btn btn-ghost" %>
               </div>
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">hello</div>
+            </div>
           </div>
-        </div>
         <%# Accordion 2 %>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-          </div>
-        </div>
         <%# Accordion 3 %>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              Accordion Item #3
-            </button>
-          </h2>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-          </div>
-        </div>
         <%# end of last accordion %>
+        <% end %>
       </div>
     <%# End of Accordion %>
     </div>
