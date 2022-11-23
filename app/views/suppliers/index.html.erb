@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>List of all Suppliers</h1>
+<br>
+  <div>
+    <% @suppliers.each_with_index do |supplier, index| %>
+    <ul>
+      <li>
+        <%= index + 1 %> - <%= link_to supplier.name, supplier_path(supplier) %> <br>
+        <%= supplier.address %>
+      </li>
+    </ul>
+    <% end  %>
+  </div>
+
+  <div>
+    <p> <%= link_to "Create a new supplier", new_supplier_path(@supplier) %> </p>
+  </div>
+
+</div>
