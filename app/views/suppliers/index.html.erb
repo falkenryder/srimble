@@ -1,19 +1,21 @@
-<div class="container">
-  <h1>List of all Suppliers</h1>
+<div class="container suppliers-body">
+  <h1><strong> Choose a Supplier </strong></h1>
 <br>
   <div>
-    <% @suppliers.each_with_index do |supplier, index| %>
+    <% @suppliers.each do |supplier| %>
     <ul>
-      <li>
-        <%= index + 1 %> - <%= link_to supplier.name, supplier_path(supplier) %> <br>
-        <%= supplier.address %>
+      <%= link_to supplier.name, supplier_path(supplier), :style => "text-decoration: none" do %> <br>
+        <li class="card card-suppliers">
       </li>
     </ul>
+      <% end  %>
     <% end  %>
   </div>
-
+<br>
   <div>
-    <p> <%= link_to "Create a new supplier", new_supplier_path(@supplier) %> </p>
+    <%= link_to new_supplier_path(@supplier) do %>
+    <i class="fa-solid fa-circle-plus fa-2xl"></i>
+    <% end %>
   </div>
 
 </div>
