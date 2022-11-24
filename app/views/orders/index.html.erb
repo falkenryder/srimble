@@ -11,6 +11,7 @@
   <div>   <%= link_to "Delivered Orders", "/orders?status=delivered", class: "btn btn-ghost mx-2" %></div>
 </div>
 
+ <%# if param status is not passed  %>
   <div class="row justify-content-center my-4">
     <div class="col-lg-8">
       <% @orders.each_with_index do |order, index| %>
@@ -27,7 +28,7 @@
                 <div class="accordion-order">
                   <div class="accordion-order-info">
                     <strong><%= Supplier.find(supplier_id).name %></strong><br>
-                    <%= order.delivery_date %>
+                    Arriving on <%= order.delivery_date %>
                   </div>
                   <a class="accordion-order-btn"><%= order.status %></a>
                 </div>
@@ -53,5 +54,8 @@
     <%# End of Accordion %>
     </div>
   </div>
+
+ <%# or param status is  passed with template %>
+
 
 </div>
