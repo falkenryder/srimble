@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
+
   end
 
   def show
@@ -13,7 +14,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
   end
 
   private
@@ -21,4 +21,9 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit()
   end
+end
+
+private
+
+def set_supplier
 end
