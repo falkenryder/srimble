@@ -8,6 +8,12 @@ class OrdersController < ApplicationController
       @orders = Order.where(supplier_id: params[:user_id])
     elsif params[:status] == "template"
       @orders = Order.where(status: "template")
+    elsif params[:status] == "pending"
+      @orders = Order.where(status: "pending")
+    elsif params[:status] == "sent"
+      @orders = Order.where(status: "sent")
+    elsif params[:status] == "delivered"
+      @orders = Order.where(status: "delivered")
     else
       @orders = Order.all
     end
