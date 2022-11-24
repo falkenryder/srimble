@@ -1,7 +1,16 @@
 class OrdersController < ApplicationController
-  def index
-    @orders = Order.all
+  before_action :set_supplier, only: %i[new create]
+  before_action :set_user, only: %i[new create]
 
+  # http://localhost:3000/orders?status=template
+  def index
+    if params[:supplier_id].present?
+      @orders = Order.where(supplier_id: params[:user_id])
+    elsif params[:status] == "template"
+      @orders = Order.where(status: "template")
+    else
+      @orders = Order.all
+    end
   end
 
   def show
@@ -13,17 +22,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
   end
 
   private
 
-  def order_params
-    params.require(:order).permit()
+  def set_user
+    @user = current_user
   end
-end
 
-private
+  def set_supplier
+    @supplier = Supplier.find(params[:supplier_id])
+  end
 
-def set_supplier
+
 end
