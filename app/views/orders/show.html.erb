@@ -1,21 +1,20 @@
-<div class="container my-4">
+<div class="container my-4 container-order">
 
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+  <div class="row">
+    <div class="col-lg-6 my-4">
       <h1><strong> Your Past Orders </strong></h1> <br>
-      <ul style="list-style: none;">
-        <li>Created by: <%= User.find(@order.user_id).email %></li>
-        <li>Created on: <%= @order.created_at %></li>
-      <ul>
+        <span><strong>Created by </strong> <%= User.find(@order.user_id).email %></span></br>
+        <span><strong>Created on </strong> <%= @order.created_at %></span>
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="line-order">
-          <span>Awaiting Approval</span><br/>
-          <span>Order 004 - Florian's Bird</span><br/>
+  <div class="row">
+      <div class="col-lg-6">
+        <div>
+          <%= link_to "Awaiting Approval", "#", class: "accordion-order-btn" %><br>
+        </div>
+        <div class="line-order my-4">
+          <span>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %><</span><br/>
           <span>Monday, 7th of November 2022</span><br/>
         </div>
         <div class="my-4">
@@ -24,47 +23,45 @@
           <span>Singapore 049319</span><br/>
         </div>
       </div>
-    </div>
+
 
     <%# Order Item Tabele  %>
     <div class="row">
-      <div class="col-lg-8">
-
-        <table><caption>Phone numbers</caption>
+      <div class="col-lg-6">
+        <table>
           <thead>
-            <tr>
-              <th>Item</th>
+            <tr class="table-order">
+              <th style="text-align: left;">Item</th>
               <th>Price</th>
               <th>Qty</th>
               <th>Subtotal</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Coffee</td>
+            <tr class="table-order">
+              <td style="text-align: left;">Coffee</td>
               <td>2</td>
               <td>10</td>
               <td>20.00</td>
             </tr>
           </tbody>
         </table>
-
       </div>
     </div>
 
   <%# Note to supplier  %>
-    <div class="row">
-      <div class="col-lg-8">
-        Note to supplier
-        Please deliver before 9pm
-        Go to Invoice ->
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <span><strong>Note to supplier</strong><span><br/>
+        <span>Please deliver before 9pm<span><br/>
+        <span>Go to Invoice -><span><br/>
       </div>
     </div>
   <%# row div below %>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+  <div class="row d-flex justify-content-content">
+    <div class="col-lg-6 my-4">
       <%= link_to "Mark as Delivered", "#", class: "btn btn-gradient" %>
       <%= link_to "Contact Supplier", "#", class: "btn btn-gradient" %>
     </div>
