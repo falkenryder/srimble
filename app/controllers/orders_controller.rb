@@ -2,16 +2,12 @@ class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[new create]
   before_action :set_user, only: %i[new create]
 
-  def index
-    @orders = Order.all
-
   # http://localhost:3000/orders?status=template
   def index
     if params[:supplier_id].present?
       @orders = Order.where(supplier_id: params[:user_id])
     elsif params[:status] == "template"
       @orders = Order.where(status: "template")
-
     else
       @orders = Order.all
     end
@@ -38,8 +34,5 @@ class OrdersController < ApplicationController
     @supplier = Supplier.find(params[:supplier_id])
   end
 
-end
-private
 
-def set_supplier
 end
