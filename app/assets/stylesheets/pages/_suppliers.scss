@@ -6,11 +6,20 @@
   :hover {
     background-color: black;
     color: white;
+    // box-shadow: 10px 10px 15px grey;
+    // transform: translateY(-2px);
   }
+
+  :active {
+    background-color: black;
+    transform: translateY(2px);
+  }
+
 }
 
-.fa-circle-plus {
-  transform: translateY(-50%);
+.card-suppliers:hover {
+  background-color: grey;
+  color: white;
 }
 
 .card-supplier {
@@ -19,37 +28,14 @@
   border-color: rgb(182, 182, 182);
   color: black;
   padding-left: 0;
-
   padding: 20px;
   // box-shadow: 5px 10px;
 }
 
 .fa-circle-plus {
-  color: $oxford-blue;
-  :hover {
-    background-color: white;
-    color: black;
-  }
+  color: black;
 }
 
-
-// click me button:
-
-// .button {
-//   padding: 15px 25px;
-//   font-size: 24px;
-//   text-align: center;
-//   cursor: pointer;
-//   outline: none;
-//   color: #fff;
-//   background-color: #04AA6D;
-//   border: none;
-//   border-radius: 15px;
-//   box-shadow: 0 9px #999;
-// }
-
-// .button:active {
-//   background-color: #3e8e41;
-//   box-shadow: 0 5px #666;
-//   transform: translateY(4px);
-// }
+.fa-circle-plus:hover {
+  color: rgb(182, 182, 182);
+}
