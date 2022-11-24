@@ -1,9 +1,72 @@
 <div class="container my-4">
   <div class="row justify-content-center">
+
+  </div>
+
+
+<%if params[:supplier_id].present?%>
+    <div class="col-lg-8 d-flex justify-content-center">
+      <h1><strong> My Orders with <%= Supplier.find(params[:supplier_id]).name %></strong></h1> <br>
+    </div>
+
+
+      <div class="wrapper d-flex justify-content-center">
+      <div><%= link_to "All Orders", "/orders", class: "btn btn-ghost mx-2" %></div>
+      <div>   <%= link_to "Pending Orders", "/:id/orders?status=pending", class: "btn btn-ghost mx-2" %></div>
+      <div><%= link_to "Sent Orders", "/orders?status=sent", class: "btn btn-ghost mx-2" %></div>
+      <div>   <%= link_to "Delivered Orders", "/orders?status=delivered", class: "btn btn-ghost mx-2" %></div>
+    </div>
+
+      <div class="row justify-content-center my-4">
+        <div class="col-lg-8">
+          <% @orders.each_with_index do |order, index| %>
+            <% supplier_id = order.supplier_id %>
+            <% order_id = order.id %>
+
+
+          <%#  Accordion  %>
+            <div class="accordion accordion-flush" id="accordionOrder">
+              <%# Accordion 1  %>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading">
+                  <button class="accordion-button collapsed" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
+                    <div class="accordion-order">
+                      <div class="accordion-order-info">
+                        <strong><%= Supplier.find(supplier_id).name %></strong><br>
+                        <%= order.delivery_date %>
+                      </div>
+                      <a class="accordion-order-btn"><%= order.status %></a>
+                    </div>
+                  </button>
+                </h2>
+                <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
+                  <div class="accordion-body">
+                    <div style="text-align: left">
+                      <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
+                        <% product_id = order_detail.product_id %>
+                        <%= Product.find(product_id).name %><br>
+                      <% end %>
+                    </div>
+                      <%= link_to "View Order", order_path(order), class: "btn btn-ghost" %>
+                  </div>
+                </div>
+              </div>
+            <%# Accordion 2 %>
+            <%# Accordion 3 %>
+            <%# end of last accordion %>
+            <% end %>
+          </div>
+        <%# End of Accordion %>
+        </div>
+      </div>
+
+    </div>
+
+<%else%>
     <div class="col-lg-8 d-flex justify-content-center">
       <h1><strong> My Orders </strong></h1> <br>
     </div>
-  </div>
+
   <div class="wrapper d-flex justify-content-center">
   <div><%= link_to "All Orders", "/orders", class: "btn btn-ghost mx-2" %></div>
   <div>   <%= link_to "Pending Orders", "/orders?status=pending", class: "btn btn-ghost mx-2" %></div>
@@ -55,3 +118,5 @@
   </div>
 
 </div>
+
+<%end%>
