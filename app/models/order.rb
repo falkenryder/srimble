@@ -9,5 +9,5 @@ class Order < ApplicationRecord
   validates :status, inclusion: { in: %w[pending sent] }
 
   accepts_nested_attributes_for :supplier
-  accepts_nested_attributes_for :order_details
+  accepts_nested_attributes_for :order_details, reject_if: :all_blank, allow_destroy: true
 end

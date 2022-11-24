@@ -10,12 +10,9 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    2.times { @order.order_details.build }
   end
 
   def create
-    @order = Order.new(order_params)
-
   end
 
   private
@@ -26,9 +23,5 @@ class OrdersController < ApplicationController
 
   def set_supplier
     @supplier = Supplier.find(params[:supplier_id])
-  end
-
-  def order_params
-    params.require(:order).permit()
   end
 end

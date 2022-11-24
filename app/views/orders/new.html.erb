@@ -1,14 +1,35 @@
-<h1>New Order</h1>
-<%= simple_form_for [@supplier, @order] do |f| %>
-  <%= f.association :supplier, selected: @supplier %>
-  <%= f.input :delivery_date %>
-  <%= f.input :delivery_address, collection: current_user.delivery_addresses %>
-  <%= f.input :comments %>
-  <%= f.simple_fields_for :order_details do |f| %>
-    <%= f.input :product, collection: @supplier.products %>
-    <%= f.input :quantity %>
-  <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6" >
+      <h1>New Order</h1>
+      <div data-controller="order-form">
+        <%= simple_form_for [@supplier, @order] do |f| %>
+          <%= f.association :supplier, selected: @supplier, class: "form-select" %>
+          <%= f.input :delivery_date %>
+          <%= f.input :delivery_address, collection: current_user.delivery_addresses , class: "form-select" %>
+
+            <div class="container">
+            <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
+                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+            <% end %>
+            <template data-order-form-target="template">
+              <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
+                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+              <% end %>
+            </template>
+            </div>
 
 
-  <%= f.button :submit %>
-<% end %>
+        <div data-order-form-target="add_detail">
+          <%= link_to "Add", '#', data: { action: "click->order-form#add_association"} %>
+        </div>
+
+
+          <%= f.input :comments %>
+          <%= f.button :submit %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
