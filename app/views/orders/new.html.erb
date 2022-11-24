@@ -17,12 +17,12 @@
                 <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
               <% end %>
             </template>
+              <div data-order-form-target="add_detail">
+                <%= link_to "Add", '#', data: { action: "click->order-form#add_association"} %>
+              </div>
             </div>
 
 
-        <div data-order-form-target="add_detail">
-          <%= link_to "Add", '#', data: { action: "click->order-form#add_association"} %>
-        </div>
 
 
           <%= f.input :comments %>

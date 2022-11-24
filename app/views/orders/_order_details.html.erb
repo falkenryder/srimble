@@ -1,7 +1,18 @@
 <div class="nested-fields row ">
   <%= f.hidden_field :_destroy, value: 0 %>
-  <div class="col"><%= f.input :product, collection: supplier.products %></div>
+  <div class="col">
+  <%= f.input :product, collection: supplier.products, value_method: :price,
+  input_html: {
+    data: {
+      order_form_target: "product",
+      action: "change->order-form#display_product_price"
+      } } %>
+  </div>
   <div class="col"><%= f.input :quantity %></div>
+  <div class="col">
+  <p>Price</p>
+  <p data-order-form-target="productPrice">0</p>
+  </div>
     <small>
       <%= link_to "Remove", '#', data: { action: "order-form#remove_association"} %>
     </small>
