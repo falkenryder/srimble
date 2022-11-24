@@ -1,8 +1,78 @@
 <div class="container my-4">
-  <h1>Order Show Page - Work in Progress</h1>
-  <ul>
-    <li>Created by: <%= User.find(@order.user_id).email %></li>
-    <li>Created on: <%= @order.created_at %></li>
-  <ul>
 
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1><strong> Your Past Orders </strong></h1> <br>
+      <ul style="list-style: none;">
+        <li>Created by: <%= User.find(@order.user_id).email %></li>
+        <li>Created on: <%= @order.created_at %></li>
+      <ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="line-order">
+          <span>Awaiting Approval</span><br/>
+          <span>Order 004 - Florian's Bird</span><br/>
+          <span>Monday, 7th of November 2022</span><br/>
+        </div>
+        <div class="my-4">
+          <span>SRIMble.Inc</span><br/>
+          <span>20 collyer quay</span><br/>
+          <span>Singapore 049319</span><br/>
+        </div>
+      </div>
+    </div>
+
+    <%# Order Item Tabele  %>
+    <div class="row">
+      <div class="col-lg-8">
+
+        <table><caption>Phone numbers</caption>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coffee</td>
+              <td>2</td>
+              <td>10</td>
+              <td>20.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  <%# Note to supplier  %>
+    <div class="row">
+      <div class="col-lg-8">
+        Note to supplier
+        Please deliver before 9pm
+        Go to Invoice ->
+      </div>
+    </div>
+  <%# row div below %>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <%= link_to "Mark as Delivered", "#", class: "btn btn-gradient" %>
+      <%= link_to "Contact Supplier", "#", class: "btn btn-gradient" %>
+    </div>
+  </div>
+
+
+
+
+
+<%# container div below %>
 </div>
