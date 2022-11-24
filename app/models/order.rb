@@ -5,5 +5,5 @@ class Order < ApplicationRecord
   has_many :products, through: :order_details
 
   validates :status, presence: true
-  validates :status, inclusion: { in: %w[pending sent template] }
+  validates :status, inclusion: { in: %w[pending sent template delivered] }
 end
