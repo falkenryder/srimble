@@ -29,7 +29,6 @@ puts "Populating supplier seeds"
   )
 end
 
-puts "Populating product seeds"
 supplier_id_range = Supplier.last.id - Supplier.first.id
 60.times do
   Product.create!(
@@ -62,9 +61,9 @@ User.create!(
 user_id_range = User.last.id - User.first.id
 
 puts "Populating order seeds"
-10.times do
+12.times do
   Order.create!(
-    status: ["pending", "sent", "template"].sample,
+    status: ["pending", "sent", "template", "delivered"].sample,
     supplier_id: Supplier.first.id + rand(0..supplier_id_range),
     user_id:   User.first.id + rand(0..user_id_range),
     delivery_date: Faker::Date.between(from: '2022-12-01', to: '2022-12-31'),

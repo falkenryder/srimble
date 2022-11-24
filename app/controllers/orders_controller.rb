@@ -5,6 +5,16 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
 
+  # http://localhost:3000/orders?status=template
+  def index
+    if params[:supplier_id].present?
+      @orders = Order.where(supplier_id: params[:user_id])
+    elsif params[:status] == "template"
+      @orders = Order.where(status: "template")
+
+    else
+      @orders = Order.all
+    end
   end
 
   def show
@@ -27,8 +37,8 @@ class OrdersController < ApplicationController
   def set_supplier
     @supplier = Supplier.find(params[:supplier_id])
   end
-end
 
+end
 private
 
 def set_supplier
