@@ -1,0 +1,67 @@
+// CSS for index.html.erb for Orders
+// Removes default blue border
+.accordion-button:focus {
+  box-shadow: inherit;
+}
+// Sets style when collapsed
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color: #EFD6AC;
+}
+
+.accordion-order-btn {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #5D3A00;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.accordion-button:not(.collapsed) .accordion-order-btn {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #5D3A00;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+  // filter: brightness(0%) invert(70%);
+  filter: brightness(0%);
+}
+
+.accordion-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0px 1rem;
+}
+
+.accordion-order-info {
+  line-height: 22px;
+}
+
+.accordion-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 0px 40px;
+}
+
+.accordion-body-link {
+  align-items: left;
+
+}
+.accordion-button {
+  // placeholder
+}
+
+.accordion-item {
+  // placeholder
+}

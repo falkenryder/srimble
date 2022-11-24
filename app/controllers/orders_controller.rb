@@ -3,9 +3,12 @@ class OrdersController < ApplicationController
   before_action :set_user, only: %i[new create]
 
   def index
+    @orders = Order.all
+
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -24,4 +27,9 @@ class OrdersController < ApplicationController
   def set_supplier
     @supplier = Supplier.find(params[:supplier_id])
   end
+end
+
+private
+
+def set_supplier
 end

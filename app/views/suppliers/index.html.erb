@@ -1,0 +1,22 @@
+<div class="container suppliers-body">
+
+  <h1><strong> Choose a Supplier </strong></h1> <br>
+
+  <div class="card-suppliers">
+
+      <% @suppliers.each do |supplier| %>
+        <%= link_to supplier_path(supplier), :style=>'text-decoration: none' do %>
+          <li class="card card-supplier">
+            <%= supplier.name %>
+          </li>
+        <% end %>
+      <% end  %>
+  </div>
+<br>
+  <div class="button-suppliers" align="center">
+    <%= link_to new_supplier_path(@supplier) do %>
+    <i class="fa-solid fa-circle-plus fa-2xl"></i>
+    <% end %>
+  </div>
+
+</div>

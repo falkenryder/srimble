@@ -1,0 +1,41 @@
+.card-suppliers {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  :hover {
+    background-color: black;
+    color: white;
+    // box-shadow: 10px 10px 15px grey;
+    // transform: translateY(-2px);
+  }
+
+  :active {
+    background-color: black;
+    transform: translateY(2px);
+  }
+
+}
+
+.card-suppliers:hover {
+  background-color: grey;
+  color: white;
+}
+
+.card-supplier {
+  border: none;
+  border-bottom: solid;
+  border-color: rgb(182, 182, 182);
+  color: black;
+  padding-left: 0;
+  padding: 20px;
+  // box-shadow: 5px 10px;
+}
+
+.fa-circle-plus {
+  color: black;
+}
+
+.fa-circle-plus:hover {
+  color: rgb(182, 182, 182);
+}

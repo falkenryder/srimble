@@ -1,0 +1,41 @@
+.form {
+  // align-items: center;
+  // padding-left: 150px;
+  justify-content: center;
+}
+
+.form-title {
+  // margin: 30px;
+  font-family: ll-unica77, “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  color: rgb(84, 83, 83);
+  padding-top: 20px;
+  justify-content: left;
+}
+
+.form-inputs{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(222, 223, 229);
+  font-family: Helvetica, Arial, sans-serif;
+  max-width: 600px;
+  padding: 25px;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+.form-actions {
+  margin-top: 40px;
+  background-color: black;
+  color: white;
+}
+
+.btn:hover {
+  background-color: white;
+}
+
+.form-bottom {
+  margin: 4px;
+  color: grey;
+  text-decoration: none;
+}
