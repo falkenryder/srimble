@@ -14,36 +14,42 @@
           <%= link_to "Awaiting Approval", "#", class: "accordion-order-btn" %><br>
         </div>
         <div class="line-order my-4">
-          <span>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %><</span><br/>
-          <span>Monday, 7th of November 2022</span><br/>
+          <span><strong>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %></strong></span><br/>
+          <span>Arriving on <%=@order.delivery_date%></span><br/>
         </div>
         <div class="my-4">
-          <span>SRIMble.Inc</span><br/>
-          <span>20 collyer quay</span><br/>
-          <span>Singapore 049319</span><br/>
+          <%= DeliveryAddress.find(@order.delivery_address_id).address %> <br/>
         </div>
       </div>
 
-
     <%# Order Item Tabele  %>
     <div class="row">
-      <div class="col-lg-6">
-        <table>
+      <div class="col-lg-6 border-top border-bottom py-2">
+        <table class="table-order">
+
           <thead>
-            <tr class="table-order">
+            <tr class="table-order-row">
               <th style="text-align: left;">Item</th>
               <th>Price</th>
               <th>Qty</th>
               <th>Subtotal</th>
             </tr>
           </thead>
+
           <tbody>
-            <tr class="table-order">
-              <td style="text-align: left;">Coffee</td>
-              <td>2</td>
-              <td>10</td>
-              <td>20.00</td>
-            </tr>
+            <% supplier_id = @order.supplier_id %>
+            <% order_id = @order.id %>
+            <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
+              <% product_id = order_detail.product_id %>
+                <tr class="table-order-row">
+                  <td style="text-align: left;"><%= Product.find(product_id).name %></td>
+                  <td><%= Product.find(product_id).price %></td>
+                  <td><%= order_detail.quantity %></td>
+                    <% price = Product.find(product_id).price %>
+                    <% quantity = Product.find(product_id).price %>
+                  <td><%= price * quantity %></td>
+                </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -52,24 +58,19 @@
   <%# Note to supplier  %>
     <div class="row mt-4">
       <div class="col-lg-6">
-        <span><strong>Note to supplier</strong><span><br/>
-        <span>Please deliver before 9pm<span><br/>
-        <span>Go to Invoice -><span><br/>
+        <strong>Note to supplier</strong><br/>
+        <%= @order.comments %><br/><br/>
       </div>
     </div>
   <%# row div below %>
   </div>
 
-  <div class="row d-flex justify-content-content">
-    <div class="col-lg-6 my-4">
-      <%= link_to "Mark as Delivered", "#", class: "btn btn-gradient" %>
-      <%= link_to "Contact Supplier", "#", class: "btn btn-gradient" %>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= link_to "Mark as Delivered", "#", class: "btn btn-ghost btn-order-mark" %>
+      <%= link_to "Contact Supplier", "#", class: "btn btn-order-mark" %>
     </div>
   </div>
-
-
-
-
 
 <%# container div below %>
 </div>
