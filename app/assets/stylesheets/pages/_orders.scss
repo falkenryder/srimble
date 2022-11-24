@@ -77,8 +77,14 @@
   width: 100%;
   border-top: grey;
   border-bottom: grey;
-
 }
+
 .table-order-row {
   text-align: center;
+ }
+
+//styles for buttons on order page
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }

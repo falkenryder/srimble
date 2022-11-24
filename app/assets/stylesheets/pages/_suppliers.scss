@@ -6,7 +6,9 @@
   :hover {
     background-color: black;
     color: white;
-    // box-shadow: 10px 10px 15px grey;
+    border-radius: 25px;
+
+    // box-shadow: 10px 10px  black;
     // transform: translateY(-2px);
   }
 
@@ -18,17 +20,25 @@
 }
 
 .card-suppliers:hover {
-  background-color: grey;
+  // background-color: grey;
   color: white;
+
 }
 
 .card-supplier {
   border: none;
-  border-bottom: solid;
-  border-color: rgb(182, 182, 182);
+  border: solid;
+  border-radius: 25px;
+  box-shadow: 4px 4px  black;
+  border-width: 2px;
+
+
+  // border-color: rgb(182, 182, 182);
   color: black;
   padding-left: 0;
   padding: 20px;
+  margin: 10px;
+
   // box-shadow: 5px 10px;
 }
 
