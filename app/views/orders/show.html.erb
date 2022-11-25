@@ -66,10 +66,11 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6 d-flex justify-content-around" data-controller="order-status">
+
+    <div class="col-lg-6 d-flex justify-content-around">
         <%= simple_form_for @order, url: order_path(@order) do |f| %>
           <%= f.hidden_field :status, :value => "delivered" %>
-          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark" %>
         <% end %>
       <a class="btn btn-ghost btn-order-mark">Contact Supplier</a>
     </div>

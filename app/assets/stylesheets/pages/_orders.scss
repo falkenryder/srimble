@@ -66,6 +66,64 @@
   // placeholder
 }
 
+
+// order form css
+
+.edit-products-list {
+  display: flex;
+}
+
+.add-products {
+    background-color: rgb(186, 186, 186);
+    box-shadow: 4px 5px black;
+    border-radius: 15px;
+    border-width: 5px;
+    border: black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    align-items: center;
+    border: solid #000;
+    border-width: 2px 2px;
+
+    :active {
+      transform: translateY(20px);
+    }
+
+  }
+
+
+
+  .add-detail {
+    :active {
+      transform: translateY(2px);
+    }
+
+  }
+
+.submit-container {
+  display: flex;
+  align-items: center;
+}
+
+.order-submit {
+  margin-left: auto;
+  margin-right: auto;
+  width: 8em;
+
+}
+
+
+// .add-products {
+//   background-color: black;
+//   color: black;
+
+//   :hover {
+//     color: black;
+//   }
+// }
+
 .line-order {
   line-height: 24px;
 }
@@ -88,3 +146,4 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
