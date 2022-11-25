@@ -94,7 +94,7 @@ count = 0
     OrderDetail.create!(
       quantity: rand(1..100),
       order_id: Order.first.id + count,
-      product_id: Product.first.id
+      product: Product.find(rand(1..Product.count))
     )
     count += 1
   end
