@@ -72,7 +72,8 @@
           <%= f.hidden_field :status, :value => "delivered" %>
           <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark", data: {turbo_confirm: "Are you sure?"}%>
         <% end %>
-      <a class="btn btn-ghost btn-order-mark" data-dismiss="alert" >Contact Supplier</a>
+      <div><%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn btn-ghost btn-order-mark"%></div>
+
     </div>
   </div>
 <%# container div below %>

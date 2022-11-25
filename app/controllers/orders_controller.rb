@@ -51,9 +51,18 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @addresses = @user.delivery_addresses
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.user = @user
+    @order.status = "pending" #TODO: enum this!
+    if @order.save!
+      redirect_to @order
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -91,7 +100,13 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(
+      :supplier_id,
+      :delivery_date,
+      :delivery_address_id,
+      :comments,
+      order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+    )
   end
-
 end
+

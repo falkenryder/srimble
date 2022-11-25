@@ -89,14 +89,16 @@ end
 
 
 puts "Populating order details seeds"
-count = 0
-  (Order.count).times do |order|
-    OrderDetail.create!(
-      quantity: rand(1..100),
-      order_id: Order.first.id + count,
-      product: Product.find(rand(1..Product.count))
-    )
-    count += 1
-  end
 
+5.times do
+  count = 0
+    (Order.count).times do |order|
+      OrderDetail.create!(
+        quantity: rand(1..100),
+        order_id: Order.first.id + count,
+        product: Product.find(Product.all.pluck(:id).sample)
+      )
+      count += 1
+  end
+end
 puts "Seeding completed!"
