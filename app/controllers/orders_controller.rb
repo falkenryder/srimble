@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[new create]
   before_action :set_user, only: %i[new create]
+  before_action :set_order, only: %i[show update single_template]
   attr_reader :id
 
   # http://localhost:3000/orders?status=template
@@ -8,12 +9,8 @@ class OrdersController < ApplicationController
 
     if params[:supplier_id].present?
 
-      # suppliers/:id/orders?status=template
-      if params[:status] == "template"
-      @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "template")
-
       # suppliers/:id/orders?status=pending
-      elsif params[:status] == "pending"
+      if params[:status] == "pending"
         @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "pending")
 
         # suppliers/:id/orders?status=sent
@@ -26,13 +23,10 @@ class OrdersController < ApplicationController
 
         # suppliers/:id/orders
       else
-        @orders = Order.where(supplier_id: params[:supplier_id])
+        @orders = Order.where(supplier_id: params[:supplier_id]).where.not(status: "template")
       # raise
       # if Order.where(supplier_id: params[:user_id]).where(status: "template")
     end
-
-    elsif params[:status] == "template"
-      @orders = Order.where(status: "template")
 
       # /orders?status=pending
     elsif params[:status] == "pending"
@@ -48,12 +42,11 @@ class OrdersController < ApplicationController
 
      # /orders
     else
-      @orders = Order.all
+      @orders = Order.where.not(status: "template")
     end
   end
 
   def show
-    @order = Order.find(params[:id])
   end
 
   def new
@@ -64,13 +57,30 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
     @order.status = params[:order][:status]
     @order.save!
     redirect_to order_path(@order), notice: "Your order has been marked as delivered"
   end
 
+  # /templates
+  def all_templates
+    @templates = Order.where(status: 'template')
+  end
+
+  # /suppliers/:id/templates
+  def supplier_templates
+    @templates = Order.where(supplier_id: params[:supplier_id]).where(status: 'template')
+  end
+
+  # /templates/:id
+  def single_template
+  end
+
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def set_user
     @user = current_user
