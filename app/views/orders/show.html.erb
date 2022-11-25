@@ -11,7 +11,7 @@
   <div class="row">
       <div class="col-lg-6">
         <div>
-          <%= link_to "Awaiting Approval", "#", class: "accordion-order-btn" %><br>
+          <a class="accordion-order-btn"><%= @order.status %></a>
         </div>
         <div class="line-order my-4">
           <span><strong>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %></strong></span><br/>
@@ -46,7 +46,7 @@
                   <td><%= Product.find(product_id).price %></td>
                   <td><%= order_detail.quantity %></td>
                     <% price = Product.find(product_id).price %>
-                    <% quantity = Product.find(product_id).price %>
+                    <% quantity = order_detail.quantity %>
                   <td><%= price * quantity %></td>
                 </tr>
             <% end %>
@@ -66,11 +66,13 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
-      <%= link_to "Mark as Delivered", "#", class: "btn btn-ghost btn-order-mark" %>
-      <%= link_to "Contact Supplier", "#", class: "btn btn-order-mark" %>
+    <div class="col-lg-6 d-flex justify-content-around" data-controller="order-status">
+        <%= simple_form_for @order, url: order_path(@order) do |f| %>
+          <%= f.hidden_field :status, :value => "delivered" %>
+          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% end %>
+      <a class="btn btn-ghost btn-order-mark">Contact Supplier</a>
     </div>
   </div>
-
 <%# container div below %>
 </div>
