@@ -8,17 +8,17 @@
           <%= f.input :delivery_date %>
           <%= f.input :delivery_address, collection: current_user.delivery_addresses , class: "form-select" %>
 
-            <div class="container">
-            <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
-                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
-            <% end %>
+            <div class="container p-0">
             <template data-order-form-target="template">
               <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
                 <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
               <% end %>
             </template>
+            <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
+                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+            <% end %>
               <div data-order-form-target="add_detail">
-                <%= link_to "Add", '#', data: { action: "click->order-form#add_association"} %>
+                <%= link_to "Add", '#', data: { action: "click->order-form#add_association" } %>
               </div>
             </div>
 
@@ -26,8 +26,11 @@
 
 
           <%= f.input :comments %>
+          <div class="row">
+            <p>Grand Total</p>
+            <p id="grandtotal" >0</p>
+          </div>
           <%= f.button :submit %>
-        </div>
         <% end %>
       </div>
     </div>

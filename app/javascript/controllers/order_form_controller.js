@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="order-form"
 export default class extends Controller {
-  static targets = ["add_detail", "template", "product", "productPrice"]
+  static targets = ["add_detail", "template", "subtotal"]
 
   add_association(event) {
     event.preventDefault()
@@ -16,11 +16,5 @@ export default class extends Controller {
     let item = event.target.closest(".nested-fields")
     item.querySelector("input[name*='_destroy']").value = 1
     item.style.display = "none"
-  }
-
-  display_product_price(event) {
-    event.preventDefault()
-    console.log("hello")
-
   }
 }
