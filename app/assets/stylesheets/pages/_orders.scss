@@ -58,13 +58,6 @@
   align-items: left;
 
 }
-.accordion-button {
-  // placeholder
-}
-
-.accordion-item {
-  // placeholder
-}
 
 
 // order form css
@@ -92,8 +85,6 @@
     }
 
   }
-
-
 
   .add-detail {
     :active {
@@ -133,10 +124,21 @@
 
 .table-order {
   width: 100%;
-  border-top: grey;
-  border-bottom: grey;
+  height: 200px;
+  border-collapse: collapse;
+  // border-top: grey;
+  // border-bottom: grey;
+//   border-spacing: 0 2px;
+//   border-collapse: separate;
 }
 
+.table-order thead {
+  border-bottom: 1px solid lightgrey;
+}
+
+.table-order tfoot {
+  border-top: 1px solid lightgrey;
+}
 .table-order-row {
   text-align: center;
  }
@@ -146,4 +148,3 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-
