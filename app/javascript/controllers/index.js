@@ -12,3 +12,6 @@ application.register("order-detail", OrderDetailController)
 
 import OrderFormController from "./order_form_controller"
 application.register("order-form", OrderFormController)
+
+import OrderStatusController from "./order_status_controller"
+application.register("order-status", OrderStatusController)

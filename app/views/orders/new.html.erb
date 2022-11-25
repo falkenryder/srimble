@@ -2,35 +2,51 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-6" >
       <h1>New Order</h1>
+
       <div data-controller="order-form">
         <%= simple_form_for [@supplier, @order] do |f| %>
           <%= f.association :supplier, selected: @supplier, class: "form-select" %>
           <%= f.input :delivery_date %>
-          <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
-
+          
             <div class="container p-0">
             <template data-order-form-target="template">
               <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
                 <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
               <% end %>
             </template>
+
+          <%= f.input :delivery_date, as: :string, input_html: {type: :date} %>
+          <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
+
+            <div class="container edit-products-list p-0">
+
+              <template data-order-form-target="template">
+                <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
+                  <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %> <br>
+                <% end %>
+              </template>
+
             <%= f.simple_fields_for :order_details, OrderDetail.new do |f| %>
                 <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
             <% end %>
-              <div data-order-form-target="add_detail">
-                <%= link_to "Add", '#', data: { action: "click->order-form#add_association" } %>
-              </div>
+            <div>
+              <div data-order-form-target="add_detail" align="center">
+                <%= link_to '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' do %>
+              <div class="add-products">Add more + </div>
+              <% end %>
+            </div>
+<br>
             </div>
 
-
-
-
           <%= f.input :comments %>
-          <div class="row">
+           <div class="row">
             <p>Grand Total</p>
             <p id="grandtotal" >0</p>
           </div>
-          <%= f.button :submit %>
+          <div class="submit-container">
+            <%= f.button :submit, "Submit", :class => "add-products order-submit"%>
+          </div>
+        </div>
         <% end %>
       </div>
     </div>
