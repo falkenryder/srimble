@@ -6,6 +6,7 @@ export default class extends Controller {
 
   add_association(event) {
     event.preventDefault()
+    console.log("test")
     const content = this.templateTarget.innerHTML.replace(/TEMPLATE_RECORD/g, Math.floor(Math.random() * 20 ))
     this.add_detailTarget.insertAdjacentHTML('beforebegin', content)
   }

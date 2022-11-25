@@ -9,6 +9,7 @@ require 'faker'
 puts "Cleaning up database..."
 OrderDetail.destroy_all
 Order.destroy_all
+DeliveryAddress.destroy_all
 User.destroy_all
 Product.destroy_all
 Supplier.destroy_all
@@ -17,6 +18,7 @@ puts "Database cleaned"
 puts "Populating supplier seeds"
 puts "Database cleaned"
 
+no_of_orders = 50
 
 puts "Populating supplier seeds"
 10.times do
@@ -29,7 +31,6 @@ puts "Populating supplier seeds"
   )
 end
 
-puts "Populating product seeds"
 supplier_id_range = Supplier.last.id - Supplier.first.id
 60.times do
   Product.create!(
@@ -61,16 +62,31 @@ User.create!(
 
 user_id_range = User.last.id - User.first.id
 
+
+puts "Populating address details"
+no_of_orders.times do
+  DeliveryAddress.create!(
+    address: Faker::Address.full_address,
+    contact_number: Faker::PhoneNumber.phone_number_with_country_code,
+    user_id: User.first.id + rand(0..user_id_range)
+  )
+end
+
+delivery_address_range = DeliveryAddress.last.id - DeliveryAddress.first.id
 puts "Populating order seeds"
-10.times do
+count = 0
+no_of_orders.times do
   Order.create!(
-    status: ["pending", "sent", "template"].sample,
+    status: ["pending", "sent", "template", "delivered"].sample,
     supplier_id: Supplier.first.id + rand(0..supplier_id_range),
     user_id:   User.first.id + rand(0..user_id_range),
     delivery_date: Faker::Date.between(from: '2022-12-01', to: '2022-12-31'),
-    comments: "Please deliver to the front desk"
+    comments: "Please deliver to the front desk",
+    delivery_address_id: DeliveryAddress.first.id + count,
     )
+    count +=1
 end
+
 
 puts "Populating order details seeds"
 count = 0

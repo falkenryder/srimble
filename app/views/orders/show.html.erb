@@ -1,8 +1,78 @@
-<div class="container my-4">
-  <h1>Order Show Page - Work in Progress</h1>
-  <ul>
-    <li>Created by: <%= User.find(@order.user_id).email %></li>
-    <li>Created on: <%= @order.created_at %></li>
-  <ul>
+<div class="container my-4 container-order">
 
+  <div class="row">
+    <div class="col-lg-6 my-4">
+      <h1><strong> Your Past Orders </strong></h1> <br>
+        <span><strong>Created by </strong> <%= User.find(@order.user_id).email %></span></br>
+        <span><strong>Created on </strong> <%= @order.created_at %></span>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-lg-6">
+        <div>
+          <a class="accordion-order-btn"><%= @order.status %></a>
+        </div>
+        <div class="line-order my-4">
+          <span><strong>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %></strong></span><br/>
+          <span>Arriving on <%=@order.delivery_date%></span><br/>
+        </div>
+        <div class="my-4">
+          <%= DeliveryAddress.find(@order.delivery_address_id).address %> <br/>
+        </div>
+      </div>
+
+    <%# Order Item Tabele  %>
+    <div class="row">
+      <div class="col-lg-6 border-top border-bottom py-2">
+        <table class="table-order">
+
+          <thead>
+            <tr class="table-order-row">
+              <th style="text-align: left;">Item</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% supplier_id = @order.supplier_id %>
+            <% order_id = @order.id %>
+            <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
+              <% product_id = order_detail.product_id %>
+                <tr class="table-order-row">
+                  <td style="text-align: left;"><%= Product.find(product_id).name %></td>
+                  <td><%= Product.find(product_id).price %></td>
+                  <td><%= order_detail.quantity %></td>
+                    <% price = Product.find(product_id).price %>
+                    <% quantity = order_detail.quantity %>
+                  <td><%= price * quantity %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <%# Note to supplier  %>
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <strong>Note to supplier</strong><br/>
+        <%= @order.comments %><br/><br/>
+      </div>
+    </div>
+  <%# row div below %>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 d-flex justify-content-around">
+        <%= simple_form_for @order, url: order_path(@order) do |f| %>
+          <%= f.hidden_field :status, :value => "delivered" %>
+          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark" %>
+        <% end %>
+      <a class="btn btn-ghost btn-order-mark">Contact Supplier</a>
+    </div>
+  </div>
+<%# container div below %>
 </div>
