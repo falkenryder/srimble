@@ -30,6 +30,13 @@ class OrdersController < ApplicationController
   def create
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.status = params[:order][:status]
+    @order.save!
+    redirect_to order_path(@order)
+  end
+
   private
 
   def set_user
@@ -40,5 +47,8 @@ class OrdersController < ApplicationController
     @supplier = Supplier.find(params[:supplier_id])
   end
 
+  def order_params
+    params.require(:order).permit(:status)
+  end
 
 end
