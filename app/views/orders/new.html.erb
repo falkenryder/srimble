@@ -9,18 +9,27 @@
           <%= f.input :delivery_date, as: :string, input_html: {type: :date} %>
           <%= f.input :delivery_address, collection: current_user.delivery_addresses , class: "form-select" %>
 
-            <div class="container">
+            <div class="container edit-products-list">
             <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
                 <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
             <% end %>
             <template data-order-form-target="template">
               <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
-                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %> <br>
               <% end %>
             </template>
-              <div data-order-form-target="add_detail">
-                <%= link_to "Add", '#', data: { action: "click->order-form#add_association"} %>
-              </div>
+
+
+                <%# <%= link_to "Add more +", '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' %>
+              <%# </div> %>
+
+            <div>
+              <div data-order-form-target="add_detail" align="center">
+              <%= link_to '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' do %>
+              <div class="add-products">Add more + </div>
+              <% end %>
+            </div>
+<br>
             </div>
 
           <%= f.input :comments %>

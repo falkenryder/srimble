@@ -65,3 +65,43 @@
 .accordion-item {
   // placeholder
 }
+
+// order form css
+
+.edit-products-list {
+  display: flex;
+
+}
+
+.add-products {
+    background-color: rgb(186, 186, 186); /* Green */
+    box-shadow: 4px 5px black;
+    border-radius: 15px;
+    border: black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+
+  :active {
+    transform: translateY(20px);
+  }
+
+  }
+
+  .add-detail {
+    :active {
+      transform: translateY(2px);
+    }
+
+  }
+
+
+// .add-products {
+//   background-color: black;
+//   color: black;
+
+//   :hover {
+//     color: black;
+//   }
+// }
