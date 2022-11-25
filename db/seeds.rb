@@ -18,7 +18,7 @@ puts "Database cleaned"
 puts "Populating supplier seeds"
 puts "Database cleaned"
 
-no_of_orders = 15
+no_of_orders = 50
 
 puts "Populating supplier seeds"
 10.times do
