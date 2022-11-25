@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="order-form"
 export default class extends Controller {
-  static targets = ["add_detail", "template"]
+  static targets = ["add_detail", "template", "subtotal"]
 
   add_association(event) {
     event.preventDefault()
