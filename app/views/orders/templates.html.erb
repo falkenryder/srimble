@@ -1,0 +1,15 @@
+<div class="col-lg-8 d-flex justify-content-center">
+      <h1><strong> My Templates with <%= Supplier.find(params[:supplier_id]).name %></strong></h1> <br>
+     </div>
+
+      </div>
+        <div class="row justify-content-center my-4">
+          <div class="col-lg-8">
+            <% @templates.each_with_index do |order, index| %>
+              <%= render "order_template_details", order: order, index: index %>
+            <% end %>
+          </div>
+          <%# End of Accordion %>
+        </div>
+      </div>
+    </div>
