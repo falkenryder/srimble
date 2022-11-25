@@ -6,12 +6,12 @@ export default class extends Controller {
 
   display_product_price(event) {
     event.preventDefault()
-    this.productPriceTarget.textContent = this.productTarget.value
+    this.productPriceTarget.textContent = this.productTarget.dataset.price
 
   }
   display_subtotal(event) {
     event.preventDefault()
-    this.subtotalTarget.textContent = (parseInt(this.quantityTarget.value) || 0) * parseInt(this.productTarget.value)
+    this.subtotalTarget.textContent = (parseInt(this.quantityTarget.value) || 0) * parseInt(this.productTarget.dataset.price)
 
   }
   add_to_total(event) {
