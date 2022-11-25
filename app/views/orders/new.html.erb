@@ -6,16 +6,16 @@
         <%= simple_form_for [@supplier, @order] do |f| %>
           <%= f.association :supplier, selected: @supplier, class: "form-select" %>
           <%= f.input :delivery_date %>
-          <%= f.input :delivery_address, collection: current_user.delivery_addresses , class: "form-select" %>
+          <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
 
             <div class="container p-0">
             <template data-order-form-target="template">
               <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
-                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+                <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
               <% end %>
             </template>
-            <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
-                <%= render partial: 'order_details', locals: { f: f, supplier: @supplier } %>
+            <%= f.simple_fields_for :order_details, OrderDetail.new do |f| %>
+                <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
             <% end %>
               <div data-order-form-target="add_detail">
                 <%= link_to "Add", '#', data: { action: "click->order-form#add_association" } %>
