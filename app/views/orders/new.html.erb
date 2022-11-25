@@ -33,7 +33,9 @@
             </div>
 
           <%= f.input :comments %>
-          <%= f.button :submit %>
+          <div class="submit-container">
+            <%= f.button :submit, "Submit", :class => "add-products order-submit"%>
+          </div>
         </div>
         <% end %>
       </div>
