@@ -70,10 +70,15 @@
     <div class="col-lg-6 d-flex justify-content-around">
         <%= simple_form_for @order, url: order_path(@order) do |f| %>
           <%= f.hidden_field :status, :value => "delivered" %>
-          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark" %>
+          <%= f.submit "Mark as Delivered", class: "btn btn-ghost btn-order-mark", data: {turbo_confirm: "Are you sure?"} data-controller="order-status" data-action="click->order-status#alert"%>
         <% end %>
-      <a class="btn btn-ghost btn-order-mark">Contact Supplier</a>
+      <a class="btn btn-ghost btn-order-mark" data-dismiss="alert" >Contact Supplier</a>
     </div>
   </div>
 <%# container div below %>
 </div>
+
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>Success!</strong>Your message has been sent successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
