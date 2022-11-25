@@ -6,8 +6,7 @@
     <li><%= @supplier.email %> </li>
   </div>
 
-<%@supplier.id %>
-<div><%= link_to "All Orders", "../#{@supplier.id}/orders", class: "btn btn-ghost mx-2" %></div>
-  <%# <div><%= link_to "All Orders", "../suppliers/@supplier.id/orders", class: "btn btn-ghost mx-2"</div> %> %>
+
+<div><%= link_to "All Orders with #{@supplier.name}", supplier_orders_path(@supplier.id), class: "btn btn-ghost mx-2" %></div>
 
 </div>
