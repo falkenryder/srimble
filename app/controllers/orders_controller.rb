@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[new create]
   before_action :set_user, only: %i[new create]
+  attr_reader :id
 
   # http://localhost:3000/orders?status=template
   def index
