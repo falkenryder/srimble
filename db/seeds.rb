@@ -96,7 +96,7 @@ puts "Populating order details seeds"
       OrderDetail.create!(
         quantity: rand(1..100),
         order_id: Order.first.id + count,
-        product: Product.find(rand(1..Product.count))
+        product: Product.find(rand(Product.first.id..Product.last.id))
       )
       count += 1
   end
