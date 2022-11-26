@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-12">
       <div>
-        <a class="accordion-order-btn"><%= @order.status %></a>
+        <a class="view-btn"><%= @order.status %></a>
       </div>
       <div class="line-order my-4">
         <span><strong>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %></strong></span><br/>

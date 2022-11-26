@@ -1,22 +1,26 @@
 <div class="container col-11 my-4">
   <%= render "order_show" %>
+</div>
 
   <%# Bottom button(s) %>
+  <%# For order yet to be delivered  %>
   <% if @order.status != "delivered" %>
-    <div class="row">
-      <%= render "order_mark_delivered" %>
+    <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn btn-ghost btn-order-mark"%>
+        <%= render "order_mark_delivered" %>
       </div>
-    </div>
-
-  <% else %>
-    <div class="row justify-content-center">
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn btn-ghost btn-order-mark"%>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
+      </div>
+
+    </div>
+  <%# For delievered order  %>
+  <% else %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
       </div>
     </div>
 
   <% end %>
 <%# container div below %>
-</div>
