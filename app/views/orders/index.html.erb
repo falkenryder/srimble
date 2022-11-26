@@ -11,7 +11,7 @@
     <div class="col-lg-8 d-flex justify-content-center">
       <h1><strong> My Orders with <%= Supplier.find(params[:supplier_id]).name %></strong></h1> <br>
     </div>
-<%# supplier_orders %>
+    <br>
 
     <div class="wrapper d-flex justify-content-center">
         <div><%= link_to "All Orders", supplier_orders_path(params[:supplier_id]), class: "push-btn" %></div>
@@ -36,6 +36,7 @@
     <div class="col-lg-8 d-flex justify-content-center">
       <h1><strong> My Orders </strong></h1> <br>
     </div>
+    <br>
 
   <div class="wrapper d-flex justify-content-center">
   <div><%= link_to "All Orders", "/orders", class: "push-btn" %></div>
