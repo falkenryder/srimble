@@ -14,10 +14,10 @@
 <%# supplier_orders %>
 
     <div class="wrapper d-flex justify-content-center">
-        <div><%= link_to "All Orders", supplier_orders_path(params[:supplier_id]), class: "btn btn-ghost mx-2" %></div>
-        <div><%= link_to "Pending Orders", supplier_orders_path(params[:supplier_id], status: "pending"), class: "btn btn-ghost mx-2" %></div>
-        <div><%= link_to "Sent Orders", supplier_orders_path(params[:supplier_id], status: "sent"), class: "btn btn-ghost mx-2" %></div>
-        <div><%= link_to "Delivered Orders", supplier_orders_path(params[:supplier_id], status: "delivered"), class: "btn btn-ghost mx-2" %></div>
+        <div><%= link_to "All Orders", supplier_orders_path(params[:supplier_id]), class: "push-btn" %></div>
+        <div><%= link_to "Pending Orders", supplier_orders_path(params[:supplier_id], status: "pending"), class: "push-btn" %></div>
+        <div><%= link_to "Sent Orders", supplier_orders_path(params[:supplier_id], status: "sent"), class: "push-btn" %></div>
+        <div><%= link_to "Delivered Orders", supplier_orders_path(params[:supplier_id], status: "delivered"), class: "push-btn" %></div>
     </div>
 
       <div class="row justify-content-center my-4">
@@ -38,10 +38,10 @@
     </div>
 
   <div class="wrapper d-flex justify-content-center">
-  <div><%= link_to "All Orders", "/orders", class: "btn btn-ghost m-2" %></div>
-  <div><%= link_to "Pending Orders", "/orders?status=pending", class: "btn btn-ghost m-2" %></div>
-  <div><%= link_to "Sent Orders", "/orders?status=sent", class: "btn btn-ghost m-2" %></div>
-  <div><%= link_to "Delivered Orders", "/orders?status=delivered", class: "btn btn-ghost m-2" %></div>
+  <div><%= link_to "All Orders", "/orders", class: "push-btn" %></div>
+  <div><%= link_to "Pending Orders", "/orders?status=pending", class: "push-btn" %></div>
+  <div><%= link_to "Sent Orders", "/orders?status=sent", class: "push-btn" %></div>
+  <div><%= link_to "Delivered Orders", "/orders?status=delivered", class: "push-btn" %></div>
 </div>
 
   <div class="row justify-content-center my-4">
