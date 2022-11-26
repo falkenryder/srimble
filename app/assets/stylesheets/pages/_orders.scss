@@ -73,17 +73,14 @@
     border-width: 5px;
     border: black;
     color: black;
-    padding: 15px 32px;
+    padding: 12px 28px;
     text-align: center;
     text-decoration: none;
     align-items: center;
     border: solid #000;
     border-width: 2px 2px;
-
-    :active {
-      transform: translateY(20px);
-    }
-
+    font-size: 16px;
+    position: relative;
   }
 
   .add-detail {
@@ -91,7 +88,10 @@
       transform: translateY(2px);
     }
 
+  .add-products:active{
+    bottom: -2px;
   }
+
 
 .submit-container {
   display: flex;
