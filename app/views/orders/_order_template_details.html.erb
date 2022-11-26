@@ -1,19 +1,18 @@
 <% supplier_id = order.supplier_id %>
 <% order_id = order.id %>
 
-
 <%#  Accordion  %>
 <div class="accordion accordion-flush" id="accordionOrder">
   <%# Accordion 1  %>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-heading">
-      <button class="accordion-button collapsed" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
-        <div class="accordion-order">
+      <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
+        <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
             <strong><%= Supplier.find(supplier_id).name %></strong><br>
-              Arriving on <%= order.delivery_date %>
+              <%= order.delivery_date %>
           </div>
-          <a class="accordion-order-btn"><%= order.status %></a>
+          <a class="view-btn"><%= order.status %></a>
         </div>
       </button>
     </h2>
@@ -32,7 +31,7 @@
           <% else %>
             <% path = order_path(order) %>
           <% end%>
-          <%= link_to "View Order", path, class: "btn btn-ghost" %>
+          <%= link_to "View Order >", path, class: "stretched-link" %>
       </div>
     </div>
   </div>

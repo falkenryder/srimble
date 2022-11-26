@@ -87,6 +87,7 @@
     :active {
       transform: translateY(2px);
     }
+  }
 
   .add-products:active{
     bottom: -2px;
@@ -106,15 +107,6 @@
 }
 
 
-// .add-products {
-//   background-color: black;
-//   color: black;
-
-//   :hover {
-//     color: black;
-//   }
-// }
-
 .line-order {
   line-height: 24px;
 }
@@ -126,10 +118,6 @@
   width: 100%;
   height: 200px;
   border-collapse: collapse;
-  // border-top: grey;
-  // border-bottom: grey;
-//   border-spacing: 0 2px;
-//   border-collapse: separate;
 }
 
 .table-order thead {
