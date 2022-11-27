@@ -58,13 +58,6 @@
   align-items: left;
 
 }
-.accordion-button {
-  // placeholder
-}
-
-.accordion-item {
-  // placeholder
-}
 
 
 // order form css
@@ -80,27 +73,26 @@
     border-width: 5px;
     border: black;
     color: black;
-    padding: 15px 32px;
+    padding: 12px 28px;
     text-align: center;
     text-decoration: none;
     align-items: center;
     border: solid #000;
     border-width: 2px 2px;
-
-    :active {
-      transform: translateY(20px);
-    }
-
+    font-size: 16px;
+    position: relative;
   }
-
-
 
   .add-detail {
     :active {
       transform: translateY(2px);
     }
-
   }
+
+  .add-products:active{
+    bottom: -2px;
+  }
+
 
 .submit-container {
   display: flex;
@@ -115,15 +107,6 @@
 }
 
 
-// .add-products {
-//   background-color: black;
-//   color: black;
-
-//   :hover {
-//     color: black;
-//   }
-// }
-
 .line-order {
   line-height: 24px;
 }
@@ -133,10 +116,17 @@
 
 .table-order {
   width: 100%;
-  border-top: grey;
-  border-bottom: grey;
+  height: 200px;
+  border-collapse: collapse;
 }
 
+.table-order thead {
+  border-bottom: 1px solid lightgrey;
+}
+
+.table-order tfoot {
+  border-top: 1px solid lightgrey;
+}
 .table-order-row {
   text-align: center;
  }
@@ -146,4 +136,3 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-

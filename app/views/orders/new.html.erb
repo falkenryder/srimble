@@ -23,7 +23,7 @@
 
               <div data-order-form-target="add_detail" align="center">
                 <%= link_to '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' do %>
-              <div class="add-products">Add more + </div>
+              <div class="push-btn">Add more + </div>
               <% end %>
             </div>
 <br>
@@ -35,7 +35,7 @@
             <p id="grandtotal" >0</p>
           </div>
           <div class="submit-container">
-            <%= f.button :submit, "Submit", :class => "add-products order-submit"%>
+            <%= f.button :submit, "Submit", :class => "push-btn order-submit"%>
           </div>
         </div>
         <% end %>
