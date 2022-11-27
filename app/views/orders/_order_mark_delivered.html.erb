@@ -1,0 +1,6 @@
+  <div class="col-12">
+    <%= simple_form_for @order, url: order_path(@order) do |f| %>
+      <%= f.hidden_field :status, :value => "delivered" %>
+      <%= f.submit "Mark as Delivered", class: "push-btn-small", data: {turbo_confirm: "All items were delivered for this order?"}%>
+    <% end %>
+  </div>

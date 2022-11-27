@@ -47,6 +47,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -68,7 +69,7 @@ class OrdersController < ApplicationController
   def update
     @order.status = params[:order][:status]
     @order.save!
-    redirect_to order_path(@order), notice: "Your order has been marked as delivered"
+    redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
   end
 
   # /templates
@@ -109,4 +110,3 @@ class OrdersController < ApplicationController
     )
   end
 end
-
