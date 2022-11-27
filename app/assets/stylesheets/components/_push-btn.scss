@@ -1,6 +1,6 @@
 .push-btn {
   background-color: rgb(186, 186, 186);
-  box-shadow: 4px 5px black;
+  box-shadow: 2px 2px black;
   border-radius: 15px;
   border-width: 5px;
   border: black;
@@ -17,6 +17,7 @@
 }
 
 .push-btn:active{
+  box-shadow: none;
   bottom: -2px;
 }
 
@@ -26,7 +27,7 @@
 
 .push-btn-small {
   background-color: rgb(186, 186, 186);
-  box-shadow: 4px 5px black;
+  box-shadow: 2px 2px black;
   border-radius: 15px;
   border-width: 5px;
   border: black;

@@ -1,6 +1,3 @@
-<% supplier_id = order.supplier_id %>
-<% order_id = order.id %>
-
 <%#  Accordion  %>
 <div class="accordion accordion-flush" id="accordionOrder">
   <%# Accordion 1  %>
@@ -9,7 +6,7 @@
       <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
         <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
-            <strong><%= Supplier.find(supplier_id).name %></strong><br>
+            <strong><%= order.supplier.name %></strong><br>
               <%= order.delivery_date %>
           </div>
           <a class="view-btn"><%= order.status %></a>
@@ -19,19 +16,11 @@
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
       <div class="accordion-body">
         <div style="text-align: left">
-          <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
-            <% product_id = order_detail.product_id %>
-            <%= Product.find(product_id).name %><br>
+          <% order.order_details.each do |order_detail|%>
+            <%= order_detail.product.name %><br>
           <% end %>
         </div>
-          <% if request.path.include?("templates") %>
-            <% path = single_template_path(order) %>
-          <% elsif params[:supplier_id] %>
-            <% path = supplier_order_path(supplier_id, order) %>
-          <% else %>
-            <% path = order_path(order) %>
-          <% end%>
-          <%= link_to "View Order >", path, class: "stretched-link" %>
+          <%= link_to "View Order >", order %>
       </div>
     </div>
   </div>

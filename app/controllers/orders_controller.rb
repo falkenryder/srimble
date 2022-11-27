@@ -4,45 +4,21 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show update single_template]
   attr_reader :id
 
-  # http://localhost:3000/orders?status=template
   def index
-
-    if params[:supplier_id].present?
-
-      # suppliers/:id/orders?status=pending
-      if params[:status] == "pending"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "pending")
-
-        # suppliers/:id/orders?status=sent
-      elsif params[:status] == "sent"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "sent")
-
-        # suppliers/:id/orders?status=delivered
-      elsif params[:status] == "delivered"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "delivered")
-
-        # suppliers/:id/orders
+    if params[:type] == "order"
+      if params[:supplier_id].present?
+        set_supplier
+        @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
       else
-        @orders = Order.where(supplier_id: params[:supplier_id]).where.not(status: "template")
-      # raise
-      # if Order.where(supplier_id: params[:user_id]).where(status: "template")
-    end
-
-      # /orders?status=pending
-    elsif params[:status] == "pending"
-      @orders = Order.where(status: "pending")
-
-      # /orders?status=sent
-    elsif params[:status] == "sent"
-      @orders = Order.where(status: "sent")
-
-      # /orders?status=delivered
-    elsif params[:status] == "delivered"
-      @orders = Order.where(status: "delivered")
-
-     # /orders
-    else
-      @orders = Order.where.not(status: "template")
+        @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
+      end
+    elsif params[:type] == "template"
+      if params[:supplier_id].present?
+        set_supplier
+        @orders = @supplier.templates
+      else
+        @orders = Templates.all
+      end
     end
   end
 
