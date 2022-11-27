@@ -5,8 +5,8 @@
   <div class="card-suppliers">
 
       <% @suppliers.each do |supplier| %>
-        <%= link_to supplier_path(supplier), :style=>'text-decoration: none' do %>
-          <li class="card card-supplier">
+        <%= link_to supplier_path(supplier), :style=>'text-decoration: none; list-style: none' do %>
+          <li class="push-btn push_suppliers">
             <%= supplier.name %>
           </li>
         <% end %>
