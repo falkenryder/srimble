@@ -31,7 +31,7 @@ puts "Populating supplier seeds"
   )
 end
 
-60.times do
+100.times do
   products_array = []
   products_array << Faker::Food.vegetables
   products_array << Faker::Food.spice
@@ -93,7 +93,7 @@ no_of_orders.times do
 end
 
 User.all.each_with_index do |user|
-  no_of_orders.times do
+  5.times do
     rand_supplier = Supplier.all.sample
     order_details_rows = []
     rand(1..5).times do

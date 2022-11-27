@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :suppliers, only: [ :index, :show, :new, :create ] do
     resources :orders, only: [ :index, :show, :new, :create, :update ], type: "order"
-    resources :templates, controller: :orders, type: "template"
+    resources :templates, only: [ :index, :new, :create, :edit, :update ], controller: :orders, type: "template"
     resources :products, only: [ :new, :create ]
   end
 
