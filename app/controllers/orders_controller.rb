@@ -15,9 +15,9 @@ class OrdersController < ApplicationController
     elsif params[:type] == "template"
       if params[:supplier_id].present?
         set_supplier
-        @orders = @supplier.templates
+        @templates = @supplier.templates
       else
-        @orders = Templates.all
+        @templates = Template.all
       end
     end
   end
@@ -46,20 +46,6 @@ class OrdersController < ApplicationController
     @order.status = params[:order][:status]
     @order.save!
     redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
-  end
-
-  # /templates
-  def all_templates
-    @templates = Order.where(status: 'template')
-  end
-
-  # /suppliers/:id/templates
-  def supplier_templates
-    @templates = Order.where(supplier_id: params[:supplier_id]).where(status: 'template')
-  end
-
-  # /templates/:id
-  def single_template
   end
 
   private
