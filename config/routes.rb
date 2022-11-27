@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :suppliers, only: [ :index, :show, :new, :create ] do
-    resources :orders, only: [ :index, :show, :new, :create, :update ]
+    resources :orders, only: [ :index, :show, :new, :create, :update ], type: "order"
+    resources :templates, controller: :orders, type: "template"
     resources :products, only: [ :new, :create ]
-    get ':templates', to: "orders#supplier_templates", as: :supplier_templates
   end
 
   # get 'templates', to: "orders#index", type: "template"

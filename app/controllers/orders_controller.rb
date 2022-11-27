@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[new create]
   before_action :set_user, only: %i[new create]
-  before_action :set_order, only: %i[show update single_template]
-  attr_reader :id
+  before_action :set_order, only: %i[show update]
 
   def index
     if params[:type] == "order"
@@ -32,13 +31,29 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user = @user
-    @order.status = "pending" #TODO: enum this!
-    if @order.save!
-      redirect_to @order
+    if params[:order][:name]
+      @template = Template.new(template_params)
+      @template.user = @user
+      if @template.save!
+        redirect_to templates_path
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      @order = Order.new(order_params)
+      @order.user = @user
+      @order.status = "pending" #TODO: enum this!
+      if @order.save!
+        redirect_to @order
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+  end
+
+  def edit
+    if params[:type] == "template"
+      @template = Template.find(params[:id])
     end
   end
 
@@ -49,10 +64,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def set_order
-    @order = Order.find(params[:id])
-  end
 
   def set_user
     @user = current_user
@@ -68,6 +79,14 @@ class OrdersController < ApplicationController
       :delivery_date,
       :delivery_address_id,
       :comments,
+      order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+    )
+  end
+
+  def template_params
+    params.require(:order).permit(
+      :name,
+      :supplier_id,
       order_details_attributes: [:id, :_destroy, :product_id, :quantity]
     )
   end

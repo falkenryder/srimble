@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  attr_accessor :name
   belongs_to :supplier
   belongs_to :user
   belongs_to :delivery_address
