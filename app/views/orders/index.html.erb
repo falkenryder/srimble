@@ -1,10 +1,10 @@
-<div class="container col-11 my-4 mx-1">
+<div class="container col-11 my-4 mx-1 px-0">
 
   <%# for suppliers/:id/orders %>
   <%if params[:supplier_id].present?%>
     <%if params[:status] == "template"%>
     <%else%>
-      <div class="col-l2 d-flex justify-content-center px-2">
+      <div class="col-l2 d-flex justify-content-center px-2" style="font-family: helvetica;">
         <h1><strong>My Orders with <%= Supplier.find(params[:supplier_id]).name %></strong></h1> <br>
       </div><br>
     <%# order status dropdown  %>
