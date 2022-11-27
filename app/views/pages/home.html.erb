@@ -1,4 +1,18 @@
 <div class="container">
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+  <div class="row">
+    <div class="col-sm-6 col-md-6">
+      <h2>Orders</h2>
+      <div class="list-group">
+        <% current_user.orders.where(delivery_date: Date.today..DateTime::Infinity.new).order(:delivery_date).first(5).each do |order| %>
+          <%= link_to order_path(order), class: "list-group-item list-group-item-action mb-2" do %>
+           <%= "Order ##{order.id}" %>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= order.supplier.name %></h5>
+            <small>Arriving <%= order.delivery_date == Date.today ? "today" : order.delivery_date %></small>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,22 @@
+.notif-card {
+  background-color: rgb(186, 186, 186);
+  box-shadow: 2px 2px black;
+  border-radius: 15px;
+  border-width: 5px;
+  border: black;
+  color: black;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 16px;
+  position: relative;
+  margin: 8px;
+
+  :active{
+    box-shadow: none;
+    bottom: -2px;
+  }
+}
