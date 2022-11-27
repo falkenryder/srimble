@@ -78,7 +78,7 @@ no_of_orders.times do
   rand_supplier = Supplier.all.sample
   rand_user = User.all.sample
   order_details_rows = []
-  rand(1..5) do
+  rand(1..5).times do
     order_details_rows << { product: rand_supplier.products.sample, quantity: rand(1..100) }
   end
   Order.create!(
@@ -96,7 +96,7 @@ User.all.each_with_index do |user|
   no_of_orders.times do
     rand_supplier = Supplier.all.sample
     order_details_rows = []
-    rand(1..5) do
+    rand(1..5).times do
       order_details_rows << { product: rand_supplier.products.sample, quantity: rand(1..100) }
     end
     Template.create!(
