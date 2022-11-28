@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%# <title>Srimble</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> %>
+    <%# <title>Srimble</title> %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><%= meta_title %></title>
-    <meta name="description" content="<%= meta_description %>">
+    <meta name="description" content="<%= meta_description %>, width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>" />
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag "srimble_logo_128x128.png", rel: "icon", type: "image/png" %>
 
   </head>
 
