@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_072412) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_27_032311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,11 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_072412) do
 
   create_table "order_details", force: :cascade do |t|
     t.integer "quantity", null: false
-    t.bigint "order_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.string "order_type"
+    t.bigint "order_id"
+    t.index ["order_type", "order_id"], name: "index_order_details_on_order"
     t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
@@ -64,6 +65,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_072412) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "templates", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.bigint "supplier_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_id"], name: "index_templates_on_supplier_id"
+    t.index ["user_id"], name: "index_templates_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,10 +88,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_072412) do
   end
 
   add_foreign_key "delivery_addresses", "users"
-  add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "delivery_addresses"
   add_foreign_key "orders", "suppliers"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "suppliers"
+  add_foreign_key "templates", "suppliers"
+  add_foreign_key "templates", "users"
 end

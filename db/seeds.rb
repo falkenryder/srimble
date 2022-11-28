@@ -7,8 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 puts "Cleaning up database..."
-OrderDetail.destroy_all
 Order.destroy_all
+Template.destroy_all
 DeliveryAddress.destroy_all
 User.destroy_all
 Product.destroy_all
@@ -31,16 +31,19 @@ puts "Populating supplier seeds"
   )
 end
 
-supplier_id_range = Supplier.last.id - Supplier.first.id
 60.times do
+  products_array = []
+  products_array << Faker::Food.vegetables
+  products_array << Faker::Food.spice
+  products_array << Faker::Food.fruits
+  products_array << Faker::Food.ingredient
   Product.create!(
-    name:  ["Wine", "Coffee", "Iced tea", "Hot chocolate", "Juice", "Water", "Tea", "Milk", "Beer", "Soda", "Coffee", "Baked goods", "Breads", "Cereals", "Dairy products", "Edible plants", "Edible fungi", "nuts and seeds", "Legumes", "Meat", "Eggs", "Rice"].sample,
+    name: products_array.sample,
     price: rand(1..10),
-    supplier_id: Supplier.first.id + rand(0..supplier_id_range)
+    supplier: Supplier.all.sample
   )
 end
 
-supplier_id_range = Supplier.last.id - Supplier.first.id
 
 puts "Populating user seeds"
 User.create!(
@@ -60,45 +63,47 @@ User.create!(
   password: "password"
 )
 
-user_id_range = User.last.id - User.first.id
-
-
 puts "Populating address details"
 no_of_orders.times do
   DeliveryAddress.create!(
     address: Faker::Address.full_address,
     contact_number: Faker::PhoneNumber.phone_number_with_country_code,
-    user_id: User.first.id + rand(0..user_id_range)
+    user: User.all.sample
   )
 end
 
-delivery_address_range = DeliveryAddress.last.id - DeliveryAddress.first.id
 puts "Populating order seeds"
-count = 0
+
 no_of_orders.times do
+  rand_supplier = Supplier.all.sample
+  rand_user = User.all.sample
+  order_details_rows = []
+  rand(1..5).times do
+    order_details_rows << { product: rand_supplier.products.sample, quantity: rand(1..100) }
+  end
   Order.create!(
-    status: ["pending", "sent", "template", "delivered"].sample,
-    supplier_id: Supplier.first.id + rand(0..supplier_id_range),
-    user_id:   User.first.id + rand(0..user_id_range),
+    status: ["pending", "sent", "delivered"].sample,
+    supplier: rand_supplier,
+    user: rand_user,
     delivery_date: Faker::Date.between(from: '2022-12-01', to: '2022-12-31'),
     comments: "Please deliver to the front desk",
-    delivery_address_id: DeliveryAddress.first.id + count,
-    )
-    count +=1
+    delivery_address: rand_user.delivery_addresses.sample,
+    order_details_attributes: order_details_rows
+  )
 end
 
-
-puts "Populating order details seeds"
-
-5.times do
-  count = 0
-    (Order.count).times do |order|
-      OrderDetail.create!(
-        quantity: rand(1..100),
-        order_id: Order.first.id + count,
-        product: Product.find(Product.all.pluck(:id).sample)
-      )
-      count += 1
+User.all.each_with_index do |user|
+  no_of_orders.times do
+    rand_supplier = Supplier.all.sample
+    order_details_rows = []
+    rand(1..5).times do
+      order_details_rows << { product: rand_supplier.products.sample, quantity: rand(1..100) }
+    end
+    Template.create!(
+      supplier: rand_supplier,
+      user: user,
+      name: "Template",
+      order_details_attributes: order_details_rows
+    )
   end
 end
-puts "Seeding completed!"
