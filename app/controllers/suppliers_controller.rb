@@ -5,6 +5,7 @@ class SuppliersController < ApplicationController
 
   def show
     @supplier = Supplier.find(params[:id])
+    @orders_of_supplier = (Order.where(supplier_id: (params[:id]))).count
   end
 
   def new
