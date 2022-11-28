@@ -4,16 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["product", "productPrice", "quantity", "subtotal"]
 
-  connect() {
-    console.log('order detail connected');
-    this.productPriceTarget.textContent = this.productTarget.dataset.price
-  }
-
   display_product_price(event) {
     event.preventDefault()
-    console.log(this.currentTarget)
-    // this.productTargets.forEach((target) => {console.log(target.dataset)})
-    this.productPriceTarget.textContent = this.productTarget.dataset.price
+    let price = event.currentTarget.selectedOptions[0].dataset.price
+    this.productPriceTarget.textContent = price
 
   }
   display_subtotal(event) {
