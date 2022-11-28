@@ -7,9 +7,9 @@ class OrdersController < ApplicationController
     if params[:type] == "order"
       if params[:supplier_id].present?
         set_supplier
-        @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
+        @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]).order(created_at: :desc) : @supplier.orders.order(created_at: :desc)
       else
-        @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
+        @orders = params[:status].present? ? Order.where(status: params[:status]).order(created_at: :desc) : Order.all.order(created_at: :desc)
       end
     elsif params[:type] == "template"
       if params[:supplier_id].present?
