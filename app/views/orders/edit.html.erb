@@ -48,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <%= f.input :name %>
+                    <%= f.input :name, input_html: {value: @template.name} %>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="push-btn order-submit" data-bs-dismiss="modal">Close</button>
