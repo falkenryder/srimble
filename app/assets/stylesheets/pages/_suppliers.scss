@@ -58,3 +58,19 @@
   display: flex;
   flex-direction: row;
 }
+
+.templates_and_create {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: -20px;
+}
+
+.templates_title {
+  margin-left: 15px;
+}
+
+.create_order_btn {
+  margin-left: auto;
+  transform: translateY(-35px);
+}
