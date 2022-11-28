@@ -1,48 +1,23 @@
 class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[new create]
   before_action :set_user, only: %i[new create]
-  before_action :set_order, only: %i[show update single_template]
-  attr_reader :id
+  before_action :set_order, only: %i[show update]
 
-  # http://localhost:3000/orders?status=template
   def index
-
-    if params[:supplier_id].present?
-
-      # suppliers/:id/orders?status=pending
-      if params[:status] == "pending"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "pending")
-
-        # suppliers/:id/orders?status=sent
-      elsif params[:status] == "sent"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "sent")
-
-        # suppliers/:id/orders?status=delivered
-      elsif params[:status] == "delivered"
-        @orders = Order.where(supplier_id: params[:supplier_id]).where(status: "delivered")
-
-        # suppliers/:id/orders
+    if params[:type] == "order"
+      if params[:supplier_id].present?
+        set_supplier
+        @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
       else
-        @orders = Order.where(supplier_id: params[:supplier_id]).where.not(status: "template")
-      # raise
-      # if Order.where(supplier_id: params[:user_id]).where(status: "template")
-    end
-
-      # /orders?status=pending
-    elsif params[:status] == "pending"
-      @orders = Order.where(status: "pending")
-
-      # /orders?status=sent
-    elsif params[:status] == "sent"
-      @orders = Order.where(status: "sent")
-
-      # /orders?status=delivered
-    elsif params[:status] == "delivered"
-      @orders = Order.where(status: "delivered")
-
-     # /orders
-    else
-      @orders = Order.where.not(status: "template")
+        @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
+      end
+    elsif params[:type] == "template"
+      if params[:supplier_id].present?
+        set_supplier
+        @templates = @supplier.templates
+      else
+        @templates = Template.all
+      end
     end
   end
 
@@ -56,13 +31,29 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user = @user
-    @order.status = "pending" #TODO: enum this!
-    if @order.save!
-      redirect_to @order
+    if params[:order][:name]
+      @template = Template.new(template_params)
+      @template.user = @user
+      if @template.save!
+        redirect_to templates_path
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      @order = Order.new(order_params)
+      @order.user = @user
+      @order.status = "pending" #TODO: enum this!
+      if @order.save!
+        redirect_to @order
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+  end
+
+  def edit
+    if params[:type] == "template"
+      @template = Template.find(params[:id])
     end
   end
 
@@ -72,25 +63,7 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
   end
 
-  # /templates
-  def all_templates
-    @templates = Order.where(status: 'template')
-  end
-
-  # /suppliers/:id/templates
-  def supplier_templates
-    @templates = Order.where(supplier_id: params[:supplier_id]).where(status: 'template')
-  end
-
-  # /templates/:id
-  def single_template
-  end
-
   private
-
-  def set_order
-    @order = Order.find(params[:id])
-  end
 
   def set_user
     @user = current_user
@@ -106,6 +79,14 @@ class OrdersController < ApplicationController
       :delivery_date,
       :delivery_address_id,
       :comments,
+      order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+    )
+  end
+
+  def template_params
+    params.require(:order).permit(
+      :name,
+      :supplier_id,
       order_details_attributes: [:id, :_destroy, :product_id, :quantity]
     )
   end
