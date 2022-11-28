@@ -22,7 +22,9 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    if params[:type] == "order"
+      set_order
+    end
   end
 
   def new
@@ -53,7 +55,8 @@ class OrdersController < ApplicationController
 
   def edit
     if params[:type] == "template"
-      @template = Template.find(params[:id])
+      set_template
+      @order = Order.new
     end
   end
 
@@ -64,6 +67,14 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  def set_template
+    @template = Template.find(params[:id])
+  end
 
   def set_user
     @user = current_user
