@@ -1,16 +1,21 @@
 <div class="container">
   <h1><%= @supplier.name %></h1>
-
-  <div>
-    <li><%= @supplier.address %> </li>
-    <li><%= @supplier.email %> </li>
+  <br>
+  <div class="supplier_details">
+    <li><h3>Address:</h3><%= @supplier.address %></li>
+    <br>
+    <li><h3>Contact:</h3><%= @supplier.email %> </li>
+    <br>
+    <li><h3>Orders:</h3>You have <%= @orders_of_supplier %> orders with <%= @supplier.name %>
   </div>
-
 <br>
-
-  <div>
-    <%= link_to "All Orders with #{@supplier.name}", supplier_orders_path(@supplier.id), class: "push-btn" %>
+<br>
+   <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <%= link_to "Create an Order", supplier_templates_path(@supplier.id), class: "push-btn-small" %>
+      </div>
+      <div class="col-6">
+        <%= link_to "View Past Orders", supplier_orders_path(@supplier.id), class: "push-btn-small" %>
+      </div>
   </div>
-
-
 </div>

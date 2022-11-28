@@ -7,7 +7,7 @@
         <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
             <strong><%= order.supplier.name %></strong><br>
-              <%= order.delivery_date %>
+              <%= Time.parse("#{order.delivery_date}").strftime('%b-%d-%Y') %>
           </div>
           <a class="view-btn"><%= order.status %></a>
         </div>

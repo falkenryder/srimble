@@ -4,16 +4,16 @@
   text-align: center;
 
   :hover {
-    background-color: black;
+    // background-color: black;
     color: white;
-    border-radius: 25px;
+    // border-radius: 25px;
 
     // box-shadow: 10px 10px  black;
     // transform: translateY(-2px);
   }
 
   :active {
-    background-color: black;
+    // background-color: black;
     transform: translateY(2px);
   }
 
@@ -48,4 +48,29 @@
 
 .fa-circle-plus:hover {
   color: rgb(182, 182, 182);
+}
+
+.supplier_details {
+  list-style-type: none;
+}
+
+.supplier_templates_orders {
+  display: flex;
+  flex-direction: row;
+}
+
+.templates_and_create {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: -20px;
+}
+
+.templates_title {
+  margin-left: 15px;
+}
+
+.create_order_btn {
+  margin-left: auto;
+  transform: translateY(-35px);
 }

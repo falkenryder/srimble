@@ -2,7 +2,7 @@
   <div class="col-12 my-4">
     <h1><strong> Your Past Order </strong></h1> <br>
       <span><strong>Created by </strong> <%= User.find(@order.user_id).email %></span></br>
-      <span><strong>Created on </strong> <%= @order.created_at %></span>
+      <span><strong>Created on </strong> <%= Time.parse("#{@order.created_at}").strftime('%b-%d-%Y') %></span>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="line-order my-2">
       <span><strong>Order <%=@order.id%> - <%= Supplier.find(@order.supplier_id).name %></strong></span><br/>
-      <span>Arriving on <%=@order.delivery_date%></span><br/>
+      <span>Arriving on <%=Time.parse("#{@order.delivery_date}").strftime('%b-%d-%Y')%></span><br/>
     </div>
   </div>
 

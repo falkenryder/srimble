@@ -1,4 +1,4 @@
-<div class="container col-11 my-4 mx-1">
+<div class="my-4 mx-1">
 
   <%# for suppliers/:id/templates %>
   <% if @supplier %>
@@ -6,6 +6,10 @@
         <h1><strong>My Templates with <%= @supplier.name %></strong></h1> <br>
       </div><br>
     <%# individual template accordion  %>
+      <div class="templates_and_create">
+        <h4 class="templates_title"><strong>Existing Templates:</strong></h4> <br/>
+        <%= link_to "+ New", new_supplier_order_path(@supplier.id), class: "push-btn create_order_btn" %>
+      </div>
       <div class="row justify-content-center my-4">
         <div class="col-12">
           <% @templates.each_with_index do |template, index| %>
