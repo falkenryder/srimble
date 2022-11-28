@@ -1,0 +1,5 @@
+meta_product_name: "Srimble"
+meta_title: "Srimble - Streamline Your Suppliers"
+meta_description: "All in one app for the F+B Industry: automated purchases,invoice tracking, inventory management and supplier relations"
+meta_image: "srimblelogo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
