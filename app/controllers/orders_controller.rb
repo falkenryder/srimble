@@ -57,7 +57,8 @@ class OrdersController < ApplicationController
     if params[:type] == "template"
       set_template
       @order = Order.new
-      @order.supplier = @template.supplier
+      @supplier = @template.supplier
+      @order.supplier = @supplier
       @order.order_details = @template.order_details
     end
   end

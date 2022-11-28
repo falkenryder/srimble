@@ -4,8 +4,15 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["product", "productPrice", "quantity", "subtotal"]
 
+  connect() {
+    console.log('order detail connected');
+    this.productPriceTarget.textContent = this.productTarget.dataset.price
+  }
+
   display_product_price(event) {
     event.preventDefault()
+    console.log(this.currentTarget)
+    // this.productTargets.forEach((target) => {console.log(target.dataset)})
     this.productPriceTarget.textContent = this.productTarget.dataset.price
 
   }
@@ -27,4 +34,6 @@ export default class extends Controller {
     let total = parseInt(document.querySelector("#grandtotal").textContent)
     document.querySelector("#grandtotal").textContent = total - sum
   }
+
+
 }
