@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
   end
 
   def new
@@ -64,6 +63,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def set_user
     @user = current_user

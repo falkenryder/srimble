@@ -1,12 +1,11 @@
 .notif-card {
   background-color: rgb(186, 186, 186);
-  box-shadow: 2px 2px black;
-  border-radius: 15px;
+  box-shadow: 2px 3px black;
+  border-radius: 10px;
   border-width: 5px;
   border: black;
   color: black;
-  padding: 12px 28px;
-  text-align: center;
+  padding: 12px;
   text-decoration: none;
   align-items: center;
   border: solid #000;
@@ -14,9 +13,10 @@
   font-size: 16px;
   position: relative;
   margin: 8px;
-
-  :active{
-    box-shadow: none;
-    bottom: -2px;
-  }
+}
+.notif-card:hover {
+  color: black;
+}
+.notif-card:active {
+  box-shadow: none;
 }

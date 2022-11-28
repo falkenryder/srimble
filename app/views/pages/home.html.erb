@@ -4,11 +4,11 @@
       <h2>Orders</h2>
       <div class="list-group">
         <% current_user.orders.where(delivery_date: Date.today..DateTime::Infinity.new).order(:delivery_date).first(5).each do |order| %>
-          <%= link_to order_path(order), class: "list-group-item list-group-item-action mb-2" do %>
-           <%= "Order ##{order.id}" %>
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"><%= order.supplier.name %></h5>
+          <%= link_to order_path(order), class: "notif-card mb-2" do %>
             <small>Arriving <%= order.delivery_date == Date.today ? "today" : order.delivery_date %></small>
+            <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 text-truncate"><%= "Order ##{order.id} -" %><%= order.supplier.name %></h5>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
           </div>
           <% end %>
         <% end %>
