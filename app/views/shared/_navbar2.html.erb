@@ -2,15 +2,28 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <%= link_to 'Home', root_path %>
-    <%= link_to 'Suppliers', suppliers_path if user_signed_in? %>
-    <%= link_to 'Templates', templates_path if user_signed_in? %>
-    <%= link_to 'Orders', orders_path if user_signed_in? %>
-    <%= link_to "Log In", new_user_session_path unless user_signed_in? %>
-    <%= link_to "Sign up", new_user_registration_path unless user_signed_in? %>
-    <%= button_to "Logout", destroy_user_session_path, {method: :delete, class: "btn-logout"} if user_signed_in? %>
-    </div>
+    <%= link_to 'Suppliers', suppliers_path %>
+    <%= link_to 'Templates', templates_path %>
+    <%= link_to 'Past Orders', orders_path %>
+  </div>
 
 </div>
+
+<%#  search bar %>
+<div class="search">
+  <%= form_with url: orders_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search by supplier, delivery date etc..",
+      aria: { label: "Recipient's username", describedby: "button-addon2" } %>
+    <%= button_tag type: 'submit', class: "button my-button", id: "button-addon2" do %>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+</div>
+
+<%#  %>
 
 <div class="menu-and-back">
   <i class="back-btn fa fa-arrow-circle-left" style="font-size:28px" onclick="history.back()"></i>
