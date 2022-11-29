@@ -3,4 +3,15 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def results
+    if params[:query].present?
+      @results = PgSearch.multisearch(params[:query]) #.map { |result| result.searchable.is_a?(ActionText::RichText) ? result.searchable.record : result.searchable }
+    else
+      puts "No Results"
+    end
+
+
+
+  end
 end
