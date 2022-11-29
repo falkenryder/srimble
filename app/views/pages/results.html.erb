@@ -2,11 +2,18 @@
   <h1>Search Results:</h1>
   <% if @results.count > 0 %>
     <% @results.each do |result| %>
-    <%= result.searchable.name %> <br>
-    <%# Supplier ID: <%= result.searchable.supplier_id %> <br>
-    <%# Price: $<%= result.searchable.price %>
+    <%= link_to result.content %>
     <% end %>
   <% else %>
-    No results
-  <%  end %>
+    <p>No results</p>
+  <% end %>
 </div>
+
+
+<%# <% @results.each do |result| %>
+    <%# <p>Supplier: <%= link_to "#{result.searchable.name}", result.searchable_path if result.searchable == "Supplier" %>
+    <%# <p>Product: <%= result.searchable.name %>
+    <%# <% link_to "#{Supplier.where(products: "#{result.searchable}").name}", Supplier.where(products: "#{result.searchable}") %>
+    <%# </p><br> %>
+     <%# Price: $<%= result.searchable.price %>
+    <%# <% end %>
