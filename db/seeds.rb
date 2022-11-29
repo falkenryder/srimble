@@ -44,7 +44,6 @@ end
   )
 end
 
-
 puts "Populating user seeds"
 User.create!(
   email: "jega@gmail.com",
@@ -106,4 +105,15 @@ User.all.each_with_index do |user|
       order_details_attributes: order_details_rows
     )
   end
+end
+
+puts "Creating inventories"
+product_all = Product.all
+product_all.each do |product|
+  Inventory.create!(
+    quantity_bal: rand(1..100),
+    par_bal: rand(10..20),
+    user_id: rand(1..4),
+    product_id: product.id
+  )
 end
