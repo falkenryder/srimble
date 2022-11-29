@@ -32,21 +32,6 @@ puts "Populating supplier seeds"
   )
 end
 
-<<<<<<< HEAD
-100.times do
-  products_array = []
-  products_array << Faker::Food.vegetables
-  products_array << Faker::Food.spice
-  products_array << Faker::Food.fruits
-  products_array << Faker::Food.ingredient
-  Product.create!(
-    name: products_array.sample,
-    price: rand(1..10),
-    supplier: Supplier.all.sample
-  )
-end
-=======
->>>>>>> master
 
 puts "Populating user seeds"
 User.create!(
