@@ -2,7 +2,10 @@
   <h1>Search Results:</h1>
   <% if @results.count > 0 %>
     <% @results.each do |result| %>
-    <%= result.content %>
+    <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
+    <p> <%= result.searchable_type %>
+    <p><%= link_to "ID:#{result.searchable.id}", result.searchable %></p>
+
     <% end %>
   <% else %>
     <p>No results</p>
