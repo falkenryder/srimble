@@ -1,0 +1,33 @@
+<div class="nested-fields row " data-controller="order-detail">
+  <%= f.hidden_field :_destroy, value: 0 %>
+  <div class="col">
+    <%= f.association :product, collection: products.all.map { |product| [product.name, product.id, { data: {order_detail_target: "product", price: product.price }}]},
+    input_html: {
+      data: {
+        order_detail_target: "selected",
+        action: "change->order-detail#display_product_price"
+        } } %>
+
+  </div>
+  <div class="col">
+    <%= f.input :quantity, input_html: {
+    data: {
+      order_detail_target: "quantity",
+      action: "input->order-detail#display_subtotal blur->order-detail#add_to_total"
+      } } %>
+  </div>
+  <div class="col">
+    <p>Price</p>
+    <p data-order-detail-target="productPrice">0</p>
+  </div>
+  <div class="col">
+    <p>Subtotal</p>
+    <p data-order-detail-target="subtotal">0</p>
+  </div>
+
+
+    <small>
+      <%= link_to "Remove", '#', data: { action: "order-form#remove_association order-detail#remove_from_total"}, :style => 'text-decoration: none; color: black' %>
+    </small>
+  </div>
+<br>
