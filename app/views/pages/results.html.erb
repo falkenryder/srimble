@@ -1,10 +1,12 @@
-<h1>Search Results:</h1>
-<% if @results.count > 0 %>
-  <% @results.each do |result| %>
-  <%= result.searchable %> <br>
-  <%# Supplier ID: <%= result.searchable.supplier_id %> <br>
-  <%# Price: $<%= result.searchable.price %>
-  <% end %>
-<% else %>
-  No results
-<%  end %>
+<div class="container">
+  <h1>Search Results:</h1>
+  <% if @results.count > 0 %>
+    <% @results.each do |result| %>
+    <%= result.searchable.name %> <br>
+    <%# Supplier ID: <%= result.searchable.supplier_id %> <br>
+    <%# Price: $<%= result.searchable.price %>
+    <% end %>
+  <% else %>
+    No results
+  <%  end %>
+</div>
