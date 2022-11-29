@@ -10,6 +10,7 @@ puts "Cleaning up database..."
 Order.destroy_all
 Template.destroy_all
 DeliveryAddress.destroy_all
+Inventory.destroy_all
 User.destroy_all
 Product.destroy_all
 Supplier.destroy_all
@@ -31,28 +32,13 @@ puts "Populating supplier seeds"
   )
 end
 
+# Add your own email address as a supplier to test action mailer :)
 puts "Populating supplier seed for mailer test"
   Supplier.create!(
     name:  "Resonant Coffee Co",
-    # email:  "kenneth@gmail.com",
-    # email: "test@mail.com",
     email: "resonantcoffeeco@gmail.com",
     address: "136 Telok Ayer Street"
   )
-
-100.times do
-  products_array = []
-  products_array << Faker::Food.vegetables
-  products_array << Faker::Food.spice
-  products_array << Faker::Food.fruits
-  products_array << Faker::Food.ingredient
-  Product.create!(
-    name: products_array.sample,
-    price: rand(1..10),
-    supplier: Supplier.all.sample
-  )
-end
-
 
 puts "Populating user seeds"
 User.create!(
@@ -71,6 +57,28 @@ User.create!(
   email: "mike@gmail.com",
   password: "password"
 )
+
+puts "Creating product and inventory seeds"
+
+100.times do
+  products_array = []
+  products_array << Faker::Food.vegetables
+  products_array << Faker::Food.spice
+  products_array << Faker::Food.fruits
+  products_array << Faker::Food.ingredient
+  product = Product.new
+  product.name = products_array.sample
+  product.price = rand(1..10)
+  product.supplier =  Supplier.all.sample
+  product.save!
+
+  Inventory.create!(
+    product_id: product.id,
+    quantity_bal: rand(1..100),
+    par_bal: rand(20..30),
+    user_id: User.all.sample.id
+  )
+end
 
 puts "Populating address details"
 no_of_orders.times do
@@ -99,6 +107,7 @@ no_of_orders.times do
     delivery_address: rand_user.delivery_addresses.sample,
     order_details_attributes: order_details_rows
   )
+
 end
 
 User.all.each_with_index do |user|

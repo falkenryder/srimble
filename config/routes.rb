@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :templates, controller: :orders, type: "template"
 
   resources :orders, only: [:index, :new, :show, :create, :update ], type: "order"
+  resources :inventories, only: [:index, :show, :update]
 end
