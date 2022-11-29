@@ -2,10 +2,17 @@
   <h1>Search Results:</h1>
   <% if @results.count > 0 %>
     <% @results.each do |result| %>
-    <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
-    <p> <%= result.searchable_type %>
-    <p><%= link_to "ID:#{result.searchable.id}", result.searchable %></p>
-
+      <% if result.searchable_type == "Order" %>
+          <p><%= link_to "Order ID:#{result.searchable.id}", result.searchable %></p>
+      <% elsif result.searchable_type == "Supplier" %>
+        <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
+      <% elsif result.searchable_type == "Template" %>
+        <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
+      <%# <% elsif result.searchable_type == "Product" %> %>
+        <%# <p><% link_to "#{Supplier.where(products: "#{result.searchable}").name}", Supplier.where(products: "#{result.searchable}")%></p> %>
+      <% else %>
+        <p><%= link_to "#{result.searchable.id}", result.searchable %></p>
+      <% end %>
     <% end %>
   <% else %>
     <p>No results</p>
