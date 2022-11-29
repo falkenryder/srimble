@@ -14,6 +14,7 @@ export default class extends Controller {
     let price = target.selectedOptions[0].dataset.price
     this.productPriceTarget.textContent = price
     this.fetch_subtotal()
+    this.fetch_grand_total()
   }
 
   fetch_subtotal() {
