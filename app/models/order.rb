@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: %i[status delivery_date delivery_address]
+
   attr_accessor :name
   belongs_to :supplier
   belongs_to :user
