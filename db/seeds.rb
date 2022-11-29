@@ -10,6 +10,7 @@ puts "Cleaning up database..."
 Order.destroy_all
 Template.destroy_all
 DeliveryAddress.destroy_all
+Inventory.destroy_all
 User.destroy_all
 Product.destroy_all
 Supplier.destroy_all
@@ -31,6 +32,7 @@ puts "Populating supplier seeds"
   )
 end
 
+<<<<<<< HEAD
 100.times do
   products_array = []
   products_array << Faker::Food.vegetables
@@ -43,6 +45,8 @@ end
     supplier: Supplier.all.sample
   )
 end
+=======
+>>>>>>> master
 
 puts "Populating user seeds"
 User.create!(
@@ -61,6 +65,28 @@ User.create!(
   email: "mike@gmail.com",
   password: "password"
 )
+
+puts "Creating product and inventory seeds"
+
+100.times do
+  products_array = []
+  products_array << Faker::Food.vegetables
+  products_array << Faker::Food.spice
+  products_array << Faker::Food.fruits
+  products_array << Faker::Food.ingredient
+  product = Product.new
+  product.name = products_array.sample
+  product.price = rand(1..10)
+  product.supplier =  Supplier.all.sample
+  product.save!
+
+  Inventory.create!(
+    product_id: product.id,
+    quantity_bal: rand(1..100),
+    par_bal: rand(20..30),
+    user_id: User.all.sample.id
+  )
+end
 
 puts "Populating address details"
 no_of_orders.times do
@@ -89,6 +115,7 @@ no_of_orders.times do
     delivery_address: rand_user.delivery_addresses.sample,
     order_details_attributes: order_details_rows
   )
+
 end
 
 User.all.each_with_index do |user|
@@ -105,15 +132,4 @@ User.all.each_with_index do |user|
       order_details_attributes: order_details_rows
     )
   end
-end
-
-puts "Creating inventories"
-product_all = Product.all
-product_all.each do |product|
-  Inventory.create!(
-    quantity_bal: rand(1..100),
-    par_bal: rand(10..20),
-    user_id: rand(1..4),
-    product_id: product.id
-  )
 end
