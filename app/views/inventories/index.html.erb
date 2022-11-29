@@ -1,52 +1,21 @@
-<div class="container col-11 px-0">
+<div class="container">
   <div class="col-12 d-flex justify-content-center">
-    <h1><strong> My Stotcks </strong></h1> <br>
+    <h1><strong> My Inventory </strong></h1> <br>
   </div>
-  <%# inventory user dropdown  %>
-  <%= render "inventories_counted_dropdown"%>
-  <%# inventory table %>
-  <table class="table-order">
-    <thead>
-      <tr class="table-order-row">
-        <th style="text-align: left;" class="bold">Item</th>
-        <th>Qty</th>
-        <th>Par Qty</th>
-        <th>Supplier</th>
-        <th>Price</th>
-        <th>Counted on</th>
-        <th>Below par</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @inventories.each do |inventory| %>
-          <tr class="table-inventory-row my-2">
-            <td style="text-align: left;"><%= inventory.product.name %></td>
-            <td><%= inventory.quantity_bal %></td>
-            <td><%= inventory.par_bal %></td>
-            <td><%= inventory.product.supplier.name %></td>
-            <td><%= inventory.product.price %></td>
-            <td><%= inventory.reconciled_at %></td>
-            <td>
-              <% if inventory.quantity_bal < inventory.par_bal %>
-                <%= link_to "Order", "#" %>
-              <% else  %>
-              <% end %>
-            </td>
-            <%# <% end %>
-          </tr>
-      <% end %>
-    </tbody>
-  </table>
 
-<div class="container container-inventory col-11 px-0">
-  <div class="row justify-content-center my-4">
+  <%# inventory user dropdown %>
+  <%= render "inventories_counted_dropdown"%>
+
+  <%# inventory item accordion %>
     <div class="col-12">
+      <div class="col-12 border-bottom d-flex justify-content-between" style="padding-inline: 16px; margin-top: 20px; font-weight:bold;">
+        <span>Item</span>
+        <span>Quantity</span>
+      </div>
       <% @inventories.each_with_index do |inventory, index| %>
           <%= render "inventory_accordion", inventory: inventory, index: index %>
         <% end %>
     </div>
-  </div>
-</div>
 
   <%# to enable dropdown bootstrap %>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

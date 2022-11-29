@@ -6,29 +6,40 @@
       <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
         <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
-            <strong><%= inventory.product.name %></strong><br>
-              <%= inventory.product.supplier.name %><br>
-              $<%= inventory.product.price %><br>
-              <%# <%= Time.parse("#{inventory.updated_at}").strftime('%b-%d-%Y') %>
+            <strong><%= inventory.product.name %></strong>
+              <span style="font-size: 14px; color: grey;">Inv# <%= inventory.id %></span><br>
+            <%= inventory.product.supplier.name %><br>
+            $<%= inventory.product.price %><br>
           </div>
+          <div>
             <a class="view-btn-extra-small"><%= inventory.quantity_bal %></a>
+          </div>
         </div>
       </button>
     </h2>
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
-      <div class="accordion-body">
+      <div class="accordion-body-inventory">
         <div style="text-align: left">
             <% if inventory.reconciled_at? %>
-                  <%= inventory.reconciled_at %><br/>
-                  <%= inventory.user_id %>
+                  <strong>Last Reconciled</strong><br/>
+                  <%= Time.parse("#{inventory.reconciled_at}").strftime('%b-%d-%Y')%><br/>
+                  <%= User.find(inventory.user_id).email %>
               <% else  %>
               <% end %>
-
         </div>
-          <%= link_to "View Order >", "#" %>
+        <div style="text-align: right">
+          <% quantity_diff = inventory.quantity_bal - inventory.par_bal  %>
+          <% if quantity_diff > 0 %>
+            <span style="color: blue; font-weight: bold;"> Left <%= quantity_diff %></span><br/>
+            <% elsif quantity_diff == 0 %>
+            <span style="color: grey; font-weight: bold;"> Left <%= quantity_diff %></span><br/>
+            <% else quantity_diff < 0  %>
+            <span style="color: red; font-weight: bold;"> Short by <%= quantity_diff %></span><br/>
+          <% end %>
+          vs min<br/>
+          <strong><%= link_to "Reorder >", supplier_path(inventory.product.supplier) %></strong>
+        </div>
       </div>
     </div>
   </div>
-<%# Accordion 2 %>
-<%# Accordion 3 %>
 <%# end of last accordion %>
