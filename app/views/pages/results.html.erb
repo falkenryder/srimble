@@ -2,7 +2,7 @@
   <h1>Search Results:</h1>
   <% if @results.count > 0 %>
     <% @results.each do |result| %>
-    <%= link_to result.content %>
+    <%= result.content %>
     <% end %>
   <% else %>
     <p>No results</p>
