@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear Person-in-charge of <%= @supplier.name %></p>
+    <p>I'd like to order the following items for <%= @order.delivery_date %></p>
+    <p>to <%= @order.delivery_address.address %></p>
+    <ul>
+      <% @order.order_details.each do |order_detail| %>
+        <li><p><%= order_detail.product.name %> X <%= order_detail.quantity %></p></li>
+        <% end %>
+    </ul>
+    <p><%= @order.comments %> Thank you!</p>
+
+    <p>Regards, <%= @user.email %></p>
+  </body>
+</html>

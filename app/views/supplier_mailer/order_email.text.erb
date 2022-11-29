@@ -1,0 +1,11 @@
+Dear Person-in-charge of <%= @supplier.name %>
+I'd like to order the following items for <%= @order.delivery_date %>
+to <%= @order.delivery_address %>.
+
+<% @order.order_details.each do |order_detail| %>
+  <%= order_detail.product %> X <%= order_detail.quantity %>
+<% end %>
+
+Please <%= @order.comments %>. Thank you!
+
+Regards, <%= @user.email %>

@@ -21,7 +21,7 @@ puts "Database cleaned"
 no_of_orders = 50
 
 puts "Populating supplier seeds"
-10.times do
+9.times do
   Supplier.create!(
     name:  Faker::Company.name,
     # email:  "kenneth@gmail.com",
@@ -30,6 +30,15 @@ puts "Populating supplier seeds"
     address: Faker::Address.full_address
   )
 end
+
+puts "Populating supplier seed for mailer test"
+  Supplier.create!(
+    name:  "Resonant Coffee Co",
+    # email:  "kenneth@gmail.com",
+    # email: "test@mail.com",
+    email: "resonantcoffeeco@gmail.com",
+    address: "136 Telok Ayer Street"
+  )
 
 100.times do
   products_array = []

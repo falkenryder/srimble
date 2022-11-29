@@ -59,7 +59,20 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # Setup action mailer for localhost:3000
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Setup for action mailer to use gmail
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :user_name => 'srimble.mailer@gmail.com',
+    :password => 'xeylmutdptfigfym',
+    :authentication => 'plain'
+    }
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
