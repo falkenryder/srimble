@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-12 col-lg-8" >
+    <div class="col-sm-12 col-md-8" >
       <h1>New Order</h1>
 
       <div data-controller="order-form">
-        <%= simple_form_for [@order] do |f| %>
+        <%= simple_form_for [@supplier, @order] do |f| %>
           <%= f.association :supplier, collection: Supplier.all, selected: @supplier.id, class: "form-select" %>
           <%= f.input :delivery_date, as: :string, input_html: {type: :date} %>
           <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
 
-            <%# <div class="container edit-products-list p-0"> %>
+            <div class="container edit-products-list p-0">
             <template data-order-form-target="template">
               <%= f.simple_fields_for :order_details, OrderDetail.new, child_index: 'TEMPLATE_RECORD' do |f| %>
                 <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
               <% end %>
             </template>
 
-            <%= f.simple_fields_for :order_details do |f| %>
-                <%= render partial: 'template_details', locals: { f: f, products: @supplier.products } %>
+            <%= f.simple_fields_for :order_details, OrderDetail.new do |f| %>
+                <%= render partial: 'order_details', locals: { f: f, products: @supplier.products } %>
             <% end %>
             <div>
 
@@ -27,7 +27,7 @@
               <% end %>
             </div>
 <br>
-            <%# </div> %>
+            </div>
 
           <%= f.input :comments %>
            <div class="row">
@@ -48,11 +48,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <%= f.input :name, input_html: {value: @template.name} %>
+                    <%= f.input :name %>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="push-btn order-submit" data-bs-dismiss="modal">Close</button>
-                    <%= button_to "Save", order_path(@order), method: :patch, class: "push-btn order-submit" %>
+                    <%= button_to "Save", templates_path, class: "push-btn order-submit" %>
                   </div>
                 </div>
               </div>

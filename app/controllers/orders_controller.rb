@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_supplier, only: %i[new create]
+  before_action :set_supplier, only: %i[create]
   before_action :set_user, only: %i[new create]
   before_action :set_order, only: %i[show]
 
@@ -28,8 +28,17 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @addresses = @user.delivery_addresses
+    if params[:template].present?
+      @template = Template.find(params[:template])
+      @order = Order.new
+      @supplier = @template.supplier
+      @order.supplier = @supplier
+      @order.order_details = @template.order_details
+    else
+      set_supplier
+      @order = Order.new
+      @addresses = @user.delivery_addresses
+    end
   end
 
   def create
@@ -46,7 +55,7 @@ class OrdersController < ApplicationController
       @template = Template.new(template_params)
       @template.user = @user
       if @template.save!
-        redirect_to templates_path
+        redirect_to supplier_templates_path
       else
         render :new, status: :unprocessable_entity
       end
@@ -64,18 +73,18 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # if params[:type] == "order"
-      # @order.status = params[:order][:status]
-      # @order.save!
-      # redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
-    # elsif params[:type] == "template"
+    if params[:type] == "order"
+      @order.status = params[:order][:status]
+      @order.save!
+      redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
+    elsif params[:type] == "template"
       set_template
       if @template.update(update_template_params)
         redirect_to templates_path
       else
         render :edit, status: :unprocessable_entity
       end
-    # end
+    end
   end
 
   private
@@ -102,7 +111,7 @@ class OrdersController < ApplicationController
       :delivery_date,
       :delivery_address_id,
       :comments,
-      order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+      order_details_attributes: [:_destroy, :product_id, :quantity]
     )
   end
 
@@ -110,7 +119,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :name,
       :supplier_id,
-      order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+      order_details_attributes: [:_destroy, :product_id, :quantity]
     )
   end
   def update_template_params
