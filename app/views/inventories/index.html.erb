@@ -1,33 +1,55 @@
-<div class="container container-inventory col-11 px-0">
+<div class="container col-11 px-0">
+  <div class="col-12 d-flex justify-content-center">
+    <h1><strong> My Stotcks </strong></h1> <br>
+  </div>
+  <%# inventory user dropdown  %>
+  <%= render "inventories_counted_dropdown"%>
+  <%# inventory table %>
+  <table class="table-order">
+    <thead>
+      <tr class="table-order-row">
+        <th style="text-align: left;" class="bold">Item</th>
+        <th>Qty</th>
+        <th>Par Qty</th>
+        <th>Supplier</th>
+        <th>Price</th>
+        <th>Counted on</th>
+        <th>Below par</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventories.each do |inventory| %>
+          <tr class="table-inventory-row my-2">
+            <td style="text-align: left;"><%= inventory.product.name %></td>
+            <td><%= inventory.quantity_bal %></td>
+            <td><%= inventory.par_bal %></td>
+            <td><%= inventory.product.supplier.name %></td>
+            <td><%= inventory.product.price %></td>
+            <td><%= inventory.reconciled_at %></td>
+            <td>
+              <% if inventory.quantity_bal < inventory.par_bal %>
+                <%= link_to "Order", "#" %>
+              <% else  %>
+              <% end %>
+            </td>
+            <%# <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<h1>Inventory all page</h1>
-    <table class="table-order">
-      <thead>
-        <tr class="table-order-row">
-          <th style="text-align: left;" class="bold">Item</th>
-          <th>Qty</th>
-          <th>Par Qty</th>
-          <th>Supplier</th>
-          <th>Price</th>
-          <th>Counted on</th>
-          <th>Counted by</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%# <% supplier_id = @order.supplier_id %>
-        <%# <% order_id = @order.id %>
-        <%# <% total = 0 %>
-        <% @inventories.each do |inventory| %>
-            <tr class="table-order-row my-2">
-              <td style="text-align: left;"><%= inventory.product.name %></td>
-              <td><%= inventory.quantity_bal %></td>
-              <td><%= inventory.par_bal %></td>
-              <td><%= inventory.product.supplier.name %></td>
-              <td><%= inventory.product.price %></td>
-              <td><%= inventory.reconciled_at %></td>
-              <td><%= User.find(inventory.user_id).email %></td>
-            </tr>
+<div class="container container-inventory col-11 px-0">
+  <div class="row justify-content-center my-4">
+    <div class="col-12">
+      <% @inventories.each_with_index do |inventory, index| %>
+          <%= render "inventory_accordion", inventory: inventory, index: index %>
         <% end %>
-      </tbody>
-    </table>
+    </div>
+  </div>
+</div>
+
+  <%# to enable dropdown bootstrap %>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
 </div>

@@ -1,0 +1,34 @@
+<%#  Accordion  %>
+<div class="accordion accordion-flush" id="accordionOrder">
+  <%# Accordion 1  %>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-heading">
+      <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
+        <div class="accordion-order" style="padding-right: 5px">
+          <div class="accordion-order-info">
+            <strong><%= inventory.product.name %></strong><br>
+              <%= inventory.product.supplier.name %><br>
+              $<%= inventory.product.price %><br>
+              <%# <%= Time.parse("#{inventory.updated_at}").strftime('%b-%d-%Y') %>
+          </div>
+            <a class="view-btn-extra-small"><%= inventory.quantity_bal %></a>
+        </div>
+      </button>
+    </h2>
+    <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
+      <div class="accordion-body">
+        <div style="text-align: left">
+            <% if inventory.reconciled_at? %>
+                  <%= inventory.reconciled_at %><br/>
+                  <%= inventory.user_id %>
+              <% else  %>
+              <% end %>
+
+        </div>
+          <%= link_to "View Order >", "#" %>
+      </div>
+    </div>
+  </div>
+<%# Accordion 2 %>
+<%# Accordion 3 %>
+<%# end of last accordion %>
