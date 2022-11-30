@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_supplier, only: %i[create]
   before_action :set_user, only: %i[new create]
-  before_action :set_order, only: %i[show]
+  before_action :set_order, only: %i[show update]
 
   def index
       if params[:type] == "order"
@@ -73,12 +73,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  # Order update is tailered for mark as delievered to adjust inventory
   def update
     if params[:type] == "order"
       set_order
       @order.status = params[:order][:status]
       @order.save!
-      redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
+      @order.order_details.each do |order_detail|
+        @inventory = Inventory.find(order_detail.product_id)
+        @inventory.quantity_bal += order_detail.quantity
+        @inventory.save!
+      end
+      # redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
+      redirect_to inventories_path, notice: "Your order has been marked as #{@order.status} and items have been added to
+      inventory"
     elsif params[:type] == "template"
       set_template
       if @template.update(update_template_params)

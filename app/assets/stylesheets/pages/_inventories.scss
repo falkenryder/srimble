@@ -1,0 +1,31 @@
+.table-inventory-row {
+  text-align: center;
+  border-bottom: 0.5px solid lightgrey;
+ }
+
+ .accordion-body-inventory {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 0px 20px;
+  font-size: 14px;
+}
+
+// simple form input format for /inventories
+
+.form-input-small {
+  color: black;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 5px 30px;
+  font-size: 14px;
+  // position: relative;
+  border: 2px solid #000;
+  align-items: center;
+  width: 50%;
+  margin-right: 0px;
+
+}
