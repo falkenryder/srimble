@@ -52,6 +52,17 @@
   margin-left: 50px;
 }
 
+.search-btn {
+  background: rgba(0,0,0,0.0);
+  border: 0;
+}
+
+#query {
+  background-color: rgb(244,244,244);
+  border: none;
+  border-bottom: 1px lightgrey solid;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
