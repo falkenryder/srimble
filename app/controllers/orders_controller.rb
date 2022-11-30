@@ -47,6 +47,7 @@ class OrdersController < ApplicationController
       @order.user = @user
       @order.status = "pending" #TODO: enum this!
       if @order.save!
+        SupplierMailer.with(supplier: @supplier, order: @order, user: @user).order_email.deliver_now
         redirect_to @order
       else
         render :new, status: :unprocessable_entity
@@ -74,6 +75,7 @@ class OrdersController < ApplicationController
 
   def update
     if params[:type] == "order"
+      set_order
       @order.status = params[:order][:status]
       @order.save!
       redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
