@@ -83,7 +83,8 @@ class OrdersController < ApplicationController
         @inventory.save!
       end
       # redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
-      redirect_to inventories_path, notice: "Your order has been marked as #{@order.status} and items have been added to your inventory"
+      redirect_to inventories_path, notice: "Your order has been marked as #{@order.status} and items have been added to
+      inventory"
     elsif params[:type] == "template"
       set_template
       if @template.update(update_template_params)
