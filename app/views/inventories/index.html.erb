@@ -1,0 +1,33 @@
+<div class="container container-inventory col-11 px-0">
+
+<h1>Inventory all page</h1>
+    <table class="table-order">
+      <thead>
+        <tr class="table-order-row">
+          <th style="text-align: left;" class="bold">Item</th>
+          <th>Qty</th>
+          <th>Par Qty</th>
+          <th>Supplier</th>
+          <th>Price</th>
+          <th>Counted on</th>
+          <th>Counted by</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%# <% supplier_id = @order.supplier_id %>
+        <%# <% order_id = @order.id %>
+        <%# <% total = 0 %>
+        <% @inventories.each do |inventory| %>
+            <tr class="table-order-row my-2">
+              <td style="text-align: left;"><%= inventory.product.name %></td>
+              <td><%= inventory.quantity_bal %></td>
+              <td><%= inventory.par_bal %></td>
+              <td><%= inventory.product.supplier.name %></td>
+              <td><%= inventory.product.price %></td>
+              <td><%= inventory.reconciled_at %></td>
+              <td><%= User.find(inventory.user_id).email %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
