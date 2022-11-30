@@ -2,18 +2,16 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <%= link_to 'Home', root_path %>
-    <%= link_to 'Suppliers', suppliers_path if user_signed_in? %>
-    <%= link_to 'Templates', templates_path if user_signed_in? %>
-    <%= link_to 'Orders', orders_path if user_signed_in? %>
-    <%= link_to "Log In", new_user_session_path unless user_signed_in? %>
-    <%= link_to "Sign up", new_user_registration_path unless user_signed_in? %>
-    <%= button_to "Logout", destroy_user_session_path, {method: :delete, class: "btn-logout"} if user_signed_in? %>
-    </div>
+    <%= link_to 'Suppliers', suppliers_path %>
+    <%= link_to 'Templates', templates_path %>
+    <%= link_to 'Past Orders', orders_path %>
+  </div>
 
 </div>
 
 <div class="menu-and-back">
   <i class="back-btn fa fa-arrow-circle-left" style="font-size:28px" onclick="history.back()"></i>
+  <div class="searchbar"><%= render "shared/searchbar" %></div>
   <span class="menu-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
 </div>
 

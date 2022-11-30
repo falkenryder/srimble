@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get 'results', to: 'pages#results'
   resources :suppliers, only: [ :index, :show, :new, :create ] do
     resources :orders, only: [ :index, :show, :new, :create, :update ], type: "order"
     resources :templates, only: [ :index, :new, :create, :edit, :update ], controller: :orders, type: "template"
