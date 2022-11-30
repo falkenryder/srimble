@@ -1,0 +1,9 @@
+<div class="container">
+
+  <%= @product.name %>
+  <ul>
+    <li>Price: $<%= @product.price %></li>
+    <li>Supplier: <%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier) %></li>
+  </ul>
+
+</div>
