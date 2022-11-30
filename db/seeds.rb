@@ -76,7 +76,8 @@ puts "Creating product and inventory seeds"
     product_id: product.id,
     quantity_bal: rand(1..100),
     par_bal: rand(20..30),
-    user_id: User.all.sample.id
+    user_id: User.all.sample.id,
+    reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
   )
 end
 
