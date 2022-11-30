@@ -15,4 +15,24 @@ class InventoriesController < ApplicationController
   def show
     @inventory = Inventory.find(params[:id])
   end
+
+  def update
+    # raise
+    @inventory = Inventory.find(params[:id])
+    # @inventory.user_id = curent_user.email
+    # @inventory.user_id = [params[current_user]]
+    @inventory.update(inventory_params)
+    @inventory.user = current_user
+    @inventory.save!
+    redirect_to inventories_path
+  end
+  private
+
+  def inventory_params
+    params.require(:inventory).permit(
+      :quantity_bal,
+      # :user_id == @inventory.curent_user
+    )
+  end
+
 end

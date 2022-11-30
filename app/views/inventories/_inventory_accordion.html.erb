@@ -6,10 +6,12 @@
       <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
         <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
-            <strong><%= inventory.product.name %></strong>
-              <span style="font-size: 14px; color: grey;">Inv# <%= inventory.id %></span><br>
-            <%= inventory.product.supplier.name %><br>
-            $<%= inventory.product.price %><br>
+
+                <strong><%= inventory.product.name %></strong>
+                  <span style="font-size: 14px; color: grey;">Inv# <%= inventory.id %></span><br>
+                <%= inventory.product.supplier.name %><br>
+                $<%= inventory.product.price %><br>
+
           </div>
           <div>
             <a class="view-btn-extra-small"><%= inventory.quantity_bal %></a>
@@ -29,16 +31,29 @@
     </h2>
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
       <div class="accordion-body-inventory">
-        <div style="text-align: left">
+        <div style="text-align: left" class="align-top">
+          <tr class="table-order-row my-2">
             <% if inventory.reconciled_at? %>
-                  <strong>Last Reconciled</strong><br/>
-                  <%= Time.parse("#{inventory.reconciled_at}").strftime('%b-%d-%Y')%><br/>
-                  <%= User.find(inventory.user_id).email %>
-              <% else  %>
+                <strong>Last Update:</strong><br/>
+                <%= Time.parse("#{inventory.reconciled_at}").strftime('%b-%d-%Y')%><br/>
+                <%= User.find(inventory.user_id).email %>
+                <%= link_to "Reorder", supplier_path(inventory.product.supplier) %>
+                <% else  %>
               <% end %>
-        </div>
-        <div style="text-align: right; font-size: 16px;">
-          <%= link_to "Reorder >", supplier_path(inventory.product.supplier) %>
+            </tr>
+          </div>
+
+        <div class="border-bottom d-flex justify-content-between" style="padding-inline: 16px; margin-top: 20px; font-weight:bold;">
+          <div style="text-align: right; font-size: 16px;">
+            <%= simple_form_for inventory do |f| %>
+                <tr class="table-order-row my-2">
+
+                <td><%= f.input :quantity_bal, :label => false, :id => "quantity_bal", multiple: true %> </td>
+                <%# <% inventory.user_id = curent_user %>
+                <button type="button" class="btn btn-primary"> <td> <%= f.button :submit, "Update Quantity!" %></td></button>
+            <% end %>
+          </div>
+
         </div>
       </div>
     </div>
