@@ -1,25 +1,15 @@
 <div class="container">
   <h1>Search Results:</h1>
-  <% if @results.count > 0 %>
-    <% @results.each do |result| %>
-      <% if result.searchable_type == "Order" %>
-          <p><%= link_to "Order ID:#{result.searchable.id}", result.searchable %></p>
-      <% elsif result.searchable_type == "Supplier" %>
-        <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
-      <% elsif result.searchable_type == "Template" %>
-        <p><%= link_to "#{result.searchable.name}", result.searchable %></p>
-      <%# <% elsif result.searchable_type == "Product" %> %>
-        <%# <p><% link_to "#{Supplier.where(products: "#{result.searchable}").name}", Supplier.where(products: "#{result.searchable}")%></p> %>
-      <% else %>
-        <p><%= link_to "#{result.searchable.id}", result.searchable %></p>
+  <div class="search-results" style="text-decoration: none">
+    <% if @results.count > 0 %>
+      <% @results.each do |result| %>
+          <h5 class="search-results"><%= link_to "#{result.searchable.name}", result.searchable, :style => 'text-decoration: none' %></h5>
       <% end %>
+    <% else %>
+      <p>No results</p>
     <% end %>
-  <% else %>
-    <p>No results</p>
-  <% end %>
+  </div>
 </div>
-<%# test %>
-
 
 <%# <% @results.each do |result| %>
     <%# <p>Supplier: <%= link_to "#{result.searchable.name}", result.searchable_path if result.searchable == "Supplier" %>
@@ -28,3 +18,4 @@
     <%# </p><br> %>
      <%# Price: $<%= result.searchable.price %>
     <%# <% end %>
+<%# <% if result.searchable_type == "Order" %>
