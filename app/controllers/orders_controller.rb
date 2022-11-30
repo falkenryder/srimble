@@ -77,13 +77,13 @@ class OrdersController < ApplicationController
     if params[:type] == "order"
       @order.status = params[:order][:status]
       @order.save!
-      # redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
       @order.order_details.each do |order_detail|
         @inventory = Inventory.find(order_detail.product_id)
         @inventory.quantity_bal += order_detail.quantity
         @inventory.save!
       end
-      redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
+      # redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status}"
+      redirect_to inventories_path, notice: "Your order has been marked as #{@order.status} and items have been added to your inventory"
     elsif params[:type] == "template"
       set_template
       if @template.update(update_template_params)

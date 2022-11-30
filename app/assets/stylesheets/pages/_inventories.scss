@@ -14,17 +14,34 @@
   font-size: 14px;
 }
 
+// simple form input format for /inventories
 
-//  .table-order {
-//   width: 100%;
-//   height: 200px;
-//   border-collapse: collapse;
-// }
+.form-input-small {
+  color: black;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 5px 30px;
+  font-size: 14px;
+  // position: relative;
+  border: 2px solid #000;
+  align-items: center;
+  width: 50%;
+  margin-right: 0px;
 
-// .table-order thead {
-//   border-bottom: 1px solid lightgrey;
-// }
+}
 
-// .table-order tfoot {
-//   border-top: 1px solid lightgrey;
-// }
+.view-btn-extra-small {
+  border-radius: 15px;
+  color: black;
+  padding: 12px 28px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 14px;
+  position: relative;
+  height: 7px;
+  width: 21px;
+}
