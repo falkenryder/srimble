@@ -4,21 +4,21 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show update]
 
   def index
-    if params[:type] == "order"
-      if params[:supplier_id].present?
-        set_supplier
-        @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
-      else
-        @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
+      if params[:type] == "order"
+        if params[:supplier_id].present?
+          set_supplier
+          @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
+        else
+          @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
+        end
+      elsif params[:type] == "template"
+        if params[:supplier_id].present?
+          set_supplier
+          @templates = @supplier.templates
+        else
+          @templates = Template.all
+        end
       end
-    elsif params[:type] == "template"
-      if params[:supplier_id].present?
-        set_supplier
-        @templates = @supplier.templates
-      else
-        @templates = Template.all
-      end
-    end
   end
 
   def show
@@ -47,6 +47,7 @@ class OrdersController < ApplicationController
       @order.user = @user
       @order.status = "pending" #TODO: enum this!
       if @order.save!
+        SupplierMailer.with(supplier: @supplier, order: @order, user: @user).order_email.deliver_now
         redirect_to @order
       else
         render :new, status: :unprocessable_entity
@@ -75,6 +76,7 @@ class OrdersController < ApplicationController
   # Order update is tailered for mark as delievered to adjust inventory
   def update
     if params[:type] == "order"
+      set_order
       @order.status = params[:order][:status]
       @order.save!
       @order.order_details.each do |order_detail|

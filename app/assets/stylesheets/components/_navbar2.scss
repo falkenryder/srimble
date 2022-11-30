@@ -1,11 +1,15 @@
 .menu-btn {
   margin-right: 1%;
-  margin-left: auto;
+  // margin-left: auto;
 }
 
 .menu-and-back {
   display: flex;
-  // justify-content: stretch;
+  justify-content: space-between;
+}
+
+.searchbar {
+  width: 70%;
 }
 
 .back-btn {

@@ -22,7 +22,7 @@ puts "Database cleaned"
 no_of_orders = 50
 
 puts "Populating supplier seeds"
-10.times do
+9.times do
   Supplier.create!(
     name:  Faker::Company.name,
     # email:  "kenneth@gmail.com",
@@ -32,6 +32,13 @@ puts "Populating supplier seeds"
   )
 end
 
+# Add your own email address as a supplier to test action mailer :)
+puts "Populating supplier seed for mailer test"
+  Supplier.create!(
+    name:  "Resonant Coffee Co",
+    email: "resonantcoffeeco@gmail.com",
+    address: "136 Telok Ayer Street"
+  )
 
 puts "Populating user seeds"
 User.create!(
