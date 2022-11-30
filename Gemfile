@@ -4,6 +4,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main
 
 ruby "3.1.2"
 
+gem "dotenv-rails", groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
