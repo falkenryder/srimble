@@ -1,9 +1,11 @@
-<div class="container">
-
-  <%= @product.name %>
-  <ul>
+<br>
+<div class="container product_card">
+  <h3><%= @product.name %></h3>
+  <ul class="products_list"><h6>
     <li>Price: $<%= @product.price %></li>
-    <li>Supplier: <%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier) %></li>
-  </ul>
+    <li>Product ID: <%= @product.id %></li>
+
+    <li>Supplier: <%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier), :style => 'text-decoration: none'%></li>
+  </h6></ul>
 
 </div>
