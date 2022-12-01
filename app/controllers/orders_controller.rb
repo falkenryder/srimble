@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       @order = Order.new(order_params)
       @order.user = @user
       @order.status = "pending" #TODO: enum this!
-      if @order.save!
+      if @order.save
         SupplierMailer.with(supplier: @supplier, order: @order, user: @user).order_email.deliver_now
         redirect_to @order
       else
@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
     else
       @template = Template.new(template_params)
       @template.user = @user
-      if @template.save!
+      if @template.save
         redirect_to supplier_templates_path
       else
         render :new, status: :unprocessable_entity
