@@ -13,10 +13,38 @@
   font-size: 16px;
   position: relative;
   margin: 8px;
+  overflow: hidden;
+  transition: 300ms;
 }
 .notif-card:hover {
   color: black;
+  background-color: rgb(130, 130, 130);
+
+  .btn-tray {
+    transform: translateX(0);
+  }
 }
 .notif-card:active {
   box-shadow: none;
+}
+
+.btn-tray {
+  position: absolute;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+  height:100%;
+  background-color: rgba(white, 0.5);
+  right:0;
+  top:0;
+  transform: translateX(100%);
+  transition: 300ms;
+
+  a,input[type='submit'] {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    font-size: 2rem;
+  }
 }
