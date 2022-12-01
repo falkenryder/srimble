@@ -1,0 +1,32 @@
+.view-btn {
+  border-radius: 15px;
+  border-width: 5px;
+  color: black;
+  padding: 12px 28px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 16px;
+  position: relative;
+  height: 40px;
+  width: 120px;
+}
+
+.view-btn-extra-small {
+  border-radius: 15px;
+  color: black;
+  padding: 12px 28px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 14px;
+  position: relative;
+  height: 7px;
+  width: 21px;
+}

@@ -16,11 +16,12 @@
 .feature-header {
   text-align: center;
   padding-top: 40px;
+  margin-bottom: 70px;
 }
 .feature-card {
   display: block;
   border-radius: 20px;
-  margin: 70px 30px;
+  margin: 30px 30px;
   padding: 40px;
   text-align: center;
 
@@ -30,4 +31,13 @@
 }
 .feature-card.suppliers {
   background-image: linear-gradient(to bottom right, #A7ACD9,#9E8FB2);
+}
+.feature-card.orders {
+  background-image: linear-gradient(to bottom right, #FF8489, #D5ADC8);
+}
+.feature-card.inventory {
+  background-image: linear-gradient(to bottom right, #3EADCF, #ABE9CD);
+}
+.feature-card.square {
+  background-image: linear-gradient(to bottom right, #F9D976, #F39F86);
 }
