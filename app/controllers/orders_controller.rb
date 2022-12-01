@@ -75,8 +75,10 @@ class OrdersController < ApplicationController
 
   # Order update is tailered for mark as delievered to adjust inventory
   def update
+
     if params[:type] == "order"
       set_order
+      @order.photo.attach(update_order_params[:photo])
       @order.status = params[:order][:status]
       @order.save!
       @order.order_details.each do |order_detail|
@@ -95,6 +97,7 @@ class OrdersController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     end
+
   end
 
   private
@@ -137,6 +140,15 @@ class OrdersController < ApplicationController
       :name,
       :supplier_id,
       order_details_attributes: [:id, :_destroy, :product_id, :quantity]
+    )
+  end
+
+  def update_order_params
+    params.require(:order).permit(
+      # :name,
+      # :supplier_id,
+      :status,
+      :photo
     )
   end
 end
