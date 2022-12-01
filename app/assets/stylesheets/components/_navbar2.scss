@@ -1,23 +1,34 @@
-.menu-btn {
-  margin-right: 1%;
-  // margin-left: auto;
-}
 
+/* line 1, app/assets/stylesheets/components/_navbar2.scss */
+.menu-btn {
+  margin-right: 10px;
+  margin-left: auto;
+
+
+/* line 6, app/assets/stylesheets/components/_navbar2.scss */
 .menu-and-back {
+  border-bottom: 1px black solid;
   display: flex;
   justify-content: space-between;
 }
-
 .searchbar {
   width: 70%;
 }
 
+/* line 11, app/assets/stylesheets/components/_navbar2.scss */
 .back-btn {
   margin-left: 1%;
   margin-top: 10px;
   color: black;
 }
 
+/* line 17, app/assets/stylesheets/components/_navbar2.scss */
+.link-logo img {
+  max-height: 45px;
+  padding: 5px;
+}
+
+/* line 22, app/assets/stylesheets/components/_navbar2.scss */
 .sidenav {
   height: 100%;
   width: 0;
@@ -25,33 +36,83 @@
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #111;
-  overflow-x: hidden;
+  background-color: #f4f4f4;
   transition: 0.5s;
-  padding-top: 60px;
+  margin-top: 46px;
 }
 
+.sidenav.header {
+  width: inherit;
+  height: 46px;
+  border-bottom: 1px black solid;
+  transition: none;
+}
+
+/* line 35, app/assets/stylesheets/components/_navbar2.scss */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 10px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: black;
   display: block;
   transition: 0.3s;
+  text-align: center
+}
+.sidenav .accordion-button {
+  padding: 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  transition: 0.3s;
+  justify-content: center;
+  overflow: hidden;
+}
+.sidenav .accordion-button:after {
+  margin-left: 20px;
 }
 
+.sidenav .accordion-body {
+  justify-content: center;
+  overflow: hidden;
+}
+
+.accordion-body .list-group {
+  width: 100%;
+}
+.accordion-body .list-group .list-group-item {
+  background: none;
+  text-align: center;
+
+  img {
+    width: 40px;
+    margin-right: 20px;
+  }
+}
+
+.sidenav a:first-child {
+  margin-top: 30px;
+}
+
+/* line 44, app/assets/stylesheets/components/_navbar2.scss */
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #007EA7;
+  text-decoration: underline;
 }
 
-.sidenav .closebtn {
+/* line 48, app/assets/stylesheets/components/_navbar2.scss */
+.closebtn {
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  top: -7px;
+  right: 11px;
+  font-size: 40px;
+  text-decoration: none;
+  color: black;
+  display: block;
 }
 
+.closebtn:hover{
+  color: #007EA7;
+}
 .search-btn {
   background: rgba(0,0,0,0.0);
   border: 0;
@@ -64,6 +125,12 @@
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  /* line 57, app/assets/stylesheets/components/_navbar2.scss */
+  .sidenav {
+    padding-top: 15px;
+  }
+  /* line 58, app/assets/stylesheets/components/_navbar2.scss */
+  .sidenav a {
+    font-size: 18px;
+  }
 }

@@ -42,7 +42,28 @@
   opacity: 1;
   border: 1px solid #4A4A4A;
 }
-
+.btn-login {
+  margin: 15px;
+  border-radius: 50px;
+}
+.btn-login:hover {
+  background-color: black !important;
+  color: #f4f4f4 !important;
+  text-decoration: none !important;
+}
+.btn-signup {
+  border-color: #00A8E8;
+  margin: 15px;
+  border-radius: 50px;
+  background-color: #00A8E8;
+  color: #f4f4f4 !important;
+}
+.btn-signup:hover {
+  border-color: #00A8E8;
+  background-color: #f4f4f4 !important;
+  color: #00A8E8 !important;
+  text-decoration: none !important;
+}
 .btn-logout {
 padding: 8px 8px 8px 32px;
 text-decoration: none;

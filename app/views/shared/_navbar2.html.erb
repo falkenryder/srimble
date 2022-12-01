@@ -1,32 +1,57 @@
 <div class="container">
   <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <%= link_to 'Home', root_path %>
-    <%= link_to 'Suppliers', suppliers_path if user_signed_in? %>
-    <%= link_to 'Templates', templates_path if user_signed_in? %>
-    <%= link_to 'Orders', orders_path if user_signed_in? %>
-    <%= link_to 'Invetory', inventories_path if user_signed_in? %>
-    <%= link_to "Log In", new_user_session_path unless user_signed_in? %>
-    <%= link_to "Sign up", new_user_registration_path unless user_signed_in? %>
-    <%= button_to "Logout", destroy_user_session_path, {method: :delete, class: "btn-logout"} if user_signed_in? %>
-  </div>
+      <%= link_to 'Home', root_path %>
+      <% if user_signed_in? %>
+      <%= link_to 'Suppliers', suppliers_path %>
+      <%= link_to 'Templates', templates_path %>
+      <%= link_to 'Orders', orders_path %>
+      <%= button_to "Logout", destroy_user_session_path, {method: :delete, class: "btn-logout"} %>
+      <% else %>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Why Srimble?
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><img src="https://img.icons8.com/office/40/000000/overview-pages-2.png"/>Overview </li>
+                <li class="list-group-item"><img src="https://img.icons8.com/ultraviolet/40/000000/concept.png"/>Solution</li>
+                <li class="list-group-item"><img src="https://img.icons8.com/external-indigo-line-kalash/48/000000/external-features-business-management-indigo-line-kalash.png"/>Features</li>
+                <li class="list-group-item"><img src="https://img.icons8.com/ultraviolet/40/000000/groups.png"/>About us</li>
 
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+        <%= link_to "Log In", new_user_session_path, class: "btn-login btn btn-outline-dark" unless user_signed_in? %>
+        <%= link_to "Get Started", new_user_registration_path, class: "btn-signup btn btn-primary" unless user_signed_in? %>
+      <% end %>
+  </div>
 
 </div>
 
 <div class="menu-and-back">
-  <i class="back-btn fa fa-arrow-circle-left" style="font-size:28px" onclick="history.back()"></i>
+  <%= link_to image_tag("srimble_logo.png"), root_path, class: "link-logo" %>
   <div class="searchbar"><%= render "shared/searchbar3" %></div>
   <span class="menu-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+  <a href="javascript:void(0)" class="closebtn visually-hidden" onclick="closeNav()">&times;</a>
 </div>
 
 <br>
 <script>
 function openNav() {
-  document.getElementById("mySidenav").style.width = "220px";
+  document.getElementById("mySidenav").style.width = "100%";
+  document.querySelector(".closebtn").classList.toggle("visually-hidden");
+  document.querySelector(".menu-btn").classList.toggle("visually-hidden");
 }
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
+  document.querySelector(".closebtn").classList.toggle("visually-hidden");
+  document.querySelector(".menu-btn").classList.toggle("visually-hidden");
 }
 </script>
