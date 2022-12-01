@@ -16,13 +16,19 @@
 
                 <div class="btn-tray">
                   <%# Order details %>
-                  <%= link_to '📄', order %>
+                  <div class="order-btn">
+                    <%= link_to order do %>
+                      <i class="fa-solid fa-file-circle-plus"></i>
+                    <% end %>
+                  </div>
 
                   <%# delivered button %>
                   <div class="col-12">
                     <%= simple_form_for(order) do |f| %>
                       <%= f.hidden_field :status, :value => "delivered" %>
-                      <%= f.submit "✅", class: "", data: {turbo_confirm: "All items were delivered for this order?"}%>
+                      <%= f.submit '✅', class: "fa-solid fa-square-check", data: {turbo_confirm: "All items were delivered for this order?"} do %>
+                        <i class=""></i>
+                      <% end %>
                     <% end %>
                   </div>
 
