@@ -2,9 +2,17 @@
 
 .signup_pwd {
   display: flex;
+  justify-content: left;
+
 }
 
 
 .card.banner.pt-5 {
   margin-top: -1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: left;
+
 }

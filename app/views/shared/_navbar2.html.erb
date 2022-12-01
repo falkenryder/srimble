@@ -5,7 +5,7 @@
       <%= link_to 'Suppliers', suppliers_path %>
       <%= link_to 'Templates', templates_path %>
       <%= link_to 'Orders', orders_path %>
-      <%= link_to 'Inventories', inventories_path %>
+      <%= link_to 'Inventory', inventories_path %>
       <%= button_to "Logout", destroy_user_session_path, {method: :delete, class: "btn-logout"} %>
 
       <% else %>
@@ -30,6 +30,8 @@
         </div>
       </div>
         <%= link_to "Log In", new_user_session_path, class: "btn-login btn btn-outline-dark" unless user_signed_in? %>
+        <%= link_to "Get Started", new_user_registration_path, class: "btn-signup btn btn-primary" unless user_signed_in? %>
+
       <% end %>
   </div>
 
