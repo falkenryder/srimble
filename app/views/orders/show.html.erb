@@ -1,6 +1,6 @@
+
 <div class="container col-11 my-4 px-0">
   <%= render "order_show" %>
-
   <%# Bottom button(s) %>
   <%# For order yet to be delivered  %>
   <% if @order.status != "delivered" %>
@@ -27,3 +27,8 @@
   <br>
 <%# container div below %>
 </div>
+
+
+ <% if @order.status == "delivered" %>
+  <%= render "order_photo_show_edit" %>
+<% end %>
