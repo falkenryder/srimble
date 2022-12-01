@@ -30,7 +30,6 @@
         </div>
       </div>
         <%= link_to "Log In", new_user_session_path, class: "btn-login btn btn-outline-dark" unless user_signed_in? %>
-        <%= link_to "Get Started", new_user_registration_path, class: "btn-signup btn btn-primary" unless user_signed_in? %>
       <% end %>
   </div>
 
