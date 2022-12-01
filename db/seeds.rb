@@ -81,6 +81,25 @@ puts "Creating product and inventory seeds"
   )
 end
 
+puts "[Temporary] Creating square order inventory seeds"
+
+  # temporary until we finalize seed file
+  square_array = ["Sapporo", "Soymilk", "Lemon", "Red Pepper"]
+  square_array.each do |item|
+    product = Product.new
+    product.name = item
+    product.price = rand(1..10)
+    product.supplier = Supplier.all.sample
+    product.save!
+      Inventory.create!(
+        product_id: product.id,
+        quantity_bal: rand(1..100),
+        par_bal: rand(20..30),
+        user_id: User.all.sample.id,
+        reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
+      )
+  end
+
 puts "Populating address details"
 no_of_orders.times do
   DeliveryAddress.create!(
