@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="search-bar">
+
+
+      <%= form_with url: results_path, method: :get do %>
+        <% text_field_tag :query,
+          params[:query],
+          class: "search-bar__input",
+          # placeholder: "Enter your search here..",
+          aria: { label: "General search box" },
+          html: { class: "search-bar__input" } %>
+      <% end %>
+
+    <button class="search-bar__submit"><i class="fas fa-search" style="color: black"></i></button>
+
+  </div>
+
+</div>

@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   resources :templates, controller: :orders, type: "template"
 
   resources :orders, only: [:index, :new, :show, :create, :update ], type: "order"
-
+  resources :products, only: %i[index show update]
   resources :inventories, only: [:index, :show, :update] do
     collection do
       get :sync
     end
   end
-
+  
 end
