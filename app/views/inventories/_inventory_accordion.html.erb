@@ -31,8 +31,8 @@
       <div class="accordion-body-inventory">
         <div style="text-align: left">
             <% if inventory.reconciled_at? %>
-                  <strong>Last Reconciled</strong><br/>
-                  <%= Time.parse("#{inventory.reconciled_at}").strftime('%b-%d-%Y')%><br/>
+                  <strong>Last Updated</strong><br/>
+                  <%= Time.parse("#{inventory.updated_at}").strftime('%b-%d-%Y')%><br/>
                   <%= User.find(inventory.user_id).email %>
               <% else  %>
               <% end %>
