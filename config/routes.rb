@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:index, :new, :show, :create, :update ], type: "order"
   resources :inventories, only: [:index, :show, :update]
+  resources :products, only: %i[index show update]
 end
