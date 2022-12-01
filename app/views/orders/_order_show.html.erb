@@ -9,7 +9,7 @@
 <%# Order ID, supplier name, delivery date %>
 <div class="row">
     <div class="col-12 mt-2 mb-4">
-      <a class="view-btn"><%= @order.status %></a>
+      <span class="badge rounded-pill pending-badge" data-controller="order-status" data-order-status-target="status"><%= @order.status %></span>
     </div>
   </div>
 
