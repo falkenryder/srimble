@@ -85,3 +85,7 @@ group :test do
 end
 
 gem 'devise'
+
+# for square API
+source 'https://rubygems.org'
+gem 'square.rb'

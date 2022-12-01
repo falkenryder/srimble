@@ -1,0 +1,13 @@
+<br>
+<div class="container product_card">
+  <h3><%= @product.name %></h3>
+  <ul class="products_list"><h6>
+  <div class="product_list">
+    <li>Price: $<%= @product.price %>.00</li>
+    <li>Product ID: <%= @product.id %></li>
+    <li>Quantity balance: <%= @inventory.quantity_bal %> units (<%= @inventory.par_bal %> min inventory)</li>
+    <li>Supplier: <%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier), :style => 'text-decoration: none'%></li>
+  </h6></ul>
+  </div>
+
+</div>
