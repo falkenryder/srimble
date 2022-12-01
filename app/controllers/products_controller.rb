@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @inventory = Inventory.find(@product.id)
+
   end
 
 end
