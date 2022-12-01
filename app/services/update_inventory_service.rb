@@ -2,7 +2,7 @@ class UpdateInventoryService
   def initialize()
   end
 
-  def call
+  def self.call
     client = Square::Client.new(
       access_token: ENV.fetch('SQUARE_ACCESS_TOKEN'),
       environment: 'production',
