@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  has_one_attached :photo
+
   include PgSearch::Model
   multisearchable against: %i[status delivery_date delivery_address]
 
