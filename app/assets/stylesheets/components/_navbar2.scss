@@ -101,18 +101,21 @@
 
 /* line 48, app/assets/stylesheets/components/_navbar2.scss */
 .closebtn {
-  position: absolute;
+  // position: absolute;
   top: -7px;
-  right: 11px;
+  right: 8px;
   font-size: 40px;
   text-decoration: none;
   color: black;
   display: block;
+  transform: translate(-10px,-6px);
+  margin-left: 14px;
 }
 
 .closebtn:hover{
   color: #007EA7;
 }
+
 .search-btn {
   background: rgba(0,0,0,0.0);
   border: 0;
