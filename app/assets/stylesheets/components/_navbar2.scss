@@ -3,12 +3,16 @@
 .menu-btn {
   margin-right: 10px;
   margin-left: auto;
-}
+
 
 /* line 6, app/assets/stylesheets/components/_navbar2.scss */
 .menu-and-back {
   border-bottom: 1px black solid;
   display: flex;
+  justify-content: space-between;
+}
+.searchbar {
+  width: 70%;
 }
 
 /* line 11, app/assets/stylesheets/components/_navbar2.scss */
@@ -109,8 +113,16 @@
 .closebtn:hover{
   color: #007EA7;
 }
+.search-btn {
+  background: rgba(0,0,0,0.0);
+  border: 0;
+}
 
-
+#query {
+  background-color: rgb(244,244,244);
+  border: none;
+  border-bottom: 1px lightgrey solid;
+}
 
 @media screen and (max-height: 450px) {
   /* line 57, app/assets/stylesheets/components/_navbar2.scss */

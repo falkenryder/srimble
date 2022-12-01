@@ -1,0 +1,12 @@
+<div class="search">
+  <%= form_with url: results_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search by supplier, delivery date etc..",
+      aria: { label: "Recipient's username", describedby: "button-addon2" } %>
+    <%= button_tag type: 'submit', class: "search-btn", id: "button-addon2" do %>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+</div>

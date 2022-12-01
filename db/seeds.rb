@@ -22,7 +22,7 @@ puts "Database cleaned"
 no_of_orders = 50
 
 puts "Populating supplier seeds"
-10.times do
+9.times do
   Supplier.create!(
     name:  Faker::Company.name,
     # email:  "kenneth@gmail.com",
@@ -32,6 +32,13 @@ puts "Populating supplier seeds"
   )
 end
 
+# Add your own email address as a supplier to test action mailer :)
+puts "Populating supplier seed for mailer test"
+  Supplier.create!(
+    name:  "Resonant Coffee Co",
+    email: "resonantcoffeeco@gmail.com",
+    address: "136 Telok Ayer Street"
+  )
 
 puts "Populating user seeds"
 User.create!(
@@ -69,9 +76,29 @@ puts "Creating product and inventory seeds"
     product_id: product.id,
     quantity_bal: rand(1..100),
     par_bal: rand(20..30),
-    user_id: User.all.sample.id
+    user_id: User.all.sample.id,
+    reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
   )
 end
+
+puts "[Temporary] Creating square order inventory seeds"
+
+  # temporary until we finalize seed file
+  square_array = ["Sapporo", "Soymilk", "Lemon", "Red Pepper"]
+  square_array.each do |item|
+    product = Product.new
+    product.name = item
+    product.price = rand(1..10)
+    product.supplier = Supplier.all.sample
+    product.save!
+      Inventory.create!(
+        product_id: product.id,
+        quantity_bal: rand(1..100),
+        par_bal: rand(20..30),
+        user_id: User.all.sample.id,
+        reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
+      )
+  end
 
 puts "Populating address details"
 no_of_orders.times do

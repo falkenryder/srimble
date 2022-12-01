@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Search Results:</h1>
+  <div class="search-results" style="text-decoration: none">
+    <% if @results.count > 0 %>
+      <% @results.each do |result| %>
+          <h5 class="search-results"><%= link_to "#{result.searchable.name}", result.searchable, :style => 'text-decoration: none' %></h5>
+      <% end %>
+    <% else %>
+      <p>No results</p>
+    <% end %>
+  </div>
+</div>
+
+<%# <% @results.each do |result| %>
+    <%# <p>Supplier: <%= link_to "#{result.searchable.name}", result.searchable_path if result.searchable == "Supplier" %>
+    <%# <p>Product: <%= result.searchable.name %>
+    <%# <% link_to "#{Supplier.where(products: "#{result.searchable}").name}", Supplier.where(products: "#{result.searchable}") %>
+     <%# Price: $<%= result.searchable.price %>

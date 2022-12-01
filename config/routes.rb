@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get 'results', to: 'pages#results'
   resources :suppliers, only: [ :index, :show, :new, :create ] do
     resources :orders, only: [ :index, :show, :new, :create, :update ], type: "order"
     resources :templates, only: [ :index, :new, :create, :edit, :update ], controller: :orders, type: "template"
@@ -13,5 +14,11 @@ Rails.application.routes.draw do
   resources :templates, controller: :orders, type: "template"
 
   resources :orders, only: [:index, :new, :show, :create, :update ], type: "order"
-  resources :inventories, only: [:index, :show, :update]
+  resources :products, only: %i[index show update]
+  resources :inventories, only: [:index, :show, :update] do
+    collection do
+      get :sync
+    end
+  end
+  
 end
