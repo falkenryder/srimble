@@ -6,7 +6,10 @@
   <% if @order.status != "delivered" %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <%= render "order_mark_delivered" %>
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+        Mark as delivered
+        </button>
       </div>
       <div class="col-6">
         <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
@@ -17,6 +20,9 @@
   <% else %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+          Photo
+        </button>
         <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
       </div>
     </div>
@@ -28,7 +34,23 @@
 <%# container div below %>
 </div>
 
+<!-- Button trigger modal -->
 
- <% if @order.status == "delivered" %>
-  <%= render "order_photo_show_edit" %>
-<% end %>
+<!-- Modal -->
+<div class="modal fade" id="markdeliveredModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"><%= "Attach a photo to this order" unless @order.photo.attached? %></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "order_photo_show_edit" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= render "order_mark_delivered" unless @order.status == "delivered" %>
+      </div>
+    </div>
+  </div>
+</div>
