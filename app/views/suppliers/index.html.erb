@@ -6,7 +6,7 @@
 
       <% @suppliers.each do |supplier| %>
         <%= link_to supplier_path(supplier), :style=>'text-decoration: none; list-style: none' do %>
-          <li class="push-btn push_suppliers">
+          <li class="notif-card2 mb-2 templates">
             <%= supplier.name %>
           </li>
         <% end %>

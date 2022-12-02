@@ -14,14 +14,18 @@
       </button>
     </h2>
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
-      <div class="accordion-body">
+      <div class="accordion-body-template">
         <div style="text-align: left">
           <% order_id = order.id %>
           <% OrderDetail.where(order_id: order_id).each do |order_detail|%>
             <%= order_detail.product.name %><br>
           <% end %>
         </div>
-          <%= link_to "View Order >", order %>
+        <div>
+          <%= link_to order_path(id: order), :style=>'text-decoration:none;' do %>
+            <i class="fa-solid fa-file fa-2xl"></i>&nbsp;&nbsp;
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

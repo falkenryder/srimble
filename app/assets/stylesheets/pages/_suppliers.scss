@@ -52,7 +52,12 @@
 
 .supplier_details {
   list-style-type: none;
-}
+  background-color: aliceblue;
+  border: 1px solid #00A8E8;
+  padding: 10px;
+  margin: 0px;
+  border-radius: 5px;
+  }
 
 .supplier_templates_orders {
   display: flex;
@@ -60,9 +65,9 @@
 }
 
 .templates_and_create {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: flex-end;
   margin-bottom: -20px;
 }
 
