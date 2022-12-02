@@ -6,23 +6,37 @@
       <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
         <div class="accordion-order" style="padding-right: 5px">
           <div class="accordion-order-info">
-            <strong><%= template.name %></strong><br>
+            <strong><%= template.name %></strong>
+            &nbsp;<span style="color: grey;"><%= template.supplier.name %></span><br>
           </div>
         </div>
       </button>
     </h2>
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
-      <div class="accordion-body">
+      <div class="accordion-body-template">
         <div style="text-align: left">
+          <strong>Products</strong> <br>
           <% template.order_details.each do |order_detail|%>
             <%= order_detail.product.name %><br>
           <% end %>
         </div>
-          <%= link_to "Use this Template", new_order_path( template: template ) %>
-          <%= link_to "Edit Template", edit_template_path(template) %>
+       <div style="text-align: right; font-weight:bold; padding-top: 5px;">
+          <%# select a template for a new order %>
+          <%= link_to new_order_path(template: template), :style=>'text-decoration:none;' do %>
+            <i class="fa-solid fa-file fa-xl"></i>&nbsp;&nbsp;
+          <% end %>
+          <%# edit a template for a new order %>
+          <%= link_to edit_template_path(template) do %>
+            <i class="fa-solid fa-pen-to-square fa-xl"></i>
+          <% end %> <br>
+        </div>
       </div>
+
+
+
+
+
     </div>
   </div>
-<%# Accordion 2 %>
-<%# Accordion 3 %>
+
 <%# end of last accordion %>
