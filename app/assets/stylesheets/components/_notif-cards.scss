@@ -1,3 +1,28 @@
+.notif-card2 {
+  background-color: white;
+  box-shadow: 2px 3px black;
+  border-radius: 10px;
+  border-width: 5px;
+  border: black;
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 16px;
+  position: relative;
+  margin: 8px;
+  overflow: hidden;
+  transition: 300ms;
+
+  &.templates {
+    border-color: red;
+    box-shadow: 2px 3px red;
+  }
+}
+
+
 .notif-card {
   background-color: rgb(186, 186, 186);
   box-shadow: 2px 3px black;
