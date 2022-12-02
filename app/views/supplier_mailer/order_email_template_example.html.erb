@@ -1,0 +1,73 @@
+<style type="text/css">
+  body,
+  html,
+  .body {
+    background: #F3F3F3 !important;
+  }
+</style>
+<container>
+  <spacer size="16"></spacer>
+  <row>
+    <columns>
+      <h1>We have just sent you an order!</h1>
+      <p>We seek to create a strong network of supplier and are grateful for your timely delivery.</p>
+      <spacer size="16"></spacer>
+      <callout class="secondary">
+        <row>
+          <columns large="6">
+            <p>
+              <strong>Payment Method</strong><br/>
+              Dubloons
+            </p>
+            <p>
+              <strong>Email Address</strong><br/>
+              purchaser@srimble.io
+            </p>
+            <p>
+              <strong>Order ID</strong><br/>
+              <%= order_detail.order_id %>
+            </p>
+          </columns>
+          <columns large="6">
+            <p>
+              <strong>Shipping Address</strong><br/>
+              <%= @order.delivery_address %>
+            </p>
+          </columns>
+        </row>
+      </callout>
+      <h4>Order Details</h4>
+
+<% @order.order_details.each do |order_detail| %>
+   X <%= order_detail.quantity %>
+<% end %>
+
+      <table>
+        <tr><th>Item</th><th>Price</th></tr>
+        <% @order.order_details.each do |order_detail| %>
+          <tr><td><%= order_detail.product %></td><td><%= order_detail.quantity %></td></tr>
+        <% end %>
+      </table>
+      <hr/>
+      <h4>What's Next?</h4>
+      <p>Please deliver to us on: <%=@order.delivery_date%></p>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <img src="http://placehold.it/170x30" alt="">
+    </columns>
+    <columns large="3">
+      <p>
+        Call us at 800.555.1923<br/>
+        Email us at support@srimble.io
+      </p>
+    </columns>
+    <columns large="3">
+      <p>
+        123 Maple Rd<br/>
+        Singapore, 95112
+      </p>
+    </columns>
+  </row>
+</container> (edited)
