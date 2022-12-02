@@ -1,3 +1,7 @@
+abbr[title=‘required’] {
+  text-decoration: none;
+  color: red;
+}
 .form {
   // align-items: center;
   // padding-left: 150px;
@@ -6,7 +10,6 @@
 
 .form-title {
   // margin: 30px;
-  font-family: ll-unica77, “Helvetica Neue”, Helvetica, Arial, sans-serif;
   font-size: 40px;
   color: rgb(84, 83, 83);
   padding-top: 20px;
