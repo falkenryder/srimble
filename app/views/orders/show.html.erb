@@ -6,10 +6,13 @@
   <% if @order.status != "delivered" %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <%= render "order_mark_delivered" %>
+      <!-- Button trigger modal -->
+        <button type="button" class="btn-login btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+        Mark as delivered
+        </button>
       </div>
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn-login btn btn-outline-dark", style: "padding: 5px 15px;" %>
       </div>
 
     </div>
@@ -17,21 +20,36 @@
   <% else %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
+      <% unless @order.photo.attached? %>
+        <button type="button" class="push-btn-small btn" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+          Attach Photo
+        </button>
+        <% end %>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "push-btn-small btn"%>
       </div>
     </div>
 
   <% end %>
-  <br>
-  <br>
-  <br>
 <%# container div below %>
 </div>
 
+<!-- Button trigger modal -->
 
- <% if @order.status == "delivered" %>
-  <%= render "order_photo_show_edit" %>
-<% end %>
-
-<%# to enable dropdown bootstrap %>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<!-- Modal -->
+<div class="modal fade" id="markdeliveredModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"> <strong><%= "Attach a photo to this order" unless @order.photo.attached? %></strong></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "order_photo_show_edit" %>
+      </div>
+      <div class="modal-footer">
+        <%= render "order_mark_delivered" unless @order.status == "delivered" %>
+        <button type="button" class="btn-login btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,28 +1,18 @@
 
 <div class="container">
   <div class="row">
-   <div class="col-sm mt-500">
-    </div>
     <div class="col-sm mt-500">
-        <%  if @order.photo.attached?%>
-          <div class="row">
-            <div class="col-12 mt-2 mb-4">
-              <a class="view-btn"><%= cl_image_tag @order.photo.key, height: 300, width: 400, crop: :fill %>  </a>
-            </div>
-          </div>
-        <% end %>
-
-    </div>
-    <div class="col-sm">
-      <div class="form-inputs">
-        <%= simple_form_for(@order) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :photo, label: 'Photo', as: :file, error: 'Photo is mandatory, please upload one'%>
-          </div>
-          <div class="form-actions" style = "background:transparent">
-            <%= f.button :submit %>
-          </div>
-        <% end %>
-    </div>
+      <% if @order.photo.attached? %>
+        <div class="col-12 mt-2 mb-4">
+          <%= cl_image_tag @order.photo.key, height: 400, width: 300, crop: :fill, class: "attached-image" %>
+        </div>
+      <% else %>
+        <div class="col-sm">
+          <%= simple_form_for(@order) do |f| %>
+            <%= f.input :photo, as: :file, error: 'Photo is mandatory, please upload one', class: "form-control" %>
+            <%= f.button :submit, " + Attach Photo", class: "btn-login btn btn-outline-dark" %>
+          <% end %>
+        </div>
+      <% end %>
   </div>
 </div>

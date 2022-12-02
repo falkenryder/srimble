@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
       @order.order_details.each do |order_detail|
         @inventory = Inventory.find(order_detail.product_id)
         @inventory.quantity_bal += order_detail.quantity
-        @inventory.save!
+        @inventory.save
       end
       redirect_to order_path(@order), notice: "Your order has been marked as #{@order.status} and added to your inventory"
       # redirect_to inventories_path, notice: "Your order has been marked as #{@order.status} and items have been added to inventory"
