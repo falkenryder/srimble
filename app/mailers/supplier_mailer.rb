@@ -5,6 +5,6 @@ class SupplierMailer < ApplicationMailer
     @supplier = params[:supplier]
     @order = params[:order]
     @user = params[:user]
-    mail(to: @supplier.email, subject: "Order for #{@user.email}")
+    mail(to: @supplier.email, subject: "Order from #{@user.email}")
   end
 end
