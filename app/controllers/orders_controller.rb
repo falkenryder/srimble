@@ -4,27 +4,25 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show update]
 
   def index
-      if params[:type] == "order"
-        if params[:supplier_id].present?
-          set_supplier
-          @orders = params[:status].present? ? @supplier.orders.where(status: params[:status]) : @supplier.orders
-        else
-          @orders = params[:status].present? ? Order.where(status: params[:status]) : Order.all
-        end
-      elsif params[:type] == "template"
-        if params[:supplier_id].present?
-          set_supplier
-          @templates = @supplier.templates
-        else
-          @templates = Template.all
-        end
+    if index_params[:type] == "order"
+      if index_params[:supplier_id].present?
+        set_supplier
+        @orders = index_params[:status].present? ? @supplier.orders.where(status: index_params[:status]) : @supplier.orders
+      else
+        @orders = index_params[:status].present? ? Order.where(status: index_params[:status]) : Order.all
       end
+    elsif index_params[:type] == "template"
+      if index_params[:supplier_id].present?
+        set_supplier
+        @templates = @supplier.templates
+      else
+        @templates = Template.all
+      end
+    end
   end
 
   def show
-    if params[:type] == "order"
-      set_order
-    end
+    set_order if params[:type] == "order"
   end
 
   def new
@@ -42,11 +40,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if params[:order][:name] == ""
+    if order_params[:name] == ""
       @order = Order.new(order_params)
       @order.user = @user
       @order.status = "pending" #TODO: enum this!
-      if @order.save!
+      if @order.save
         SupplierMailer.with(supplier: @supplier, order: @order, user: @user).order_email.deliver_now
         redirect_to @order
       else
@@ -55,7 +53,7 @@ class OrdersController < ApplicationController
     else
       @template = Template.new(template_params)
       @template.user = @user
-      if @template.save!
+      if @template.save
         redirect_to supplier_templates_path
       else
         render :new, status: :unprocessable_entity
@@ -79,8 +77,8 @@ class OrdersController < ApplicationController
     if params[:type] == "order"
       set_order
       @order.photo.attach(update_order_params[:photo])
-      @order.status = params[:order][:status]
-      @order.save
+      @order.status = update_order_params[:status]
+      @order.save!
       @order.order_details.each do |order_detail|
         @inventory = Inventory.find(order_detail.product_id)
         @inventory.quantity_bal += order_detail.quantity
@@ -96,7 +94,6 @@ class OrdersController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     end
-
   end
 
   private
@@ -117,8 +114,25 @@ class OrdersController < ApplicationController
     @supplier = Supplier.find(params[:supplier_id])
   end
 
+  def index_params
+    params.permit(
+      :type,
+      :status,
+      :supplier_id
+    )
+  end
+
+  def show_params
+    params.permit(:type)
+  end
+
+  def new_params
+    params.permit(:template)
+  end
+
   def order_params
     params.require(:order).permit(
+      :name,
       :supplier_id,
       :delivery_date,
       :delivery_address_id,
@@ -134,6 +148,7 @@ class OrdersController < ApplicationController
       order_details_attributes: [:_destroy, :product_id, :quantity]
     )
   end
+
   def update_template_params
     params.require(:template).permit(
       :name,

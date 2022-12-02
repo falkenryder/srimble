@@ -20,5 +20,5 @@ Rails.application.routes.draw do
       get :sync
     end
   end
-  
+
 end
