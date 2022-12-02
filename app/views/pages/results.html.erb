@@ -3,7 +3,12 @@
   <div class="search-results" style="text-decoration: none">
     <% if @results.count > 0 %>
       <% @results.each do |result| %>
+        <div class="notif-card2 templates">
           <h5 class="search-results"><%= link_to "#{result.searchable.name}", result.searchable, :style => 'text-decoration: none' %></h5>
+          <% if result.searchable.is_a?(Product) %>
+            <p>Supplier: <%= result.searchable.supplier.name %></p>
+          <% end %>
+        </div>
       <% end %>
     <% else %>
       <p>No results</p>
