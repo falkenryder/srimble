@@ -7,7 +7,7 @@
           <h2>Orders</h2>
           <div class="list-group">
               <% current_user.orders.where(delivery_date: Date.today..DateTime::Infinity.new).order(:delivery_date).first(5).each do |order| %>
-                <div class="notif-card2 mb-2">
+                <div class="notif-card mb-2">
                 <%#= link_to order_path(order), class: "notif-card mb-2" do %>
                   <small>Arriving <%= order.delivery_date == Date.today ? "today" : order.delivery_date %></small>
                   <div class="d-flex w-100 justify-content-between">
@@ -19,7 +19,7 @@
                     <%# Order details %>
                     <div class="order-btn">
                       <%= link_to order do %>
-                        <i class="fa-solid fa-file-circle-plus"></i>
+                        <i class="fa-solid fa-file"></i>
                       <% end %>
                     </div>
 
