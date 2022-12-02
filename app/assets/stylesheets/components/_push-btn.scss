@@ -26,9 +26,9 @@
 }
 
 .push-btn-small {
-  background-color: rgb(186, 186, 186);
+  background-color: #00A8E8;
   box-shadow: 2px 2px black;
-  border-radius: 15px;
+  border-radius: 50px;
   border-width: 5px;
   border: black;
   color: black;
@@ -43,6 +43,16 @@
   margin: 8px;
   font-size: 14px;
 }
+
+.push-btn-small:hover{
+  color: black !important;
+  background-color: none;
+}
+.push-btn-small:active{
+  box-shadow: none;
+  background-color: none;
+}
+
 
 .push_suppliers {
   padding-bottom: 20px;
@@ -69,4 +79,7 @@
   font-size: 11px;
   height: 12px;
   width: 20px;
+}
+.push-btn-extra-small:active{
+  box-shadow: none;
 }

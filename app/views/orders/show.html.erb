@@ -7,12 +7,12 @@
     <div class="row d-flex justify-content-center">
       <div class="col-6">
       <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+        <button type="button" class="btn-login btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
         Mark as delivered
         </button>
       </div>
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn-login btn btn-outline-dark", style: "padding: 5px 15px;" %>
       </div>
 
     </div>
@@ -20,10 +20,12 @@
   <% else %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
-          Photo
+      <% unless @order.photo.attached? %>
+        <button type="button" class="push-btn-small btn" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+          Attach Photo
         </button>
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn push-btn-small"%>
+        <% end %>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "push-btn-small btn"%>
       </div>
     </div>
 
@@ -38,15 +40,15 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"><%= "Attach a photo to this order" unless @order.photo.attached? %></h1>
+        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"> <strong><%= "Attach a photo to this order" unless @order.photo.attached? %></strong></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <%= render "order_photo_show_edit" %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <%= render "order_mark_delivered" unless @order.status == "delivered" %>
+        <button type="button" class="btn-login btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

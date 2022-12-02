@@ -10,7 +10,7 @@ export default class extends Controller {
 
   change_status_color(target) {
     let status = target.textContent
-    let klass = target.classList.item(2)
+    let klass = target.classList.item(1)
     switch (status) {
       default:
         target.classList.remove(klass)
