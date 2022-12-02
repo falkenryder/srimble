@@ -15,8 +15,17 @@ class InventoriesController < ApplicationController
   end
 
   def sync
-    UpdateInventoryService.call
+    service = UpdateInventoryService.new(current_user)
+
+    if service.call
+      redirect_to inventories_path, notice: "Your inventory is now synced with your POS data"
+    else
+      render :index, status: :unprocessable_entity
+    end
+
   end
+
+  private
 
   def inventory_params
     params.require(:inventory).permit(
