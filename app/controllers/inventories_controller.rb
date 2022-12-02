@@ -15,8 +15,13 @@ class InventoriesController < ApplicationController
   end
 
   def sync
-    UpdateInventoryService.new(current_user).call
-    redirect_to inventories_path, notice: "Your inventory is now synced with your POS data"
+    service = UpdateInventoryService.new(current_user)
+
+    if service.call
+      redirect_to inventories_path, notice: "Your inventory is now synced with your POS data"
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
