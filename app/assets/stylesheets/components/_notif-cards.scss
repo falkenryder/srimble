@@ -1,6 +1,6 @@
 .notif-card2 {
   background-color: #DEDEDE;
-  box-shadow: 2px 3px black;
+  // box-shadow: 2px 3px black;
   border-radius: 10px;
   border-width: 5px;
   border: black;
@@ -23,14 +23,14 @@
   }
 
   &.templates:hover {
-    background-color: #003459;
-    color: white;
+    background-color: rgb(4,167,231);
+    color: black;
   }
 }
 
 
 .notif-card {
-  background-color: #00A8E8;
+  background-color: rgb(4,167,231);
   box-shadow: 2px 3px black;
   border-radius: 10px;
   border-width: 5px;
@@ -77,7 +77,7 @@
     border:none;
     outline: none;
     font-size: 2rem;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     color: white;
   }
 }
