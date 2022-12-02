@@ -28,10 +28,8 @@ class OrdersController < ApplicationController
   def new
     if params[:template].present?
       @template = Template.find(params[:template])
-      @order = Order.new
       @supplier = @template.supplier
-      @order.supplier = @supplier
-      @order.order_details = @template.order_details
+      @order = CreateFromTemplateService.new(params[:template]).call
     else
       set_supplier
       @order = Order.new
@@ -54,7 +52,7 @@ class OrdersController < ApplicationController
       @template = Template.new(template_params)
       @template.user = @user
       if @template.save
-        redirect_to supplier_templates_path
+        redirect_to new_order_path(template: @template)
       else
         render :new, status: :unprocessable_entity
       end
