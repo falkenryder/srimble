@@ -2,31 +2,31 @@
 
   <%# for suppliers/:id/templates %>
   <% if @supplier %>
-      <div class="col-l2 d-flex justify-content-center px-2">
-        <h1><strong>My Templates with <%= @supplier.name %></strong></h1> <br>
+      <div class="col-l2 px-3" style="justify-text: center;">
+        <h1><strong>My Order Templates with</strong></h1><br>
+        <h3><span style="font-weight:bold; color: grey;"><%= @supplier.name %></span></h3><br>
       </div><br>
     <%# individual template accordion  %>
-      <div class="templates_and_create">
-        <h4 class="templates_title"><strong>Choose a Template to create from</strong></h4> <br/>
-        <%= link_to "+ New", new_supplier_order_path(@supplier.id), class: "push-btn create_order_btn" %>
-      </div>
-      <div class="row justify-content-center my-4">
+      <h4 class="templates_title"><strong>Choose a Template</strong></h4>
+      <div class="row justify-content-center">
         <div class="col-12">
           <% @templates.each_with_index do |template, index| %>
               <%= render "template_accordion", template: template, index: index %>
             <% end %>
         </div>
       </div>
+
+      <div class="templates_and_create mt-4">
+        <span><%= link_to "+ New Template", new_supplier_order_path(@supplier.id), class: "push-btn-small create_order_btn", style: "position: absolute; margin-top: 30px; margin-left: 10px;" %></span>
+      </div>
         <%# End of Accordion %>
-      <%# </div> %>
+\
   <%# to enable dropdown bootstrap %>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-
   <%# for /templates without supplier id%>
   <%else%>
     <div class="col-12 d-flex justify-content-center">
-      <h1><strong> My Templates </strong></h1> <br>
+      <h1><strong> My Order Templates </strong></h1> <br>
     </div>
     <%# individual template accordion  %>
     <div class="row justify-content-center my-4">
@@ -40,7 +40,6 @@
     </div>
   <%# to enable dropdown bootstrap %>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
   <%end%>
 
 </div>

@@ -30,7 +30,7 @@
     <div id="flush-collapse<%= index + 1 %>" class="accordion-collapse collapse" aria-labelledby="flush-heading" data-bs-parent="#accordionOrder">
       <div class="accordion-body-inventory">
         <div style="text-align: left">
-            <% if inventory.reconciled_at? %>
+            <% if inventory.updated_at? %>
                   <strong>Last Updated</strong><br/>
                   <%= Time.parse("#{inventory.updated_at}").strftime('%b-%d-%Y')%><br/>
                   <%= User.find(inventory.user_id).email %>
