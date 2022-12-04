@@ -1,0 +1,30 @@
+<div class="products">
+  <% current_user.inventories.running_low.order(:quantity_bal).first(10).each do |inventory| %>
+    <div class="notif-card-product mb-2">
+      <%# <%= link_to new_order_path( template: template ), class: "notif-card2 mb-2 templates" do %>
+      <small>Sold by <%= inventory.product.supplier.name %><br/></small>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 text-truncate"><%= inventory.product.name %></h5>
+        <a class="view-btn-extra-small"><%= inventory.quantity_bal %></a>
+      </div>
+      <span style="color: red; font-weight: bold;"> - <%= (inventory.quantity_bal - inventory.par_bal).abs() %> vs min</span><br/>
+
+      <div class="btn-tray-product">
+        <%# Create new order with supplier %>
+        <div class="order-btn">
+          <%= link_to new_supplier_order_path(inventory.product.supplier) do %>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <% end %>
+        </div>
+
+        <%# go to product/show %>
+        <div class="order-btn">
+          <%= link_to product_path(inventory.product) do %>
+            <i class="fa-solid fa-eye"></i>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

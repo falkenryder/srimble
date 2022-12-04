@@ -1,56 +1,78 @@
 <div class="container">
   <div class="row">
     <% if user_signed_in? %>
-    <h1><strong>Hello, what would you like to do today?</strong></h1>
-      <div class="col-sm-6 col-md-6">
-        <div class="orders">
-          <h2>Orders</h2>
-          <div class="list-group">
-              <% current_user.orders.where(delivery_date: Date.today..DateTime::Infinity.new).order(:delivery_date).first(5).each do |order| %>
-                <div class="notif-card mb-2">
-                <%#= link_to order_path(order), class: "notif-card mb-2" do %>
-                  <small>Arriving <%= order.delivery_date == Date.today ? "today" : order.delivery_date %></small>
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1 text-truncate"><%= "Order ##{order.id} -" %><%= order.supplier.name %></h5>
-                    <span class="material-symbols-outlined">arrow_forward_ios</span>
-                  </div>
-
-                  <div class="btn-tray">
-                    <%# Order details %>
-                    <div class="order-btn">
-                      <%= link_to order do %>
-                        <i class="fa-solid fa-file"></i>
-                      <% end %>
-                    </div>
-
-                    <%# delivered button %>
-                    <div class="col-12">
-                      <%= simple_form_for(order) do |f| %>
-                        <%= f.hidden_field :status, :value => "delivered" %>
-                        <%= f.submit '✅', class: "fa-solid fa-square-check", data: {turbo_confirm: "All items were delivered for this order?"} do %>
-                          <i class=""></i>
-                        <% end %>
-                      <% end %>
-                    </div>
-
-                  </div>
-                <%# end %>
-                </div>
-              <% end %>
-          </div>
-        </div> <br>
-        <div class="templates">
-          <h2>Templates</h2>
-          <% current_user.templates.first(3).each do |template| %>
-          <%# <div class="notif-card mb-2"> %>
-            <%= link_to new_order_path( template: template ), class: "notif-card2 mb-2 templates" do %>
-            <small>Created on: <%= Time.parse("#{template.created_at}").strftime('%b-%d-%Y')%><br/></small>
-            <h5><%= template.name %> - Supplier: <%= template.supplier.name %></h5>
-            <% end %>
-          <%# </div> %>
-          <% end %>
-        </div>
+    <h2>Hello Christina,</h2>
+    <h3 style="margin-bottom: 30px;">what would you like to do today?</h3>
+    <div class="row mb-4" style="text-align:center; font-size:12px;">
+      <div class="col">
+        <%= link_to new_supplier_order_path(Supplier.find(1)) do %>
+        <%= image_tag "https://img.icons8.com/ios/50/null/create-order--v1.png", class: "quick-link-btn" %>
+        <% end %>
+        <br><small>New Order</small>
       </div>
+      <div class="col">
+        <%= link_to suppliers_path do %>
+        <%= image_tag "https://img.icons8.com/ios/50/null/supplier.png", class: "quick-link-btn" %>
+        <% end %>
+      <br><small>Suppliers</small>
+      </div>
+      <div class="col">
+        <%= link_to orders_path(status: "pending") do %>
+        <%= image_tag "https://img.icons8.com/ios/50/null/data-pending.png", class: "quick-link-btn" %>
+        <% end %>
+        <br><small>Pending Orders</small>
+      </div>
+      <div class="col">
+        <%= link_to sync_inventories_path do %>
+        <%= image_tag "https://img.icons8.com/ios/50/null/cloud-sync--v1.png", class: "quick-link-btn" %>
+        <% end %>
+        <br><small>Sync from POS</small>
+      </div>
+    </div>
+
+        <div class="tab">
+          <button class="tablinks" onclick="openList(event, 'Orders')" id="defaultOpen">Orders</button>
+          <button class="tablinks" onclick="openList(event, 'Templates')">Templates</button>
+          <button class="tablinks" onclick="openList(event, 'Low')">Running Low</button>
+        </div>
+      <div class="col-sm-6 col-md-6 content">
+        <!-- Tab links -->
+
+        <!-- Tab content -->
+        <div id="Orders" class="tabcontent">
+          <%= render "orders_list" %>
+        </div>
+
+        <div id="Templates" class="tabcontent">
+          <%= render "templates_list" %>
+        </div>
+
+        <div id="Low" class="tabcontent">
+          <%= render "products_list" %>
+        </div>
+<script>
+  function openList(evt, listName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(listName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
 
   </div>
     <% else %>

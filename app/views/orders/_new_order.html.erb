@@ -7,9 +7,10 @@
 
       <div data-controller="order-form" class="order-form-inputs">
         <%= simple_form_for [@supplier, @order] do |f| %>
-          <%= f.association :supplier, collection: Supplier.all, selected: @supplier.id, class: "form-select", input_html: { id: "order-form-select"} %>
-          <%= f.input :delivery_date, as: :string, input_html: {type: :date, id: "order-form-select"} %>
-          <%= f.association :delivery_address, label_method: :address, class: "form-select", input_html: { id: "order-form-select"}  %>
+          <%= f.association :supplier, collection: Supplier.all, selected: @supplier.id, class: "form-select" %>
+          <%# TODO can't choose another supplier bug %>
+          <%= f.input :delivery_date, as: :string, input_html: {type: :date} %>
+          <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
 
             <div class="container edit-products-list p-0">
             <template data-order-form-target="template">

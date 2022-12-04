@@ -58,12 +58,112 @@
 .notif-card:active {
   box-shadow: none;
 }
+.notif-card-template {
+  background-color: #08605F;
+  box-shadow: 2px 3px black;
+  border-radius: 10px;
+  border-width: 5px;
+  border: black;
+  color: #f4f4f4;
+  padding: 12px;
+  text-decoration: none;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 16px;
+  position: relative;
+  margin: 8px;
+  overflow: hidden;
+  transition: 300ms;
+}
+.notif-card-template:hover {
+  color: black;
+  background-color: #043c3b;
+
+  .btn-tray-template {
+    transform: translateX(0);
+  }
+}
+.notif-card-template:active {
+  box-shadow: none;
+}
+.notif-card-product {
+  background-color: #FAC8CD;
+  box-shadow: 2px 3px black;
+  border-radius: 10px;
+  border-width: 5px;
+  border: black;
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  align-items: center;
+  border: solid #000;
+  border-width: 2px 2px;
+  font-size: 16px;
+  position: relative;
+  margin: 8px;
+  overflow: hidden;
+  transition: 300ms;
+}
+.notif-card-product:hover {
+  color: black;
+  background-color: #98323c;
+
+  .btn-tray-product {
+    transform: translateX(0);
+  }
+}
+.notif-card-product:active {
+  box-shadow: none;
+}
 
 .btn-tray {
   position: absolute;
   display: flex;
   width: 40%;
   justify-content: space-between;
+  align-items: center;
+  height:100%;
+  background-color: rgba(black, 0.5);
+  right:0;
+  top:0;
+  transform: translateX(100%);
+  transition: 300ms;
+
+  a,input[type='submit'] {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    font-size: 2rem;
+    margin-left: 1.5rem;
+    color: white;
+  }
+}
+.btn-tray-template {
+  position: absolute;
+  display: flex;
+  width: 40%;
+  align-items: center;
+  height:100%;
+  background-color: rgba(black, 0.5);
+  right:0;
+  top:0;
+  transform: translateX(100%);
+  transition: 300ms;
+
+  a,input[type='submit'] {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    font-size: 2rem;
+    margin-left: 1.5rem;
+    color: white;
+  }
+}
+.btn-tray-product {
+  position: absolute;
+  display: flex;
+  width: 40%;
   align-items: center;
   height:100%;
   background-color: rgba(black, 0.5);
