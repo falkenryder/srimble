@@ -23,21 +23,29 @@ export default class extends Controller {
   fetch_display_price(target) {
     let price = target.selectedOptions[0].dataset.price
     this.productPriceTarget.textContent = this.convert_to_currency(price)
-    // this.fetch_subtotal()
-    // this.fetch_grand_total()
+  }
+
+  remove_quantity() {
+    this.quantityTarget.value = 0
+  }
+
+  get_subtotal() {
+    let price = this.convert_to_float(this.productPriceTarget.textContent)
+    let subtotal = (parseInt(this.quantityTarget.value) || 0) * price
+    this.subtotalTarget.value = subtotal
   }
 
   fetch_subtotal() {
     let price = this.convert_to_float(this.productPriceTarget.textContent)
     let subtotal = (parseInt(this.quantityTarget.value) || 0) * price
     this.subtotalTarget.textContent = this.convert_to_currency(subtotal)
-    return subtotal
   }
 
   fetch_grand_total_add() {
+    let subtotal = this.subtotalTarget.value || 0
     let sum = this.convert_to_float(this.subtotalTarget.textContent)
     let total = this.convert_to_float(document.querySelector("#grandtotal").textContent)
-    document.querySelector("#grandtotal").textContent = this.convert_to_currency(total + sum)
+    document.querySelector("#grandtotal").textContent = this.convert_to_currency(total - subtotal + sum)
   }
   fetch_grand_total_remove() {
     let sum = this.convert_to_float(this.subtotalTarget.textContent)
@@ -49,8 +57,10 @@ export default class extends Controller {
   display_product_price(event) {
     event.preventDefault()
     this.fetch_grand_total_remove()
+    this.remove_quantity()
     this.fetch_display_price(event.currentTarget)
     this.fetch_subtotal()
+    this.get_subtotal()
     this.fetch_grand_total_add()
   }
 
@@ -61,7 +71,6 @@ export default class extends Controller {
   add_to_total(event) {
     event.preventDefault()
     this.fetch_grand_total_add()
-    // TODO logic doesn't track
   }
   remove_from_total(event) {
     event.preventDefault()
