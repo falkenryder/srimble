@@ -1,19 +1,21 @@
 .pending-badge {
   border-radius: 15px;
   border-width: 5px;
-  color: black;
   padding: 12px 28px;
   display: flex;
   text-decoration: none;
   justify-content: center;
   align-items: center;
-  border: solid black;
   border-width: 2px 2px;
   font-size: 16px;
   position: relative;
   height: 40px;
   width: 120px;
-  background-color: #FF934F;
+  color: #ef233c;
+  border: 1px solid #ef233c;
+  background-color: transparent;
+
+
 }
 .confirmed-badge {
   border-radius: 15px;
@@ -35,19 +37,20 @@
 .delivered-badge {
   border-radius: 15px;
   border-width: 5px;
-  color: black;
   padding: 12px 28px;
   display: flex;
   text-decoration: none;
   justify-content: center;
   align-items: center;
-  border: solid black;
   border-width: 2px 2px;
   font-size: 16px;
   position: relative;
   height: 40px;
   width: 120px;
-  background-color: #CACACA;
+  // background-color: #007ea7;
+  background-color: transparent;
+  color: #007ea7;
+  border: 1px solid #007ea7;
 }
 
 .view-btn {

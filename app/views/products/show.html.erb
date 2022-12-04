@@ -1,13 +1,23 @@
 
-<div class="container product_card">
-  <h3>Product: <%= @product.name %></h3>
-  <ul class="products_list"><h6>
-  <div class="product_list">
-    <li>Price: $<%= @product.price %>.00</li>
-    <li>Product ID: <%= @product.id %></li>
-    <li>Quantity balance: <%= @inventory.quantity_bal %> units <br> (<%= @inventory.par_bal %> min inventory)</li>
-    <li>Supplier: <%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier), :style => 'text-decoration: none'%></li>
-  </h6></ul>
-  </div>
+<div class="container col-12 my-2">
+  <span style="font-weight:bold; color: grey;">Product</span><br>
+  <h1><%= @product.name  %></h1>
+  <br>
 
+  <div class="supplier-details-container">
+    <li><strong>Price</strong><br>$<%= @product.price %>.00</li><br>
+    <li><strong>Product ID</strong><br><%= @product.id %> </li><br>
+    <li><strong>Inventory balance</strong><br><%=@inventory.quantity_bal %> units<br>
+
+    <% quantity_diff = @inventory.quantity_bal - @inventory.par_bal  %>
+      <% if quantity_diff > 0 %>
+      <li><span style="color: grey"> + <%= quantity_diff %> vs min balance</span></li><br/>
+      <% elsif quantity_diff == 0 %>
+      <li><span style="color: grey">  <%= quantity_diff %> vs min balance</span></li><br/>
+      <% else quantity_diff < 0  %>
+      <li><span style="color: grey"> - <%= quantity_diff.abs() %> vs min balance</span></li><br/>
+        <% end %>
+
+    <li><strong>Suppliers</strong><br><%= link_to "#{@product.supplier.name}", supplier_path(@product.supplier), :style => 'text-decoration: none'%></li>
+  </div>
 </div>

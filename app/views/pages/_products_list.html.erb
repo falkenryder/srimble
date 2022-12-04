@@ -17,10 +17,10 @@
           <% end %>
         </div>
 
-        <%# go to supplier %>
+        <%# go to product/show %>
         <div class="order-btn">
-          <%= link_to supplier_path(inventory.product.supplier) do %>
-            <i class="fa-solid fa-user-tie"></i>
+          <%= link_to product_path(inventory.product) do %>
+            <i class="fa-solid fa-eye"></i>
           <% end %>
         </div>
 

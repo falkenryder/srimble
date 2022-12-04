@@ -90,7 +90,7 @@ end
 puts "[Temporary] Creating square order inventory seeds"
 
   # temporary until we finalize seed file
-square_array = ["Sapporo", "Soymilk", "Lemon", "Red Pepper"]
+square_array = ["Sapporo", "Heineken"]
 square_array.each do |item|
   product = Product.new
   product.name = item
