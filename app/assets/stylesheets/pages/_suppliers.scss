@@ -59,15 +59,20 @@
   border-radius: 5px;
   }
 
+.supplier-details-container {
+  list-style-type: none;
+  background-color: rgb(222, 223, 229);
+  padding: 10px;
+  margin: 0px;
+  border-radius: 5px;
+}
 .supplier_templates_orders {
   display: flex;
   flex-direction: row;
 }
 
 .templates_and_create {
-  // display: flex;
-  // flex-direction: row;
-  // align-items: flex-end;
+
   margin-bottom: -20px;
 }
 

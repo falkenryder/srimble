@@ -1,20 +1,22 @@
-<div class="container col-11 my-2">
+<div class="container col-12 my-2">
   <span style="font-weight:bold; color: grey;">Supplier</span><br>
   <h1><%= @supplier.name %></h1>
   <br>
-  <div class="supplier_details">
-    <li><strong>Address</strong><br><%= @supplier.address %></li>
-    <li><strong>Contact</strong><br><%= @supplier.email %> </li>
+  <div class="supplier-details-container">
+  <%# <div class="supplier_details"> %>
+    <li><strong>Address</strong><br><%= @supplier.address %></li><br>
+    <li><strong>Contact</strong><br><%= @supplier.email %> </li><br>
     <li><strong>Orders</strong><br>You have <%= @orders_of_supplier %> orders with <%= @supplier.name %>
   </div>
 <br>
-<br>
    <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <%= link_to "Create an Order", supplier_templates_path(@supplier.id), class: "push-btn-small" %>
+        <%# <%= link_to "Create an Order", supplier_templates_path(@supplier.id), class: "push-btn-small" %>
+        <%= link_to "Create an Order", supplier_templates_path(@supplier.id), class: "btn-action-link btn" %>
       </div>
       <div class="col-6">
-        <%= link_to "View Past Orders", supplier_orders_path(@supplier.id), class: "push-btn-small" %>
+        <%# <%= link_to "View Past Orders", supplier_orders_path(@supplier.id), class: "push-btn-small" %>
+        <%= link_to "View Past Orders", supplier_orders_path(@supplier.id), class: "btn-action-link btn" %>
       </div>
   </div>
 </div>
