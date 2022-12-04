@@ -4,15 +4,18 @@
   </div>
 
  <%# Top two buttons  %>
-  <div class="row d-flex justify-content-center" style="padding-bottom: 60px;">
-    <div class="col-12">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6" style="margin-top: 30px">
+      <%# inventory sync with square API btn%>
+      <%= link_to sync_inventories_path do %>
+        <i class="fa-solid fa-rotate fa-2xl" style="color: blue; padding-left: 12px;"></i>
+      <% end %>
+    </div>
+    <div class="col-6 mt-0">
       <%# inventory user dropdown %>
       <%= render "inventories_counted_dropdown"%>
-      <%# inventory sync with square API btn%>
-      <%= link_to "Sync with Orders", sync_inventories_path, class: "push-btn-small" %>
     </div>
   </div>
-
   <%# inventory item accordion %>
     <div class="col-12">
       <div class="col-12 border-bottom d-flex justify-content-between" style="padding-inline: 16px; margin-top: 20px; font-weight:bold;">
