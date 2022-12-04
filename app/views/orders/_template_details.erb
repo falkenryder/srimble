@@ -13,7 +13,7 @@
     <%= f.input :quantity, input_html: {
     data: {
       order_detail_target: "quantity",
-      action: "input->order-detail#display_subtotal blur->order-detail#add_to_total"
+      action: "input->order-detail#display_subtotal focus->order-detail#get_subtotal blur->order-detail#add_to_total"
       } } %>
   </div>
   <div class="col-2">
