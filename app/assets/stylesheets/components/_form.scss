@@ -3,6 +3,7 @@
 //   color: red;
 // }
 
+
 .form {
   // align-items: center;
   // padding-left: 150px;
@@ -10,11 +11,8 @@
 }
 
 .form-title {
-  // margin: 30px;
-  font-size: 40px;
-  color: rgb(84, 83, 83);
-  padding-top: 20px;
-  justify-content: left;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .form-inputs{
@@ -26,6 +24,33 @@
   padding: 25px;
   border-radius: 5px;
   justify-content: center;
+}
+
+.order-form-inputs{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(222, 223, 229);
+  max-width: 600px;
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.order-form-inputs label {
+  font-weight: bold;
+}
+
+#order-form-select {
+  border-color: lightgray;
+  font-size: 14px;
+  // padding-right: 1px;
+
+}
+
+.order-form-add {
+  margin-top: 50px;
+
 }
 
 .form-actions {

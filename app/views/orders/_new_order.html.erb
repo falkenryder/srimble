@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-8" >
-      <h1><strong>Create a new order</strong></h1>
+      <div class="mb-2 form-title">
+        <span>Create a new order</span>
+      </div>
 
-      <div data-controller="order-form">
+      <div data-controller="order-form" class="order-form-inputs">
         <%= simple_form_for [@supplier, @order] do |f| %>
-          <%= f.association :supplier, collection: Supplier.all, selected: @supplier.id, class: "form-select" %>
-          <%= f.input :delivery_date, as: :string, input_html: {type: :date} %>
-          <%= f.association :delivery_address, label_method: :address, class: "form-select" %>
+          <%= f.association :supplier, collection: Supplier.all, selected: @supplier.id, class: "form-select", input_html: { id: "order-form-select"} %>
+          <%= f.input :delivery_date, as: :string, input_html: {type: :date, id: "order-form-select"} %>
+          <%= f.association :delivery_address, label_method: :address, class: "form-select", input_html: { id: "order-form-select"}  %>
 
             <div class="container edit-products-list p-0">
             <template data-order-form-target="template">
@@ -21,17 +23,17 @@
             <% end %>
             <div>
 
-              <div data-order-form-target="add_detail" align="center">
+              <div data-order-form-target="add_detail" style="margin-top: -20px;" align="center">
                 <%= link_to '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' do %>
-              <div class="push-btn">Add more + </div>
+              <div class="push-btn-small">Add more + </div>
               <% end %>
             </div>
 <br>
             </div>
 
-          <%= f.input :comments %>
+          <%= f.input :comments , label_html: {class: "order-form-add"}, input_html: {id: "order-form-select"}%>
            <div class="row">
-            <p>Grand Total</p>
+            <span><strong>Grand Total</strong></span><br>
             <p id="grandtotal" >0</p>
           </div>
           <div class="submit-container">
