@@ -5,9 +5,9 @@
     <h2 class="accordion-header" id="flush-heading">
       <button class="accordion-button collapsed px-0" id="accordion-button-order" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index + 1 %>" aria-expanded="false" aria-controls="flush-collapse<%= index + 1 %>">
         <div class="accordion-order" style="padding-right: 5px">
-          <div class="accordion-order-info">
+          <div class="accordion-order-info" style="width: 250px">
+            <span style="font-size: 14px; color: grey;">#<%= inventory.id %></span>
             <strong><%= inventory.product.name %></strong>
-              <span style="font-size: 14px; color: grey;">Inv# <%= inventory.id %></span><br>
             <%= inventory.product.supplier.name %><br>
             $<%= inventory.product.price %><br>
           </div>
@@ -16,7 +16,7 @@
             <div style="text-align: right; font-size: 14px; margin-top: 10px">
               <% quantity_diff = inventory.quantity_bal - inventory.par_bal  %>
               <% if quantity_diff > 0 %>
-                <span style="color: blue; font-weight: bold;"> + <%= quantity_diff %> vs min</span><br/>
+                <span style="color: #007ea7; font-weight: bold;"> + <%= quantity_diff %> vs min</span><br/>
                 <% elsif quantity_diff == 0 %>
                 <span style="color: grey; font-weight: bold;">  <%= quantity_diff %> vs min</span><br/>
                 <% else quantity_diff < 0  %>
@@ -37,8 +37,10 @@
               <% else  %>
               <% end %>
         </div>
-        <div style="text-align: right; font-size: 16px;">
-          <%= link_to "Reorder >", supplier_path(inventory.product.supplier) %>
+        <div>
+          <%= link_to supplier_path(inventory.product.supplier)  do %>
+            <i class="fa-solid fa-file fa-2xl" id="accordion-reorder" style="color: #0D6EFD"></i>
+          <% end %>
         </div>
       </div>
     </div>
