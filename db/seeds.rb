@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require 'csv'
 puts "Cleaning up database..."
 Order.destroy_all
 Template.destroy_all
@@ -19,10 +20,10 @@ puts "Database cleaned"
 puts "Populating supplier seeds"
 puts "Database cleaned"
 
-no_of_orders = 50
+no_of_orders = 20
 
 puts "Populating supplier seeds"
-9.times do
+7.times do
   Supplier.create!(
     name:  Faker::Company.name,
     # email:  "kenneth@gmail.com",
@@ -35,12 +36,26 @@ end
 # Add your own email address as a supplier to test action mailer :)
 puts "Populating supplier seed for mailer test"
   Supplier.create!(
+    name:  "Eastern Brewdog Co",
+    email: "easternbrewdog@gmail.com",
+    address: "301 Jalan Klapa, Singapore 200321"
+  )
+  Supplier.create!(
+    name:  "Viet'Spice",
+    email: "helen@vietspice.com",
+    address: "14 Circular Rd, Singapore 049370"
+  )
+  Supplier.create!(
     name:  "Resonant Coffee Co",
     email: "resonantcoffeeco@gmail.com",
-    address: "136 Telok Ayer Street"
+    address: "239 Bukit Batok East Ave 5, Singapore 650239"
   )
 
 puts "Populating user seeds"
+User.create!(
+  email: "christina@gmail.com",
+  password: "password"
+)
 User.create!(
   email: "jega@gmail.com",
   password: "password"
@@ -50,33 +65,26 @@ User.create!(
   password: "password"
 )
 User.create!(
-  email: "christina@gmail.com",
-  password: "password"
-)
-User.create!(
   email: "mike@gmail.com",
   password: "password"
 )
 
 puts "Creating product and inventory seeds"
 
-100.times do
-  products_array = []
-  products_array << Faker::Food.vegetables
-  products_array << Faker::Food.spice
-  products_array << Faker::Food.fruits
-  products_array << Faker::Food.ingredient
-  product = Product.new
-  product.name = products_array.sample
-  product.price = rand(1..10)
-  product.supplier =  Supplier.all.sample
-  product.save!
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'product_seeds.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  p = Product.new
+  p.name = row['name']
+  p.price = row['price']
+  p.supplier = Supplier.all.sample
+  p.save!
 
   Inventory.create!(
-    product_id: product.id,
+    product: p,
     quantity_bal: rand(1..100),
     par_bal: rand(20..30),
-    user_id: User.all.sample.id,
+    user: User.all.sample,
     reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
   )
 end
@@ -84,29 +92,32 @@ end
 puts "[Temporary] Creating square order inventory seeds"
 
   # temporary until we finalize seed file
-  square_array = ["Sapporo", "Soymilk", "Lemon", "Red Pepper"]
-  square_array.each do |item|
-    product = Product.new
-    product.name = item
-    product.price = rand(1..10)
-    product.supplier = Supplier.all.sample
-    product.save!
-      Inventory.create!(
-        product_id: product.id,
-        quantity_bal: rand(20..100),
-        par_bal: rand(20..30),
-        user_id: User.all.sample.id,
-        reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
-      )
-  end
+square_array = ["Sapporo", "Soymilk", "Lemon", "Red Pepper"]
+square_array.each do |item|
+  product = Product.new
+  product.name = item
+  product.price = rand(1..10)
+  product.supplier = Supplier.find(1)
+  product.save!
+    Inventory.create!(
+      product: product,
+      quantity_bal: rand(20..100),
+      par_bal: rand(20..30),
+      user: User.find(1),
+      reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
+    )
+end
 
 puts "Populating address details"
-no_of_orders.times do
-  DeliveryAddress.create!(
-    address: Faker::Address.full_address,
-    contact_number: Faker::PhoneNumber.phone_number_with_country_code,
-    user: User.all.sample
-  )
+
+User.all.each do |u|
+  2.times do
+    DeliveryAddress.create!(
+      address: Faker::Address.full_address,
+      contact_number: Faker::PhoneNumber.phone_number_with_country_code,
+      user: u
+    )
+  end
 end
 
 puts "Populating order seeds"
@@ -123,15 +134,14 @@ no_of_orders.times do
     supplier: rand_supplier,
     user: rand_user,
     delivery_date: Faker::Date.between(from: '2022-12-01', to: '2022-12-31'),
-    comments: "Please deliver to the front desk",
+    comments: "Please deliver before 2pm",
     delivery_address: rand_user.delivery_addresses.sample,
     order_details_attributes: order_details_rows
   )
-
 end
 
-User.all.each_with_index do |user|
-  5.times do
+User.all.each_with_index do |u, i|
+  2.times do
     rand_supplier = Supplier.all.sample
     order_details_rows = []
     rand(1..5).times do
@@ -139,8 +149,8 @@ User.all.each_with_index do |user|
     end
     Template.create!(
       supplier: rand_supplier,
-      user: user,
-      name: "Template",
+      user: u,
+      name: "Template #{i}- #{rand_supplier.name}",
       order_details_attributes: order_details_rows
     )
   end
