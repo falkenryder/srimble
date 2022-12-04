@@ -1,0 +1,31 @@
+<div class="templates">
+  <% current_user.templates.order(:created_at).first(10).each do |template| %>
+    <div class="notif-card-template mb-2">
+      <%# <%= link_to new_order_path( template: template ), class: "notif-card2 mb-2 templates" do %>
+      <small><%= template.supplier.name %><br/></small>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 text-truncate"><%= template.name %></h5>
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
+      </div>
+      <%# <% end %>
+    <%# </div> %>
+
+      <div class="btn-tray-template">
+        <%# Create new order with template %>
+        <div class="order-btn">
+          <%= link_to new_order_path(template: template) do %>
+            <i class="fa-solid fa-cart-plus"></i>
+          <% end %>
+        </div>
+
+        <%# edit template button %>
+        <div class="order-btn">
+          <%= link_to edit_template_path(template) do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
