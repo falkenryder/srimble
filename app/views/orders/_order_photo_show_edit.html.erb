@@ -9,8 +9,8 @@
       <% else %>
         <div class="col-sm">
           <%= simple_form_for(@order) do |f| %>
-            <%= f.input :photo, as: :file, error: 'Photo is mandatory, please upload one', class: "form-control" %>
-            <%= f.button :submit, " + Attach Photo", class: "btn-login btn btn-outline-dark" %>
+            <%= f.input :photo, as: :file, error: 'Invoice is mandatory, please upload one', class: "form-control" %>
+            <%= f.button :submit, " + Attach Invoice", class: "btn-login btn btn-outline-dark", style: "margin-left: 80px; margin-top: 3px;" %>
           <% end %>
         </div>
       <% end %>

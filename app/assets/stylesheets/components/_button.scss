@@ -1,3 +1,44 @@
+// btn-action is for "button" styling
+
+.btn-action {
+  margin-top: 15px;
+  border-radius: 15px;
+  font-size: 15px;
+  background-color: #007ea7;
+  color: white;
+  height: 50px;
+  width: 180px;
+  border: none;
+}
+
+.btn-action:hover {
+  background-color: transparent !important;
+  color: #007ea7 !important;
+  text-decoration: none !important;
+  border: 1px solid #007ea7;
+}
+
+// btn-action-link is for "link_to" styling
+
+.btn-action-link {
+  padding-top: 13px;
+  margin-top: 15px;
+  border-radius: 15px;
+  font-size: 15px;
+  background-color: #007ea7;
+  color: white;
+  height: 50px;
+  width: 180px;
+  border: none;
+}
+
+.btn-action-link:hover {
+  background-color: transparent !important;
+  color: #007ea7 !important;
+  text-decoration: none !important;
+  border: 1px solid #007ea7;
+}
+
 .btn-ghost {
   color: #292929;
   border: 1px solid #292929;

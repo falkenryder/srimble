@@ -1,34 +1,31 @@
 
 <div class="container col-11 my-4 px-0">
   <%= render "order_show" %>
+
   <%# Bottom button(s) %>
+
   <%# For order yet to be delivered  %>
   <% if @order.status != "delivered" %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
       <!-- Button trigger modal -->
-        <button type="button" class="btn-login btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
-        Mark as delivered
+        <button type="button" class="btn-action btn" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
+        Mark as Delivered
         </button>
       </div>
       <div class="col-6">
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn-login btn btn-outline-dark", style: "padding: 5px 15px;" %>
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn-action-link btn" %>
       </div>
-
     </div>
+
   <%# For delievered order  %>
   <% else %>
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-      <% unless @order.photo.attached? %>
-        <button type="button" class="push-btn-small btn" data-bs-toggle="modal" data-bs-target="#markdeliveredModal">
-          Attach Photo
-        </button>
-        <% end %>
-        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "push-btn-small btn"%>
+
+        <%= link_to "Contact Supplier", supplier_path(@order.supplier_id), class: "btn-action-link btn" %>
       </div>
     </div>
-
   <% end %>
 <%# container div below %>
 </div>
@@ -40,7 +37,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"> <strong><%= "Attach a photo to this order" unless @order.photo.attached? %></strong></h1>
+        <h1 class="modal-title fs-5" id="markDeliveredModalLabel"> <strong><%= "Upload printed invoice from supplier" unless @order.photo.attached? %></strong></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
