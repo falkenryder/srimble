@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
     <h2>Hello Christina,</h2>
     <h3 style="margin-bottom: 30px;">what would you like to do today?</h3>
-    <div class="row mb-4" style="text-align:center; font-size:12px;">
+    <div class="row mb-4 dash-icons">
       <div class="col">
         <%= link_to new_supplier_order_path(Supplier.find(1)) do %>
         <%= image_tag "https://img.icons8.com/ios/50/null/create-order--v1.png", class: "quick-link-btn" %>
@@ -43,11 +43,11 @@
           <%= render "orders_list" %>
         </div>
 
-        <div id="Templates" class="tabcontent">
+        <div id="Templates" class="tabcontent" style="border: none">
           <%= render "templates_list" %>
         </div>
 
-        <div id="Low" class="tabcontent">
+        <div id="Low" class="tabcontent" style="border: none">
           <%= render "products_list" %>
         </div>
 <script>
