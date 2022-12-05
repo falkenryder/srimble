@@ -99,8 +99,8 @@ square_array.each do |item|
   product.save!
     Inventory.create!(
       product: product,
-      quantity_bal: rand(20..100),
-      par_bal: rand(20..30),
+      quantity_bal: 24,
+      par_bal: 24,
       user: User.find(1),
       reconciled_at: Faker::Date.between(from: 30.days.ago, to: Date.today)
     )

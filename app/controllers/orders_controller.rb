@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       @order.status = "pending" #TODO: enum this!
       if @order.save
         SupplierMailer.with(supplier: @supplier, order: @order, user: @user).order_email.deliver_now
-        redirect_to @order
+        redirect_to @order, notice: "Order ##{@order.id} has been created successfully! We've sent an email to #{@order.supplier.email}."
       else
         render :new, status: :unprocessable_entity
       end
@@ -52,12 +52,13 @@ class OrdersController < ApplicationController
       @template = Template.new(template_params)
       @template.user = @user
       if @template.save
-        redirect_to new_order_path(template: @template)
+        redirect_to new_order_path(template: @template), notice: "Template has been successfully saved."
       else
         render :new, status: :unprocessable_entity
       end
     end
   end
+
 
   def edit
     if params[:type] == "template"
