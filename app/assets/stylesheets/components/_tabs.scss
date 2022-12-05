@@ -3,6 +3,8 @@
   overflow: hidden;
   background-color: #f4f4f4;
   margin-bottom: 2px solid black;
+  display: flex;
+  justify-content: center;
 
 }
 .content {
@@ -11,8 +13,18 @@
   background-color: #f4f4f4;
 }
 
+.row.mb-4.dash-icons {
+  display: flex;
+  justify-content: center;
+  text-align:center;
+  font-size:12px;
+  // margin-left: 2px;
+}
+
 /* Style the buttons that are used to open the tab content */
 .tab button {
+  display: flex;
+  justify-content: flex-end;
   background-color: #f4f4f4;
   float: left;
   border: 1px solid black;
