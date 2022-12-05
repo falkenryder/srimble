@@ -9,7 +9,8 @@
             <strong><%= order.supplier.name %></strong><br>
               <%= Time.parse("#{order.delivery_date}").strftime('%b-%d-%Y') %>
           </div>
-          <a class="view-btn"><%= order.status %></a>
+            <span class="badge pending-badge" data-controller="order-status" data-order-status-target="status"><%= order.status %></span>
+
         </div>
       </button>
     </h2>

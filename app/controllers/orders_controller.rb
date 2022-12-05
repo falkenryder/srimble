@@ -52,12 +52,13 @@ class OrdersController < ApplicationController
       @template = Template.new(template_params)
       @template.user = @user
       if @template.save
-        redirect_to new_order_path(template: @template)
+        redirect_to new_order_path(template: @template), notice: "Template has been successfully saved."
       else
         render :new, status: :unprocessable_entity
       end
     end
   end
+
 
   def edit
     if params[:type] == "template"

@@ -17,22 +17,21 @@
 
 
 }
-.confirmed-badge {
+.sent-badge {
   border-radius: 15px;
   border-width: 5px;
-  color: black;
   padding: 12px 28px;
   display: flex;
   text-decoration: none;
   justify-content: center;
   align-items: center;
-  border: solid black;
   border-width: 2px 2px;
   font-size: 16px;
   position: relative;
   height: 40px;
   width: 120px;
-  background-color: #40F99B;
+  color: #28aa69;
+  border: 1px solid #28aa69;
 }
 .delivered-badge {
   border-radius: 15px;

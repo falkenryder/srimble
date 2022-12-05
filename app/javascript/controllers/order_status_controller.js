@@ -16,9 +16,9 @@ export default class extends Controller {
         target.classList.remove(klass)
         target.classList.add("pending-badge");;
         break;
-        case "confirmed":
+        case "sent":
           target.classList.remove(klass)
-          target.classList.add("confirmed-badge");
+          target.classList.add("sent-badge");
           break;
           case "delivered":
           target.classList.remove(klass)
