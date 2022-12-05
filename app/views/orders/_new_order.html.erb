@@ -26,10 +26,10 @@
 
               <div data-order-form-target="add_detail" style="margin-top: -20px;" align="center">
                 <%= link_to '#', data: { action: "click->order-form#add_association"}, :style=>'text-decoration: none;' do %>
-              <div class="push-btn-small">Add more + </div>
+              <div class="push-btn-small" style="width: 85%">Add more + </div>
               <% end %>
             </div>
-<br>
+        <br>
             </div>
 
           <%= f.input :comments , label_html: {class: "order-form-add"}, input_html: {id: "order-form-select"}%>
@@ -37,11 +37,19 @@
             <span><strong>Grand Total</strong></span><br>
             <p id="grandtotal" >0</p>
           </div>
-          <div class="submit-container">
-            <!-- Button trigger modal -->
-            <button type="button" class="push-btn order-submit" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Save as Template
-            </button>
+
+          <%# Two bottom buttons  %>
+
+          <div class="row d-flex justify-content-center">
+            <div class="col-6">
+              <!-- Button trigger modal -->
+              <%# <button type="button" class="push-btn order-submit" data-bs-toggle="modal" data-bs-target="#exampleModal"> %>
+              <button type="button" class="push-btn-small" style="margin-top: 30px; width: 44%; margin-left: 1px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Save as Template
+              </button>
+            </div>
+
+            <div class="col-6">
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -60,8 +68,11 @@
                 </div>
               </div>
             </div>
-            <%= f.button :submit, "Submit", :class => "push-btn order-submit"%>
+            <%# <%= f.button :submit, "Submit", :class => "push-btn order-submit" %>
+            <%= f.button :submit, "Submit", :class => "push-btn-small", :style => "margin-top: 30px; width: 44%" %>
           </div>
+        </div>
+
         </div>
         <% end %>
       </div>
