@@ -1,3 +1,4 @@
+
 ![Logo](https://i.ibb.co/T1CDsHG/Minimalist-Simple-Initial-logo-1.png)
 # [Srimble](https://www.srimble.me/)
 A mobile-first web progressive application (PWA) created for restaurants to better and more effectively manage their suppliers and purchasing process. With a simple and elegant UI, you can now manage your day-to-day purchases more efficiently than ever: suppliers, orders, products and stock all in one place.
@@ -22,6 +23,14 @@ A mobile-first web progressive application (PWA) created for restaurants to bett
 - [Heroku](https://www.heroku.com/platform) for deployment , CI/CD pipelines and PostgreSQL management
 
 
+## Demo
+
+- Order from Search
+![App Screenshot](https://s9.gifyu.com/images/screen-recorder-fri-dec-16-2022-23-52-56.gif)
+- Order from Template
+![App Screenshot](https://s9.gifyu.com/images/screen-recorder-sat-dec-17-2022-00-00-08.gif)
+- Order from Low Items
+![App Screenshot](https://s9.gifyu.com/images/screen-recorder-sat-dec-17-2022-00-17-50.gif)
 ## Roadmap
 
 - Additional browser support for desktop
@@ -38,7 +47,7 @@ A mobile-first web progressive application (PWA) created for restaurants to bett
 ## Acknowledgements
 
  - [Le Wagon](https://www.lewagon.com/) 
- - My awesome team
+ - My awesome team 👇
 
 
 ## Authors
