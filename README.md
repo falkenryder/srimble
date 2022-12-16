@@ -25,21 +25,22 @@ A mobile-first web progressive application (PWA) created for restaurants to bett
 
 ## Demo
 
-- Order from Search
-![App Screenshot](https://s9.gifyu.com/images/screen-recorder-fri-dec-16-2022-23-52-56.gif)
-- Order from Template
-![App Screenshot](https://s9.gifyu.com/images/screen-recorder-sat-dec-17-2022-00-00-08.gif)
-- Order from Low Items
-![App Screenshot](https://s9.gifyu.com/images/screen-recorder-sat-dec-17-2022-00-17-50.gif)
-## Roadmap
+- Order from Search <br/>
+<img src="https://media.giphy.com/media/755r9yLs4ZiyCb3jeN/giphy.gif" width="229" height="480"/>
+- Order from Template <br/><br/>
+<img src="https://media.giphy.com/media/OXAOkrerQe4fGZpSCN/giphy.gif" width="229" height="480"/>
+- Order from Low Items <br/><br/>
+<img src="https://media.giphy.com/media/m6Djlj3FIhKbIqliBu/giphy.gif" width="229" height="480"/>
+
+## Roadmap (v2)
 
 - Additional browser support for desktop
 
 - Additional functionality for suppliers, products and users
 
-- Add organizations to current App; companies would then be able to invite their employees to sign up and use the App
+- Add organizations to current app; companies would then be able to invite their employees to sign up through their individual companies
 
-- Smart inventory; order suggestions based on products sales data from [Square](https://squareup.com/us/en)
+- Smart inventory; restaurant analytics to quantify overall health, order suggestions based on products sales data from [Square](https://squareup.com/us/en)
 
 - Transition to mobile App using [React Native](https://reactnative.dev/)
 
